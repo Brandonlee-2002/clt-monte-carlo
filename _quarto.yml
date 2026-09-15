@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "How Fast Does Normal Happen?"
+  title: "Stress-Testing the Central Limit Theorem"
   navbar:
     background: "#102a43"
     foreground: "#f8fafc"

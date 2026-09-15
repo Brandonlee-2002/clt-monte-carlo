@@ -1,6 +1,6 @@
 ---
-title: "How Fast Does Normal Happen?"
-subtitle: "Stress-testing the Central Limit Theorem with Monte Carlo simulation"
+title: "Stress-Testing the Central Limit Theorem"
+subtitle: "A Reproducible Monte Carlo Study of When Sample Means Become Approximately Normal"
 ---
 
 ::: {.hero-panel}
