@@ -1,0 +1,65 @@
+---
+title: "Continuous Uniform Population"
+subtitle: "Bounded, symmetric, and non-normal"
+format: html
+---
+
+```{r}
+source("../R/helpers.R")
+student_id <- 6599L  # Replace with the last four digits of your student ID.
+B <- B_DEFAULT
+study <- study_population("uniform", seed = student_id, B = B)
+d <- study$diagnostics
+```
+
+## Population and prediction
+
+The observations are independent Uniform(0, 1) values. The population is
+bounded and symmetric but has a flat, non-normal shape. I expect symmetry to
+make convergence faster than for strongly right-skewed populations, although
+very small sample means will still show the bounded population's shape.
+
+## Experimental design and decision rule
+
+For each candidate \(n\), I generated `r paste0("B = ", B)` sample means. I investigated
+`r paste(N_VALUES, collapse = ", ")`. The same normality rule is used for every
+population: absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q
+correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08, with three consecutive
+passing values required for a stable selection.
+
+## Results
+
+```{r}
+display <- d[, c("n", "simulated_mean", "simulated_sd", "theoretical_sd",
+                 "skewness", "excess_kurtosis", "qq_correlation", "qq_rmse",
+                 "normal_enough", "stable_pass")]
+display$normal_enough <- ifelse(display$normal_enough, "yes", "no")
+display$stable_pass <- ifelse(display$stable_pass, "yes", "no")
+knitr::kable(display, digits = 3)
+```
+
+## Visual evidence
+
+```{r}
+plot_n <- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n
+x <- study$samples[[as.character(plot_n)]]
+old_par <- par(mfrow = c(1, 2))
+hist(x, breaks = 40, probability = TRUE, col = "seagreen", border = "white",
+     main = paste("Sampling means: n =", plot_n), xlab = "Sample mean")
+curve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),
+      add = TRUE, col = "firebrick", lwd = 2)
+qqnorm(x, main = paste("Normal Q-Q plot: n =", plot_n), pch = 16, cex = 0.3)
+qqline(x, col = "firebrick", lwd = 2)
+par(old_par)
+```
+
+## Conclusion
+
+The first stable pass is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`**. The bounded support disappears after averaging, while symmetry keeps skewness near zero. The remaining evidence to inspect is the slight excess-kurtosis and Q-Q-tail behavior at the smallest passing \(n\).
+
+## Reproducibility check
+
+```{r}
+reproducibility_check("uniform", n = plot_n, seed_a = student_id,
+                      seed_b = 2026L, B = B)
+```

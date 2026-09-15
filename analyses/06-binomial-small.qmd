@@ -1,0 +1,62 @@
+---
+title: "Small-Probability Binomial Population"
+subtitle: "A rare-success, highly skewed case"
+format: html
+---
+
+```{r}
+source("../R/helpers.R")
+student_id <- 6599L  # Replace with the last four digits of your student ID.
+B <- B_DEFAULT
+study <- study_population("binomial_small", seed = student_id, B = B)
+d <- study$diagnostics
+```
+
+## Population and prediction
+
+Each observation is Binomial(size = 5, p = 0.10). It is discrete and strongly
+right-skewed because successes are rare. I expect convergence to be slower than
+for the symmetric die and large binomial populations.
+
+## Experimental design and decision rule
+
+I generated `r paste0("B = ", B)` sample means at candidate sizes `r paste(N_VALUES, collapse = ", ")`. I use the same criteria throughout: absolute skewness ≤
+0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and
+standardized Q-Q RMSE ≤ 0.08. Three consecutive passes are required.
+
+## Results
+
+```{r}
+display <- d[, c("n", "simulated_mean", "simulated_sd", "theoretical_sd",
+                 "skewness", "excess_kurtosis", "qq_correlation", "qq_rmse",
+                 "normal_enough", "stable_pass")]
+display$normal_enough <- ifelse(display$normal_enough, "yes", "no")
+display$stable_pass <- ifelse(display$stable_pass, "yes", "no")
+knitr::kable(display, digits = 3)
+```
+
+## Visual evidence
+
+```{r}
+plot_n <- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n
+x <- study$samples[[as.character(plot_n)]]
+old_par <- par(mfrow = c(1, 2))
+hist(x, breaks = 40, probability = TRUE, col = "tomato", border = "white",
+     main = paste("Sampling means: n =", plot_n), xlab = "Sample mean")
+curve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),
+      add = TRUE, col = "firebrick", lwd = 2)
+qqnorm(x, main = paste("Normal Q-Q plot: n =", plot_n), pch = 16, cex = 0.3)
+qqline(x, col = "firebrick", lwd = 2)
+par(old_par)
+```
+
+## Conclusion
+
+The first stable pass is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`**. Rare-success populations are a useful warning against applying \(n=30\) automatically: even though the variables are independent and have finite variance, their strong skewness can remain visible in sample means for much larger \(n\).
+
+## Reproducibility check
+
+```{r}
+reproducibility_check("binomial_small", n = plot_n, seed_a = student_id,
+                      seed_b = 2026L, B = B)
+```

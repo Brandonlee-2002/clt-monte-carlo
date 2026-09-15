@@ -1,0 +1,178 @@
+---
+title: "Final Summary"
+subtitle: "What the simulations say about sample size, shape, and assumptions"
+format: html
+---
+
+```{r}
+source("R/helpers.R")
+student_id <- 6599L  # Replace with the last four digits of your student ID.
+B <- B_DEFAULT
+studies <- run_all_studies(seed = student_id, B = B, keep_samples = FALSE)
+summary <- summary_table(studies)
+```
+
+## Research question
+
+The project asks whether there is a universal sample size at which a sampling
+distribution of a mean can be called approximately normal. I tested that idea
+with the same Monte Carlo design across populations with different shapes and
+assumption structures.
+
+## Experimental design
+
+For each population and each candidate \(n\), I generated `r paste0("B = ", B)` sample
+means. The candidate sizes were `r paste(N_VALUES, collapse = ", ")`. The
+student seed is set immediately before every experiment. This makes each row
+reproducible and allows a second seed to be used as a sensitivity check.
+
+The operational definition of “approximately normal” requires all four of the
+following:
+
+- absolute skewness ≤ 0.20;
+- absolute excess kurtosis ≤ 0.30;
+- normal Q-Q correlation ≥ 0.995;
+- standardized normal Q-Q RMSE ≤ 0.08.
+
+The selected \(n\) is the first candidate that passes all four criteria for
+three consecutive investigated sizes. This stability requirement prevents a
+single Monte Carlo fluctuation from determining the answer. Histograms,
+theoretical standard deviations, and the population assumptions are reviewed
+alongside the numerical screen.
+
+## Cross-distribution comparison
+
+```{r}
+display_summary <- summary
+display_summary$smallest_n_judged_normal <- ifelse(
+  is.na(display_summary$smallest_n_judged_normal),
+  "none through n = 500",
+  as.character(display_summary$smallest_n_judged_normal)
+)
+knitr::kable(display_summary, digits = 3)
+```
+
+The table is generated directly from the same helper functions used in the
+individual analyses. The exact values depend on the student seed, but the
+relative pattern is the main scientific result.
+
+## Answer to the research question
+
+The answer is ambiguous because the question asks for a smallest value of
+\(n\), but the phrase “reasonably defensible as approximately normal” depends
+on several choices. It is not a property that switches on at one universal
+sample size.
+
+First, the answer depends on the population being averaged. In this project,
+the current run uses seed `r student_id` and `r paste0("B = ", B)` repetitions. The
+first stable passes were:
+
+| Population type | First stable pass |
+|---|---:|
+| Standard normal | \(n=2\) |
+| Continuous uniform | \(n=5\) |
+| Symmetric binomial, size 20 | \(n=5\) |
+| Six-sided die | \(n=10\) |
+| Poisson(1) | \(n=30\) |
+| Binomial(5, .10) | \(n=50\) |
+| Two-component mixture | \(n=50\) |
+| Non-identical Bernoulli | \(n=75\) |
+| Exponential(1) | \(n=100\) |
+| Dependent process | No stable pass through \(n=500\) |
+| Cauchy | No stable pass through \(n=500\) |
+
+These results are evidence against treating \(n=30\) as a universal rule. For
+example, the Poisson population did pass at \(n=30\), with skewness about
+0.142, excess kurtosis about -0.007, Q-Q correlation about 0.998, and Q-Q RMSE
+about 0.064. By contrast, the Exponential population still had skewness about
+0.398 at \(n=30\), so it failed the same standard; it first passed at \(n=100\),
+where skewness was about 0.189. The rare-success binomial population passed at
+\(n=50\), not at the conventional rule-of-thumb value of 30.
+
+Second, the answer depends on what “approximately normal” means. I made the
+judgment reproducible by requiring all four shape criteria—absolute skewness at
+most 0.20, absolute excess kurtosis at most 0.30, Q-Q correlation at least
+0.995, and standardized Q-Q RMSE at most 0.08. I also required three
+consecutive passing candidate sizes. A researcher using a looser skewness
+threshold, a different Q-Q tolerance, or only visual inspection could select a
+smaller value. That does not necessarily mean one analysis is wrong; it means
+the analyses answer slightly different operational questions.
+
+Third, “smallest” is relative to the sample sizes investigated. The simulation
+tested \(n=2,5,10,15,20,30,40,50,75,100,150,200,300,500\). Thus, for example,
+the reported \(n=100\) for the exponential population means the first stable
+passing value on this grid. It does not prove that every value between 75 and
+100 fails. A finer search could refine the boundary.
+
+Fourth, Monte Carlo results are estimates of the sampling distributions, not
+perfect observations of them. Changing the random seed changes the exact
+skewness, kurtosis, and Q-Q measurements. That is why the project records the
+seed, uses 10,000 repetitions, and requires consecutive passes. The broad
+conclusions are more meaningful than the last decimal place.
+
+Finally, the usual CLT assumptions matter. The Cauchy sample means did not
+produce a stable normal approximation through \(n=500\); at \(n=500\), the
+simulated skewness was about 87.46, excess kurtosis about 8213.51, and Q-Q
+correlation only about 0.093. The dependent process also failed at \(n=500\),
+with skewness about 0.282 even though its Q-Q correlation was about 0.998. A
+large nominal sample size does not automatically create a large amount of
+independent information.
+
+Therefore, the most professional answer is: **there is no single universal
+smallest sample size.** For a specified population, diagnostic standard,
+simulation design, and purpose, the smallest defensible value is the first
+sample size whose evidence meets the stated standard. In this project, that
+value ranges from \(n=2\) to \(n=100\) for the finite-variance independent
+populations, while the dependent and Cauchy cases do not meet the standard
+within the investigated range.
+
+## Population shape
+
+Symmetry is associated with faster convergence in these experiments. The
+exponential, rare-success binomial, and two-component mixture cases retain
+right-skew or tail behavior longer. The Poisson case is also skewed, but its
+skewness is less extreme than the rare-success binomial case. These differences
+show why the population distribution matters when choosing a practical sample
+size.
+
+## Assumptions and limitations
+
+The Cauchy experiment is the exception to the finite-variance pattern: no stable
+sample-mean normality was found through \(n=500\), which is consistent with its
+lack of a finite mean and variance. The dependent process shows why nominal
+sample size can overstate the amount of independent information. The
+non-identical Bernoulli process shows that changing probabilities affect the
+variance calculation even when a bell-shaped average still develops.
+
+The dependent machine-failure and mixture analyses use explicit models because
+the handout labels those population specifications as “coming soon.” If the
+instructor supplies official generators, those generator functions should be
+replaced while keeping the documented design and diagnostic rule unchanged.
+
+## Reproducibility and seed sensitivity
+
+```{r}
+selected <- summary$smallest_n_judged_normal
+selected <- selected[!is.na(selected)]
+if (length(selected) > 0) {
+  first_population <- names(studies)[which(!is.na(summary$smallest_n_judged_normal))[1]]
+  n_for_check <- studies[[first_population]]$selected_n
+  reproducibility_check(first_population, n = n_for_check,
+                        seed_a = student_id, seed_b = 2026L, B = B)
+}
+```
+
+The exact simulated means, skewness, and kurtosis change when the seed changes.
+The conclusion is considered reproducible when the broad decision—such as
+“passes early,” “requires a large \(n\),” or “no stable \(n\) in the range”—does
+not change. The Cauchy case is expected to be the most seed-sensitive because
+its tails do not provide stable ordinary moments.
+
+## Overall conclusion
+
+The Central Limit Theorem describes an asymptotic tendency, not a universal
+sample-size switch. A responsible normal approximation requires attention to
+population shape, dependence, identical-distribution assumptions, tail behavior,
+and the purpose of the approximation. Monte Carlo simulation makes those
+differences visible and provides evidence for a population-specific judgment.
+

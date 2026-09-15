@@ -1,0 +1,6 @@
+/Inference/
+/.quarto/
+/.Rproj.user/
+*_files/
+
+**/*.quarto_ipynb

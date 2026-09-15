@@ -1,0 +1,63 @@
+---
+title: "Cauchy Population"
+subtitle: "A deliberate CLT limitation"
+format: html
+---
+
+```{r}
+source("../R/helpers.R")
+student_id <- 6599L  # Replace with the last four digits of your student ID.
+B <- B_DEFAULT
+study <- study_population("cauchy", seed = student_id, B = B)
+d <- study$diagnostics
+```
+
+## Population and prediction
+
+The observations are independent Cauchy(location = 0, scale = 1) values. The
+Cauchy distribution has no finite population mean or variance, so the usual
+finite-variance Central Limit Theorem does not apply. I predict that ordinary
+sample means will remain unstable and will not meet the normality criteria.
+
+## Experimental design and decision rule
+
+I generated `r paste0("B = ", B)` sample means at candidate sizes `r paste(N_VALUES, collapse = ", ")`. The common shape screen requires absolute skewness ≤ 0.20,
+absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q
+RMSE ≤ 0.08, with three consecutive passing values required. For Cauchy data,
+the simulated mean and standard deviation are reported descriptively only; they
+are not estimates of finite population parameters.
+
+## Results
+
+```{r}
+display <- d[, c("n", "simulated_mean", "simulated_sd", "skewness",
+                 "excess_kurtosis", "qq_correlation", "qq_rmse",
+                 "normal_enough", "stable_pass")]
+display$normal_enough <- ifelse(display$normal_enough, "yes", "no")
+display$stable_pass <- ifelse(display$stable_pass, "yes", "no")
+knitr::kable(display, digits = 3)
+```
+
+## Visual evidence
+
+```{r}
+plot_n <- max(N_VALUES)
+x <- study$samples[[as.character(plot_n)]]
+old_par <- par(mfrow = c(1, 2))
+hist(x, breaks = 50, probability = TRUE, col = "gray60", border = "white",
+     main = paste("Cauchy sample means: n =", plot_n), xlab = "Sample mean")
+qqnorm(x, main = paste("Normal Q-Q plot: n =", plot_n), pch = 16, cex = 0.3)
+qqline(x, col = "firebrick", lwd = 2)
+par(old_par)
+```
+
+## Conclusion
+
+The first stable pass is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`**. Within the investigated range, no stable \(n\) met all criteria. This is not evidence that a larger finite \(n\) must eventually work; it is evidence that ordinary sample means are not governed by the usual finite-mean, finite-variance CLT here. The heavy tails also make exact summaries highly seed-sensitive.
+
+## Reproducibility check
+
+```{r}
+reproducibility_check("cauchy", n = plot_n, seed_a = student_id,
+                      seed_b = 2026L, B = B)
+```

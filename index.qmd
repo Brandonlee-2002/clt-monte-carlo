@@ -1,0 +1,67 @@
+---
+title: "How Fast Does Normal Happen?"
+subtitle: "Stress-testing the Central Limit Theorem with Monte Carlo simulation"
+---
+
+This repository investigates how quickly the sampling distribution of the sample
+mean becomes approximately normal. The analysis compares symmetric, skewed,
+discrete, heavy-tailed, dependent, non-identically distributed, and mixture
+populations.
+
+## Research question
+
+> What is the smallest sample size at which the sampling distribution of the
+> sample mean is reasonably defensible as approximately normal?
+
+There is no universal answer. This project uses the same diagnostic standard
+for every population, then explains where that standard works and where the
+usual Central Limit Theorem assumptions fail.
+
+## Answer in brief
+
+The answer is ambiguous because “approximately normal” is a judgment based on
+the population being averaged, the diagnostic thresholds, the sample sizes
+investigated, Monte Carlo variation, and the assumptions behind the CLT. It is
+not a universal switch that turns on at (n=30).
+
+Using `B = 10000`, the current seed `6599`, and the same four diagnostics for
+every population, the first stable passing values were:
+
+| Population | First stable passing (n) |
+|---|---:|
+| Standard normal | 2 |
+| Continuous uniform | 5 |
+| Symmetric binomial | 5 |
+| Six-sided die | 10 |
+| Poisson | 30 |
+| Rare-success binomial | 50 |
+| Two-component mixture | 50 |
+| Non-identical Bernoulli | 75 |
+| Exponential | 100 |
+| Dependent process | None through 500 |
+| Cauchy | None through 500 |
+
+For example, the Poisson population passed at (n=30) with skewness about
+0.142, while the Exponential population still had skewness about 0.398 at
+(n=30) and did not pass until (n=100). The Cauchy population failed even at
+(n=500), where its simulated skewness was about 87.46 and excess kurtosis was
+about 8213.51.
+
+Therefore, the defensible answer is population-specific: select the smallest
+sample size whose graphical and numerical evidence meets a clearly stated
+standard. In this project, the answer ranges from (n=2) to (n=100) for the
+finite-variance independent populations, while the dependent and Cauchy cases
+do not meet the standard within the investigated range.
+
+## How to read the project
+
+- Read the individual population analyses for the simulations and evidence.
+- Read the [final summary](final-summary.qmd) for the cross-distribution comparison.
+- See `R/helpers.R` for the shared simulation and diagnostic definitions.
+- See `ai-log.md` for the record of prompts, validation, and revisions.
+
+## Reproducibility
+
+The analyses use base R and a single student seed. Replace `student_id <- 6599`
+in each analysis with the last four digits of your own student ID before
+rendering. The Monte Carlo repetition count is `B = 10000`.

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Final Summary – How Fast Does Normal Happen?</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-445b8638c3d06994fee0907d791121c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">How Fast Does Normal Happen?</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./final-summary.html" aria-current="page"> 
+<span class="menu-text">Final summary</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyses">    
+        <li>
+    <a class="dropdown-item" href="./analyses/01-normal.html">
+ <span class="dropdown-text">Standard normal</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/02-uniform.html">
+ <span class="dropdown-text">Continuous uniform</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/03-six-sided-die.html">
+ <span class="dropdown-text">Six-sided die</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/04-exponential.html">
+ <span class="dropdown-text">Exponential</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/05-poisson.html">
+ <span class="dropdown-text">Poisson</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/06-binomial-small.html">
+ <span class="dropdown-text">Binomial small</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/07-binomial-large.html">
+ <span class="dropdown-text">Binomial large</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/08-cauchy.html">
+ <span class="dropdown-text">Cauchy</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/09-dependent-machine.html">
+ <span class="dropdown-text">Dependent process</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/10-nonidentical-bernoulli.html">
+ <span class="dropdown-text">Non-identical Bernoulli</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analyses/11-mixture.html">
+ <span class="dropdown-text">Two-component mixture</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">1</span> Research question</a></li>
+  <li><a href="#experimental-design" id="toc-experimental-design" class="nav-link" data-scroll-target="#experimental-design"><span class="header-section-number">2</span> Experimental design</a></li>
+  <li><a href="#cross-distribution-comparison" id="toc-cross-distribution-comparison" class="nav-link" data-scroll-target="#cross-distribution-comparison"><span class="header-section-number">3</span> Cross-distribution comparison</a></li>
+  <li><a href="#answer-to-the-research-question" id="toc-answer-to-the-research-question" class="nav-link" data-scroll-target="#answer-to-the-research-question"><span class="header-section-number">4</span> Answer to the research question</a></li>
+  <li><a href="#population-shape" id="toc-population-shape" class="nav-link" data-scroll-target="#population-shape"><span class="header-section-number">5</span> Population shape</a></li>
+  <li><a href="#assumptions-and-limitations" id="toc-assumptions-and-limitations" class="nav-link" data-scroll-target="#assumptions-and-limitations"><span class="header-section-number">6</span> Assumptions and limitations</a></li>
+  <li><a href="#reproducibility-and-seed-sensitivity" id="toc-reproducibility-and-seed-sensitivity" class="nav-link" data-scroll-target="#reproducibility-and-seed-sensitivity"><span class="header-section-number">7</span> Reproducibility and seed sensitivity</a></li>
+  <li><a href="#overall-conclusion" id="toc-overall-conclusion" class="nav-link" data-scroll-target="#overall-conclusion"><span class="header-section-number">8</span> Overall conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Final Summary</h1>
+<p class="subtitle lead">What the simulations say about sample size, shape, and assumptions</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/helpers.R"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>student_id <span class="ot">&lt;-</span> <span class="dv">6599</span>L  <span class="co"># Replace with the last four digits of your student ID.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> B_DEFAULT</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>studies <span class="ot">&lt;-</span> <span class="fu">run_all_studies</span>(<span class="at">seed =</span> student_id, <span class="at">B =</span> B, <span class="at">keep_samples =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">&lt;-</span> <span class="fu">summary_table</span>(studies)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="research-question" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="research-question"><span class="header-section-number">1</span> Research question</h2>
+<p>The project asks whether there is a universal sample size at which a sampling distribution of a mean can be called approximately normal. I tested that idea with the same Monte Carlo design across populations with different shapes and assumption structures.</p>
+</section>
+<section id="experimental-design" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="experimental-design"><span class="header-section-number">2</span> Experimental design</h2>
+<p>For each population and each candidate (n), I generated B = 10000 sample means. The candidate sizes were 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The student seed is set immediately before every experiment. This makes each row reproducible and allows a second seed to be used as a sensitivity check.</p>
+<p>The operational definition of “approximately normal” requires all four of the following:</p>
+<ul>
+<li>absolute skewness ≤ 0.20;</li>
+<li>absolute excess kurtosis ≤ 0.30;</li>
+<li>normal Q-Q correlation ≥ 0.995;</li>
+<li>standardized normal Q-Q RMSE ≤ 0.08.</li>
+</ul>
+<p>The selected (n) is the first candidate that passes all four criteria for three consecutive investigated sizes. This stability requirement prevents a single Monte Carlo fluctuation from determining the answer. Histograms, theoretical standard deviations, and the population assumptions are reviewed alongside the numerical screen.</p>
+</section>
+<section id="cross-distribution-comparison" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="cross-distribution-comparison"><span class="header-section-number">3</span> Cross-distribution comparison</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>display_summary <span class="ot">&lt;-</span> summary</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>display_summary<span class="sc">$</span>smallest_n_judged_normal <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(display_summary<span class="sc">$</span>smallest_n_judged_normal),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"none through n = 500"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.character</span>(display_summary<span class="sc">$</span>smallest_n_judged_normal)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(display_summary, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 9%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">population</th>
+<th style="text-align: left;">smallest_n_judged_normal</th>
+<th style="text-align: right;">skewness_at_selected_n</th>
+<th style="text-align: right;">excess_kurtosis_at_selected_n</th>
+<th style="text-align: right;">qq_correlation_at_selected_n</th>
+<th style="text-align: right;">qq_rmse_at_selected_n</th>
+<th style="text-align: left;">conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">normal</td>
+<td style="text-align: left;">Standard Normal</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.051</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: left;">First stable pass at n = 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">uniform</td>
+<td style="text-align: left;">Continuous Uniform</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">-0.237</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.028</td>
+<td style="text-align: left;">First stable pass at n = 5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">die</td>
+<td style="text-align: left;">Six-Sided Die</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: right;">-0.005</td>
+<td style="text-align: right;">-0.126</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">0.056</td>
+<td style="text-align: left;">First stable pass at n = 10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">exponential</td>
+<td style="text-align: left;">Exponential(rate = 1)</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: right;">0.189</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.999</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: left;">First stable pass at n = 100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">poisson</td>
+<td style="text-align: left;">Poisson(lambda = 1)</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: right;">0.142</td>
+<td style="text-align: right;">-0.007</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">0.064</td>
+<td style="text-align: left;">First stable pass at n = 30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">binomial_small</td>
+<td style="text-align: left;">Binomial(size = 5, p = .10)</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">-0.008</td>
+<td style="text-align: right;">0.997</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: left;">First stable pass at n = 50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">binomial_large</td>
+<td style="text-align: left;">Binomial(size = 20, p = .50)</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.086</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: left;">First stable pass at n = 5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cauchy</td>
+<td style="text-align: left;">Cauchy(location = 0, scale = 1)</td>
+<td style="text-align: left;">none through n = 500</td>
+<td style="text-align: right;">87.461</td>
+<td style="text-align: right;">8213.515</td>
+<td style="text-align: right;">0.093</td>
+<td style="text-align: right;">1.346</td>
+<td style="text-align: left;">No stable n met all criteria in the investigated range.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dependent_machine</td>
+<td style="text-align: left;">Dependent machine-failure process</td>
+<td style="text-align: left;">none through n = 500</td>
+<td style="text-align: right;">0.282</td>
+<td style="text-align: right;">0.125</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">0.068</td>
+<td style="text-align: left;">No stable n met all criteria in the investigated range.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nonidentical_bernoulli</td>
+<td style="text-align: left;">Non-identical Bernoulli process</td>
+<td style="text-align: left;">75</td>
+<td style="text-align: right;">-0.105</td>
+<td style="text-align: right;">-0.002</td>
+<td style="text-align: right;">0.997</td>
+<td style="text-align: right;">0.080</td>
+<td style="text-align: left;">First stable pass at n = 75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mixture</td>
+<td style="text-align: left;">Two-component mixture</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: right;">0.184</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">0.999</td>
+<td style="text-align: right;">0.045</td>
+<td style="text-align: left;">First stable pass at n = 50</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The table is generated directly from the same helper functions used in the individual analyses. The exact values depend on the student seed, but the relative pattern is the main scientific result.</p>
+</section>
+<section id="answer-to-the-research-question" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="answer-to-the-research-question"><span class="header-section-number">4</span> Answer to the research question</h2>
+<p>The answer is ambiguous because the question asks for a smallest value of (n), but the phrase “reasonably defensible as approximately normal” depends on several choices. It is not a property that switches on at one universal sample size.</p>
+<p>First, the answer depends on the population being averaged. In this project, the current run uses seed 6599 and B = 10000 repetitions. The first stable passes were:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Population type</th>
+<th style="text-align: right;">First stable pass</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Standard normal</td>
+<td style="text-align: right;">(n=2)</td>
+</tr>
+<tr class="even">
+<td>Continuous uniform</td>
+<td style="text-align: right;">(n=5)</td>
+</tr>
+<tr class="odd">
+<td>Symmetric binomial, size 20</td>
+<td style="text-align: right;">(n=5)</td>
+</tr>
+<tr class="even">
+<td>Six-sided die</td>
+<td style="text-align: right;">(n=10)</td>
+</tr>
+<tr class="odd">
+<td>Poisson(1)</td>
+<td style="text-align: right;">(n=30)</td>
+</tr>
+<tr class="even">
+<td>Binomial(5, .10)</td>
+<td style="text-align: right;">(n=50)</td>
+</tr>
+<tr class="odd">
+<td>Two-component mixture</td>
+<td style="text-align: right;">(n=50)</td>
+</tr>
+<tr class="even">
+<td>Non-identical Bernoulli</td>
+<td style="text-align: right;">(n=75)</td>
+</tr>
+<tr class="odd">
+<td>Exponential(1)</td>
+<td style="text-align: right;">(n=100)</td>
+</tr>
+<tr class="even">
+<td>Dependent process</td>
+<td style="text-align: right;">No stable pass through (n=500)</td>
+</tr>
+<tr class="odd">
+<td>Cauchy</td>
+<td style="text-align: right;">No stable pass through (n=500)</td>
+</tr>
+</tbody>
+</table>
+<p>These results are evidence against treating (n=30) as a universal rule. For example, the Poisson population did pass at (n=30), with skewness about 0.142, excess kurtosis about -0.007, Q-Q correlation about 0.998, and Q-Q RMSE about 0.064. By contrast, the Exponential population still had skewness about 0.398 at (n=30), so it failed the same standard; it first passed at (n=100), where skewness was about 0.189. The rare-success binomial population passed at (n=50), not at the conventional rule-of-thumb value of 30.</p>
+<p>Second, the answer depends on what “approximately normal” means. I made the judgment reproducible by requiring all four shape criteria—absolute skewness at most 0.20, absolute excess kurtosis at most 0.30, Q-Q correlation at least 0.995, and standardized Q-Q RMSE at most 0.08. I also required three consecutive passing candidate sizes. A researcher using a looser skewness threshold, a different Q-Q tolerance, or only visual inspection could select a smaller value. That does not necessarily mean one analysis is wrong; it means the analyses answer slightly different operational questions.</p>
+<p>Third, “smallest” is relative to the sample sizes investigated. The simulation tested (n=2,5,10,15,20,30,40,50,75,100,150,200,300,500). Thus, for example, the reported (n=100) for the exponential population means the first stable passing value on this grid. It does not prove that every value between 75 and 100 fails. A finer search could refine the boundary.</p>
+<p>Fourth, Monte Carlo results are estimates of the sampling distributions, not perfect observations of them. Changing the random seed changes the exact skewness, kurtosis, and Q-Q measurements. That is why the project records the seed, uses 10,000 repetitions, and requires consecutive passes. The broad conclusions are more meaningful than the last decimal place.</p>
+<p>Finally, the usual CLT assumptions matter. The Cauchy sample means did not produce a stable normal approximation through (n=500); at (n=500), the simulated skewness was about 87.46, excess kurtosis about 8213.51, and Q-Q correlation only about 0.093. The dependent process also failed at (n=500), with skewness about 0.282 even though its Q-Q correlation was about 0.998. A large nominal sample size does not automatically create a large amount of independent information.</p>
+<p>Therefore, the most professional answer is: <strong>there is no single universal smallest sample size.</strong> For a specified population, diagnostic standard, simulation design, and purpose, the smallest defensible value is the first sample size whose evidence meets the stated standard. In this project, that value ranges from (n=2) to (n=100) for the finite-variance independent populations, while the dependent and Cauchy cases do not meet the standard within the investigated range.</p>
+</section>
+<section id="population-shape" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="population-shape"><span class="header-section-number">5</span> Population shape</h2>
+<p>Symmetry is associated with faster convergence in these experiments. The exponential, rare-success binomial, and two-component mixture cases retain right-skew or tail behavior longer. The Poisson case is also skewed, but its skewness is less extreme than the rare-success binomial case. These differences show why the population distribution matters when choosing a practical sample size.</p>
+</section>
+<section id="assumptions-and-limitations" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="assumptions-and-limitations"><span class="header-section-number">6</span> Assumptions and limitations</h2>
+<p>The Cauchy experiment is the exception to the finite-variance pattern: no stable sample-mean normality was found through (n=500), which is consistent with its lack of a finite mean and variance. The dependent process shows why nominal sample size can overstate the amount of independent information. The non-identical Bernoulli process shows that changing probabilities affect the variance calculation even when a bell-shaped average still develops.</p>
+<p>The dependent machine-failure and mixture analyses use explicit models because the handout labels those population specifications as “coming soon.” If the instructor supplies official generators, those generator functions should be replaced while keeping the documented design and diagnostic rule unchanged.</p>
+</section>
+<section id="reproducibility-and-seed-sensitivity" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="reproducibility-and-seed-sensitivity"><span class="header-section-number">7</span> Reproducibility and seed sensitivity</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> summary<span class="sc">$</span>smallest_n_judged_normal</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> selected[<span class="sc">!</span><span class="fu">is.na</span>(selected)]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(selected) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  first_population <span class="ot">&lt;-</span> <span class="fu">names</span>(studies)[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(summary<span class="sc">$</span>smallest_n_judged_normal))[<span class="dv">1</span>]]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  n_for_check <span class="ot">&lt;-</span> studies[[first_population]]<span class="sc">$</span>selected_n</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reproducibility_check</span>(first_population, <span class="at">n =</span> n_for_check,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">seed_a =</span> student_id, <span class="at">seed_b =</span> <span class="dv">2026</span>L, <span class="at">B =</span> B)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  seed simulated_mean simulated_sd    skewness excess_kurtosis
+1 6599    0.007620303    0.7085607 0.001796392      0.05137215
+2 2026    0.010569596    0.7098162 0.008686944     -0.01669831</code></pre>
+</div>
+</div>
+<p>The exact simulated means, skewness, and kurtosis change when the seed changes. The conclusion is considered reproducible when the broad decision—such as “passes early,” “requires a large (n),” or “no stable (n) in the range”—does not change. The Cauchy case is expected to be the most seed-sensitive because its tails do not provide stable ordinary moments.</p>
+</section>
+<section id="overall-conclusion" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="overall-conclusion"><span class="header-section-number">8</span> Overall conclusion</h2>
+<p>The Central Limit Theorem describes an asymptotic tendency, not a universal sample-size switch. A responsible normal approximation requires attention to population shape, dependence, identical-distribution assumptions, tail behavior, and the purpose of the approximation. Monte Carlo simulation makes those differences visible and provides evidence for a population-specific judgment.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

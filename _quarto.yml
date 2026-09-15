@@ -1,0 +1,50 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "How Fast Does Normal Happen?"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: final-summary.qmd
+        text: Final summary
+      - text: Analyses
+        menu:
+          - href: analyses/01-normal.qmd
+            text: Standard normal
+          - href: analyses/02-uniform.qmd
+            text: Continuous uniform
+          - href: analyses/03-six-sided-die.qmd
+            text: Six-sided die
+          - href: analyses/04-exponential.qmd
+            text: Exponential
+          - href: analyses/05-poisson.qmd
+            text: Poisson
+          - href: analyses/06-binomial-small.qmd
+            text: Binomial small
+          - href: analyses/07-binomial-large.qmd
+            text: Binomial large
+          - href: analyses/08-cauchy.qmd
+            text: Cauchy
+          - href: analyses/09-dependent-machine.qmd
+            text: Dependent process
+          - href: analyses/10-nonidentical-bernoulli.qmd
+            text: Non-identical Bernoulli
+          - href: analyses/11-mixture.qmd
+            text: Two-component mixture
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    number-sections: true
+    smooth-scroll: true
+
+execute:
+  echo: true
+  warning: false
+  message: false

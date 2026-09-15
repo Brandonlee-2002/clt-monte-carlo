@@ -1,0 +1,65 @@
+---
+title: "Two-Component Mixture Population"
+subtitle: "An asymmetric population with a minority high-value group"
+format: html
+---
+
+```{r}
+source("../R/helpers.R")
+student_id <- 6599L  # Replace with the last four digits of your student ID.
+B <- B_DEFAULT
+study <- study_population("mixture", seed = student_id, B = B)
+d <- study$diagnostics
+```
+
+## Population and prediction
+
+This analysis uses a two-component mixture: 90% N(0, 1) and 10% N(5, 1). It is
+an explicit irregular, life/death-style substitute because the handout marks
+the official life/death population as “coming soon.” The population is
+asymmetric, with a separated minority component. I expect slower convergence
+than for symmetric populations, but eventual convergence because the mixture
+has finite mean and variance.
+
+## Experimental design and decision rule
+
+I generated `r paste0("B = ", B)` sample means at candidate sizes `r paste(N_VALUES, collapse = ", ")`. The common criteria are absolute skewness ≤ 0.20, absolute
+excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤
+0.08. Three consecutive passing values are required.
+
+## Results
+
+```{r}
+display <- d[, c("n", "simulated_mean", "simulated_sd", "theoretical_sd",
+                 "skewness", "excess_kurtosis", "qq_correlation", "qq_rmse",
+                 "normal_enough", "stable_pass")]
+display$normal_enough <- ifelse(display$normal_enough, "yes", "no")
+display$stable_pass <- ifelse(display$stable_pass, "yes", "no")
+knitr::kable(display, digits = 3)
+```
+
+## Visual evidence
+
+```{r}
+plot_n <- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n
+x <- study$samples[[as.character(plot_n)]]
+old_par <- par(mfrow = c(1, 2))
+hist(x, breaks = 40, probability = TRUE, col = "darkseagreen", border = "white",
+     main = paste("Mixture means: n =", plot_n), xlab = "Sample mean")
+curve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),
+      add = TRUE, col = "firebrick", lwd = 2)
+qqnorm(x, main = paste("Normal Q-Q plot: n =", plot_n), pch = 16, cex = 0.3)
+qqline(x, col = "firebrick", lwd = 2)
+par(old_par)
+```
+
+## Conclusion
+
+The first stable pass is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`**. The minority high-value component creates skewness and tail behavior that averaging must dilute. This is a useful reminder that finite variance is enough for eventual CLT behavior in theory, but not necessarily enough for a small-\(n\) normal approximation.
+
+## Reproducibility check
+
+```{r}
+reproducibility_check("mixture", n = plot_n, seed_a = student_id,
+                      seed_b = 2026L, B = B)
+```

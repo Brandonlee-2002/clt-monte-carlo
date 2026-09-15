@@ -1,0 +1,67 @@
+---
+title: "Standard Normal Population"
+subtitle: "A baseline where the CLT is exact"
+format: html
+---
+
+```{r}
+source("../R/helpers.R")
+student_id <- 6599L  # Replace with the last four digits of your student ID.
+B <- B_DEFAULT
+study <- study_population("normal", seed = student_id, B = B)
+d <- study$diagnostics
+```
+
+## Population and prediction
+
+The observations are independent standard normal values, \(X_i \sim N(0,1)\).
+The sample mean of normal observations is exactly normal for every positive
+sample size, so I expect the smallest investigated value, \(n=2\), to pass.
+
+## Experimental design and decision rule
+
+For each candidate \(n\), I generated `r paste0("B = ", B)` independent Monte Carlo
+samples and saved the mean of each sample. I investigated `r paste(N_VALUES, collapse = ", ")`. “Approximately normal” requires absolute skewness ≤ 0.20,
+absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized
+Q-Q RMSE ≤ 0.08. I require three consecutive passing candidate sizes before
+selecting the first stable value.
+
+## Results
+
+```{r}
+display <- d[, c("n", "simulated_mean", "simulated_sd", "theoretical_sd",
+                 "skewness", "excess_kurtosis", "qq_correlation", "qq_rmse",
+                 "normal_enough", "stable_pass")]
+display$normal_enough <- ifelse(display$normal_enough, "yes", "no")
+display$stable_pass <- ifelse(display$stable_pass, "yes", "no")
+knitr::kable(display, digits = 3)
+```
+
+## Visual evidence
+
+```{r}
+plot_n <- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n
+x <- study$samples[[as.character(plot_n)]]
+old_par <- par(mfrow = c(1, 2))
+hist(x, breaks = 40, probability = TRUE, col = "skyblue", border = "white",
+     main = paste("Sampling means: n =", plot_n), xlab = "Sample mean")
+curve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),
+      add = TRUE, col = "firebrick", lwd = 2)
+qqnorm(x, main = paste("Normal Q-Q plot: n =", plot_n), pch = 16, cex = 0.3)
+qqline(x, col = "firebrick", lwd = 2)
+par(old_par)
+```
+
+## Conclusion
+
+The first stable pass under the pre-specified rule is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`**. This agrees with the theoretical result: normality is preserved under averaging, so this population is a useful baseline for interpreting the more difficult cases.
+
+## Reproducibility check
+
+```{r}
+reproducibility_check("normal", n = plot_n, seed_a = student_id,
+                      seed_b = 2026L, B = B)
+```
+
+The exact Monte Carlo summaries change with the seed, but the scientific
+conclusion should remain unchanged.

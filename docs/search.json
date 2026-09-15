@@ -1,0 +1,674 @@
+[
+  {
+    "objectID": "final-summary.html",
+    "href": "final-summary.html",
+    "title": "Final Summary",
+    "section": "",
+    "text": "Code\nsource(\"R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudies &lt;- run_all_studies(seed = student_id, B = B, keep_samples = FALSE)\nsummary &lt;- summary_table(studies)"
+  },
+  {
+    "objectID": "final-summary.html#research-question",
+    "href": "final-summary.html#research-question",
+    "title": "Final Summary",
+    "section": "1 Research question",
+    "text": "1 Research question\nThe project asks whether there is a universal sample size at which a sampling distribution of a mean can be called approximately normal. I tested that idea with the same Monte Carlo design across populations with different shapes and assumption structures."
+  },
+  {
+    "objectID": "final-summary.html#experimental-design",
+    "href": "final-summary.html#experimental-design",
+    "title": "Final Summary",
+    "section": "2 Experimental design",
+    "text": "2 Experimental design\nFor each population and each candidate (n), I generated B = 10000 sample means. The candidate sizes were 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The student seed is set immediately before every experiment. This makes each row reproducible and allows a second seed to be used as a sensitivity check.\nThe operational definition of “approximately normal” requires all four of the following:\n\nabsolute skewness ≤ 0.20;\nabsolute excess kurtosis ≤ 0.30;\nnormal Q-Q correlation ≥ 0.995;\nstandardized normal Q-Q RMSE ≤ 0.08.\n\nThe selected (n) is the first candidate that passes all four criteria for three consecutive investigated sizes. This stability requirement prevents a single Monte Carlo fluctuation from determining the answer. Histograms, theoretical standard deviations, and the population assumptions are reviewed alongside the numerical screen."
+  },
+  {
+    "objectID": "final-summary.html#cross-distribution-comparison",
+    "href": "final-summary.html#cross-distribution-comparison",
+    "title": "Final Summary",
+    "section": "3 Cross-distribution comparison",
+    "text": "3 Cross-distribution comparison\n\n\nCode\ndisplay_summary &lt;- summary\ndisplay_summary$smallest_n_judged_normal &lt;- ifelse(\n  is.na(display_summary$smallest_n_judged_normal),\n  \"none through n = 500\",\n  as.character(display_summary$smallest_n_judged_normal)\n)\nknitr::kable(display_summary, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npopulation\nsmallest_n_judged_normal\nskewness_at_selected_n\nexcess_kurtosis_at_selected_n\nqq_correlation_at_selected_n\nqq_rmse_at_selected_n\nconclusion\n\n\n\n\nnormal\nStandard Normal\n2\n0.002\n0.051\n1.000\n0.013\nFirst stable pass at n = 2\n\n\nuniform\nContinuous Uniform\n5\n0.011\n-0.237\n1.000\n0.028\nFirst stable pass at n = 5\n\n\ndie\nSix-Sided Die\n10\n-0.005\n-0.126\n0.998\n0.056\nFirst stable pass at n = 10\n\n\nexponential\nExponential(rate = 1)\n100\n0.189\n0.065\n0.999\n0.047\nFirst stable pass at n = 100\n\n\npoisson\nPoisson(lambda = 1)\n30\n0.142\n-0.007\n0.998\n0.064\nFirst stable pass at n = 30\n\n\nbinomial_small\nBinomial(size = 5, p = .10)\n50\n0.158\n-0.008\n0.997\n0.072\nFirst stable pass at n = 50\n\n\nbinomial_large\nBinomial(size = 20, p = .50)\n5\n0.005\n0.086\n0.998\n0.059\nFirst stable pass at n = 5\n\n\ncauchy\nCauchy(location = 0, scale = 1)\nnone through n = 500\n87.461\n8213.515\n0.093\n1.346\nNo stable n met all criteria in the investigated range.\n\n\ndependent_machine\nDependent machine-failure process\nnone through n = 500\n0.282\n0.125\n0.998\n0.068\nNo stable n met all criteria in the investigated range.\n\n\nnonidentical_bernoulli\nNon-identical Bernoulli process\n75\n-0.105\n-0.002\n0.997\n0.080\nFirst stable pass at n = 75\n\n\nmixture\nTwo-component mixture\n50\n0.184\n0.013\n0.999\n0.045\nFirst stable pass at n = 50\n\n\n\n\n\nThe table is generated directly from the same helper functions used in the individual analyses. The exact values depend on the student seed, but the relative pattern is the main scientific result."
+  },
+  {
+    "objectID": "final-summary.html#answer-to-the-research-question",
+    "href": "final-summary.html#answer-to-the-research-question",
+    "title": "Final Summary",
+    "section": "4 Answer to the research question",
+    "text": "4 Answer to the research question\nThe answer is ambiguous because the question asks for a smallest value of (n), but the phrase “reasonably defensible as approximately normal” depends on several choices. It is not a property that switches on at one universal sample size.\nFirst, the answer depends on the population being averaged. In this project, the current run uses seed 6599 and B = 10000 repetitions. The first stable passes were:\n\n\n\nPopulation type\nFirst stable pass\n\n\n\n\nStandard normal\n(n=2)\n\n\nContinuous uniform\n(n=5)\n\n\nSymmetric binomial, size 20\n(n=5)\n\n\nSix-sided die\n(n=10)\n\n\nPoisson(1)\n(n=30)\n\n\nBinomial(5, .10)\n(n=50)\n\n\nTwo-component mixture\n(n=50)\n\n\nNon-identical Bernoulli\n(n=75)\n\n\nExponential(1)\n(n=100)\n\n\nDependent process\nNo stable pass through (n=500)\n\n\nCauchy\nNo stable pass through (n=500)\n\n\n\nThese results are evidence against treating (n=30) as a universal rule. For example, the Poisson population did pass at (n=30), with skewness about 0.142, excess kurtosis about -0.007, Q-Q correlation about 0.998, and Q-Q RMSE about 0.064. By contrast, the Exponential population still had skewness about 0.398 at (n=30), so it failed the same standard; it first passed at (n=100), where skewness was about 0.189. The rare-success binomial population passed at (n=50), not at the conventional rule-of-thumb value of 30.\nSecond, the answer depends on what “approximately normal” means. I made the judgment reproducible by requiring all four shape criteria—absolute skewness at most 0.20, absolute excess kurtosis at most 0.30, Q-Q correlation at least 0.995, and standardized Q-Q RMSE at most 0.08. I also required three consecutive passing candidate sizes. A researcher using a looser skewness threshold, a different Q-Q tolerance, or only visual inspection could select a smaller value. That does not necessarily mean one analysis is wrong; it means the analyses answer slightly different operational questions.\nThird, “smallest” is relative to the sample sizes investigated. The simulation tested (n=2,5,10,15,20,30,40,50,75,100,150,200,300,500). Thus, for example, the reported (n=100) for the exponential population means the first stable passing value on this grid. It does not prove that every value between 75 and 100 fails. A finer search could refine the boundary.\nFourth, Monte Carlo results are estimates of the sampling distributions, not perfect observations of them. Changing the random seed changes the exact skewness, kurtosis, and Q-Q measurements. That is why the project records the seed, uses 10,000 repetitions, and requires consecutive passes. The broad conclusions are more meaningful than the last decimal place.\nFinally, the usual CLT assumptions matter. The Cauchy sample means did not produce a stable normal approximation through (n=500); at (n=500), the simulated skewness was about 87.46, excess kurtosis about 8213.51, and Q-Q correlation only about 0.093. The dependent process also failed at (n=500), with skewness about 0.282 even though its Q-Q correlation was about 0.998. A large nominal sample size does not automatically create a large amount of independent information.\nTherefore, the most professional answer is: there is no single universal smallest sample size. For a specified population, diagnostic standard, simulation design, and purpose, the smallest defensible value is the first sample size whose evidence meets the stated standard. In this project, that value ranges from (n=2) to (n=100) for the finite-variance independent populations, while the dependent and Cauchy cases do not meet the standard within the investigated range."
+  },
+  {
+    "objectID": "final-summary.html#population-shape",
+    "href": "final-summary.html#population-shape",
+    "title": "Final Summary",
+    "section": "5 Population shape",
+    "text": "5 Population shape\nSymmetry is associated with faster convergence in these experiments. The exponential, rare-success binomial, and two-component mixture cases retain right-skew or tail behavior longer. The Poisson case is also skewed, but its skewness is less extreme than the rare-success binomial case. These differences show why the population distribution matters when choosing a practical sample size."
+  },
+  {
+    "objectID": "final-summary.html#assumptions-and-limitations",
+    "href": "final-summary.html#assumptions-and-limitations",
+    "title": "Final Summary",
+    "section": "6 Assumptions and limitations",
+    "text": "6 Assumptions and limitations\nThe Cauchy experiment is the exception to the finite-variance pattern: no stable sample-mean normality was found through (n=500), which is consistent with its lack of a finite mean and variance. The dependent process shows why nominal sample size can overstate the amount of independent information. The non-identical Bernoulli process shows that changing probabilities affect the variance calculation even when a bell-shaped average still develops.\nThe dependent machine-failure and mixture analyses use explicit models because the handout labels those population specifications as “coming soon.” If the instructor supplies official generators, those generator functions should be replaced while keeping the documented design and diagnostic rule unchanged."
+  },
+  {
+    "objectID": "final-summary.html#reproducibility-and-seed-sensitivity",
+    "href": "final-summary.html#reproducibility-and-seed-sensitivity",
+    "title": "Final Summary",
+    "section": "7 Reproducibility and seed sensitivity",
+    "text": "7 Reproducibility and seed sensitivity\n\n\nCode\nselected &lt;- summary$smallest_n_judged_normal\nselected &lt;- selected[!is.na(selected)]\nif (length(selected) &gt; 0) {\n  first_population &lt;- names(studies)[which(!is.na(summary$smallest_n_judged_normal))[1]]\n  n_for_check &lt;- studies[[first_population]]$selected_n\n  reproducibility_check(first_population, n = n_for_check,\n                        seed_a = student_id, seed_b = 2026L, B = B)\n}\n\n\n  seed simulated_mean simulated_sd    skewness excess_kurtosis\n1 6599    0.007620303    0.7085607 0.001796392      0.05137215\n2 2026    0.010569596    0.7098162 0.008686944     -0.01669831\n\n\nThe exact simulated means, skewness, and kurtosis change when the seed changes. The conclusion is considered reproducible when the broad decision—such as “passes early,” “requires a large (n),” or “no stable (n) in the range”—does not change. The Cauchy case is expected to be the most seed-sensitive because its tails do not provide stable ordinary moments."
+  },
+  {
+    "objectID": "final-summary.html#overall-conclusion",
+    "href": "final-summary.html#overall-conclusion",
+    "title": "Final Summary",
+    "section": "8 Overall conclusion",
+    "text": "8 Overall conclusion\nThe Central Limit Theorem describes an asymptotic tendency, not a universal sample-size switch. A responsible normal approximation requires attention to population shape, dependence, identical-distribution assumptions, tail behavior, and the purpose of the approximation. Monte Carlo simulation makes those differences visible and provides evidence for a population-specific judgment."
+  },
+  {
+    "objectID": "analyses/06-binomial-small.html",
+    "href": "analyses/06-binomial-small.html",
+    "title": "Small-Probability Binomial Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"binomial_small\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/06-binomial-small.html#population-and-prediction",
+    "href": "analyses/06-binomial-small.html#population-and-prediction",
+    "title": "Small-Probability Binomial Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nEach observation is Binomial(size = 5, p = 0.10). It is discrete and strongly right-skewed because successes are rare. I expect convergence to be slower than for the symmetric die and large binomial populations."
+  },
+  {
+    "objectID": "analyses/06-binomial-small.html#experimental-design-and-decision-rule",
+    "href": "analyses/06-binomial-small.html#experimental-design-and-decision-rule",
+    "title": "Small-Probability Binomial Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. I use the same criteria throughout: absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. Three consecutive passes are required."
+  },
+  {
+    "objectID": "analyses/06-binomial-small.html#results",
+    "href": "analyses/06-binomial-small.html#results",
+    "title": "Small-Probability Binomial Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n0.500\n0.471\n0.474\n0.817\n0.384\n0.918\n0.406\nno\nno\n\n\n5\n0.502\n0.303\n0.300\n0.563\n0.319\n0.970\n0.245\nno\nno\n\n\n10\n0.501\n0.211\n0.212\n0.406\n0.143\n0.985\n0.171\nno\nno\n\n\n15\n0.501\n0.173\n0.173\n0.312\n0.062\n0.991\n0.136\nno\nno\n\n\n20\n0.501\n0.152\n0.150\n0.248\n-0.048\n0.993\n0.115\nno\nno\n\n\n30\n0.502\n0.122\n0.122\n0.181\n-0.018\n0.996\n0.091\nno\nno\n\n\n40\n0.503\n0.106\n0.106\n0.204\n0.068\n0.996\n0.084\nno\nno\n\n\n50\n0.502\n0.095\n0.095\n0.158\n-0.008\n0.997\n0.072\nyes\nyes\n\n\n75\n0.500\n0.078\n0.077\n0.131\n0.005\n0.998\n0.059\nyes\nyes\n\n\n100\n0.499\n0.068\n0.067\n0.121\n0.013\n0.999\n0.053\nyes\nyes\n\n\n150\n0.500\n0.055\n0.055\n0.122\n-0.001\n0.999\n0.047\nyes\nyes\n\n\n200\n0.500\n0.048\n0.047\n0.130\n0.058\n0.999\n0.045\nyes\nyes\n\n\n300\n0.500\n0.039\n0.039\n0.066\n0.029\n1.000\n0.031\nyes\nno\n\n\n500\n0.500\n0.030\n0.030\n0.046\n0.022\n1.000\n0.025\nyes\nno"
+  },
+  {
+    "objectID": "analyses/06-binomial-small.html#visual-evidence",
+    "href": "analyses/06-binomial-small.html#visual-evidence",
+    "title": "Small-Probability Binomial Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"tomato\", border = \"white\",\n     main = paste(\"Sampling means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/06-binomial-small.html#conclusion",
+    "href": "analyses/06-binomial-small.html#conclusion",
+    "title": "Small-Probability Binomial Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is n = 50. Rare-success populations are a useful warning against applying (n=30) automatically: even though the variables are independent and have finite variance, their strong skewness can remain visible in sample means for much larger (n)."
+  },
+  {
+    "objectID": "analyses/06-binomial-small.html#reproducibility-check",
+    "href": "analyses/06-binomial-small.html#reproducibility-check",
+    "title": "Small-Probability Binomial Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"binomial_small\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd  skewness excess_kurtosis\n1 6599       0.502020   0.09459902 0.1576698    -0.008444634\n2 2026       0.499648   0.09525074 0.1998350     0.029929456"
+  },
+  {
+    "objectID": "analyses/07-binomial-large.html",
+    "href": "analyses/07-binomial-large.html",
+    "title": "Large Symmetric Binomial Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"binomial_large\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/07-binomial-large.html#population-and-prediction",
+    "href": "analyses/07-binomial-large.html#population-and-prediction",
+    "title": "Large Symmetric Binomial Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nEach observation is Binomial(size = 20, p = 0.50). The population is discrete but symmetric around 10. I expect the sample-mean distribution to become approximately normal quickly because the main obstacle, population skewness, is absent."
+  },
+  {
+    "objectID": "analyses/07-binomial-large.html#experimental-design-and-decision-rule",
+    "href": "analyses/07-binomial-large.html#experimental-design-and-decision-rule",
+    "title": "Large Symmetric Binomial Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The same four criteria are used: absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. Three consecutive passing values define stability."
+  },
+  {
+    "objectID": "analyses/07-binomial-large.html#results",
+    "href": "analyses/07-binomial-large.html#results",
+    "title": "Large Symmetric Binomial Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n9.994\n1.560\n1.581\n0.003\n-0.093\n0.996\n0.094\nno\nno\n\n\n5\n9.997\n1.006\n1.000\n0.005\n0.086\n0.998\n0.059\nyes\nyes\n\n\n10\n9.998\n0.702\n0.707\n0.002\n-0.004\n0.999\n0.043\nyes\nyes\n\n\n15\n9.998\n0.577\n0.577\n-0.015\n0.038\n0.999\n0.035\nyes\nyes\n\n\n20\n9.999\n0.502\n0.500\n-0.006\n-0.018\n1.000\n0.030\nyes\nyes\n\n\n30\n10.005\n0.408\n0.408\n-0.027\n-0.041\n1.000\n0.028\nyes\nyes\n\n\n40\n10.008\n0.352\n0.354\n0.018\n0.025\n1.000\n0.024\nyes\nyes\n\n\n50\n10.008\n0.313\n0.316\n0.025\n0.005\n1.000\n0.022\nyes\nyes\n\n\n75\n10.002\n0.260\n0.258\n-0.016\n0.021\n1.000\n0.023\nyes\nyes\n\n\n100\n9.999\n0.225\n0.224\n-0.006\n0.000\n1.000\n0.021\nyes\nyes\n\n\n150\n10.000\n0.185\n0.183\n0.021\n0.024\n1.000\n0.018\nyes\nyes\n\n\n200\n9.999\n0.159\n0.158\n0.036\n-0.059\n1.000\n0.017\nyes\nyes\n\n\n300\n10.000\n0.129\n0.129\n0.003\n-0.019\n1.000\n0.014\nyes\nno\n\n\n500\n10.000\n0.100\n0.100\n0.017\n0.018\n1.000\n0.014\nyes\nno"
+  },
+  {
+    "objectID": "analyses/07-binomial-large.html#visual-evidence",
+    "href": "analyses/07-binomial-large.html#visual-evidence",
+    "title": "Large Symmetric Binomial Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"steelblue\", border = \"white\",\n     main = paste(\"Sampling means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/07-binomial-large.html#conclusion",
+    "href": "analyses/07-binomial-large.html#conclusion",
+    "title": "Large Symmetric Binomial Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is n = 5. This population tests the role of symmetry: it is discrete, but symmetry and moderate spread allow its sample means to look normal much sooner than those from the rare-success binomial population."
+  },
+  {
+    "objectID": "analyses/07-binomial-large.html#reproducibility-check",
+    "href": "analyses/07-binomial-large.html#reproducibility-check",
+    "title": "Large Symmetric Binomial Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"binomial_large\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd     skewness excess_kurtosis\n1 6599        9.99692    1.0060356  0.004617952     0.085747901\n2 2026       10.01296    0.9951739 -0.017139036     0.003664051"
+  },
+  {
+    "objectID": "analyses/02-uniform.html",
+    "href": "analyses/02-uniform.html",
+    "title": "Continuous Uniform Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"uniform\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/02-uniform.html#population-and-prediction",
+    "href": "analyses/02-uniform.html#population-and-prediction",
+    "title": "Continuous Uniform Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nThe observations are independent Uniform(0, 1) values. The population is bounded and symmetric but has a flat, non-normal shape. I expect symmetry to make convergence faster than for strongly right-skewed populations, although very small sample means will still show the bounded population’s shape."
+  },
+  {
+    "objectID": "analyses/02-uniform.html#experimental-design-and-decision-rule",
+    "href": "analyses/02-uniform.html#experimental-design-and-decision-rule",
+    "title": "Continuous Uniform Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nFor each candidate (n), I generated B = 10000 sample means. I investigated 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The same normality rule is used for every population: absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08, with three consecutive passing values required for a stable selection."
+  },
+  {
+    "objectID": "analyses/02-uniform.html#results",
+    "href": "analyses/02-uniform.html#results",
+    "title": "Continuous Uniform Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n0.499\n0.202\n0.204\n-0.017\n-0.603\n0.996\n0.086\nno\nno\n\n\n5\n0.500\n0.129\n0.129\n0.011\n-0.237\n1.000\n0.028\nyes\nyes\n\n\n10\n0.500\n0.090\n0.091\n0.019\n-0.125\n1.000\n0.019\nyes\nyes\n\n\n15\n0.500\n0.074\n0.075\n-0.008\n-0.055\n1.000\n0.011\nyes\nyes\n\n\n20\n0.500\n0.065\n0.065\n0.003\n-0.067\n1.000\n0.012\nyes\nyes\n\n\n30\n0.501\n0.053\n0.053\n-0.015\n-0.055\n1.000\n0.013\nyes\nyes\n\n\n40\n0.501\n0.045\n0.046\n0.017\n0.027\n1.000\n0.012\nyes\nyes\n\n\n50\n0.501\n0.040\n0.041\n0.011\n-0.045\n1.000\n0.013\nyes\nyes\n\n\n75\n0.500\n0.034\n0.033\n-0.002\n0.017\n1.000\n0.014\nyes\nyes\n\n\n100\n0.500\n0.029\n0.029\n-0.002\n-0.054\n1.000\n0.017\nyes\nyes\n\n\n150\n0.500\n0.024\n0.024\n0.018\n0.004\n1.000\n0.013\nyes\nyes\n\n\n200\n0.500\n0.021\n0.020\n0.034\n-0.030\n1.000\n0.013\nyes\nyes\n\n\n300\n0.500\n0.017\n0.017\n0.004\n-0.027\n1.000\n0.011\nyes\nno\n\n\n500\n0.500\n0.013\n0.013\n0.021\n0.027\n1.000\n0.012\nyes\nno"
+  },
+  {
+    "objectID": "analyses/02-uniform.html#visual-evidence",
+    "href": "analyses/02-uniform.html#visual-evidence",
+    "title": "Continuous Uniform Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"seagreen\", border = \"white\",\n     main = paste(\"Sampling means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/02-uniform.html#conclusion",
+    "href": "analyses/02-uniform.html#conclusion",
+    "title": "Continuous Uniform Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is n = 5. The bounded support disappears after averaging, while symmetry keeps skewness near zero. The remaining evidence to inspect is the slight excess-kurtosis and Q-Q-tail behavior at the smallest passing (n)."
+  },
+  {
+    "objectID": "analyses/02-uniform.html#reproducibility-check",
+    "href": "analyses/02-uniform.html#reproducibility-check",
+    "title": "Continuous Uniform Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"uniform\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd    skewness excess_kurtosis\n1 6599      0.4996113     0.129424  0.01126650      -0.2374483\n2 2026      0.5014948     0.128323 -0.01197015      -0.2156407"
+  },
+  {
+    "objectID": "analyses/05-poisson.html",
+    "href": "analyses/05-poisson.html",
+    "title": "Poisson Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"poisson\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/05-poisson.html#population-and-prediction",
+    "href": "analyses/05-poisson.html#population-and-prediction",
+    "title": "Poisson Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nThe observations are independent Poisson(lambda = 1) counts. The population is discrete and right-skewed, with mean and variance equal to 1. I expect the sample-mean distribution to become smoother and less skewed with (n), but the small rate means that small samples will retain visible discreteness."
+  },
+  {
+    "objectID": "analyses/05-poisson.html#experimental-design-and-decision-rule",
+    "href": "analyses/05-poisson.html#experimental-design-and-decision-rule",
+    "title": "Poisson Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The common screen requires absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08, with three consecutive passing values required."
+  },
+  {
+    "objectID": "analyses/05-poisson.html#results",
+    "href": "analyses/05-poisson.html#results",
+    "title": "Poisson Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n0.996\n0.702\n0.707\n0.674\n0.383\n0.960\n0.282\nno\nno\n\n\n5\n0.998\n0.448\n0.447\n0.492\n0.284\n0.984\n0.177\nno\nno\n\n\n10\n0.999\n0.314\n0.316\n0.333\n0.116\n0.992\n0.123\nno\nno\n\n\n15\n0.999\n0.257\n0.258\n0.280\n0.110\n0.995\n0.101\nno\nno\n\n\n20\n1.000\n0.224\n0.224\n0.213\n-0.015\n0.997\n0.083\nno\nno\n\n\n30\n1.003\n0.182\n0.183\n0.142\n-0.007\n0.998\n0.064\nyes\nyes\n\n\n40\n1.004\n0.158\n0.158\n0.171\n0.045\n0.998\n0.061\nyes\nyes\n\n\n50\n1.004\n0.141\n0.141\n0.139\n0.012\n0.999\n0.054\nyes\nyes\n\n\n75\n1.001\n0.116\n0.115\n0.097\n-0.036\n0.999\n0.043\nyes\nyes\n\n\n100\n1.000\n0.101\n0.100\n0.080\n-0.024\n0.999\n0.037\nyes\nyes\n\n\n150\n1.001\n0.082\n0.082\n0.077\n-0.010\n0.999\n0.032\nyes\nyes\n\n\n200\n1.000\n0.071\n0.071\n0.073\n-0.074\n1.000\n0.030\nyes\nyes\n\n\n300\n1.000\n0.058\n0.058\n0.045\n0.043\n1.000\n0.022\nyes\nno\n\n\n500\n1.000\n0.045\n0.045\n0.047\n-0.013\n1.000\n0.021\nyes\nno"
+  },
+  {
+    "objectID": "analyses/05-poisson.html#visual-evidence",
+    "href": "analyses/05-poisson.html#visual-evidence",
+    "title": "Poisson Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"orchid\", border = \"white\",\n     main = paste(\"Sampling means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/05-poisson.html#conclusion",
+    "href": "analyses/05-poisson.html#conclusion",
+    "title": "Poisson Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is n = 30. The result shows how a discrete, moderately skewed population can approach a bell shape through averaging, while its original integer-valued support is not itself normal."
+  },
+  {
+    "objectID": "analyses/05-poisson.html#reproducibility-check",
+    "href": "analyses/05-poisson.html#reproducibility-check",
+    "title": "Poisson Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"poisson\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd  skewness excess_kurtosis\n1 6599       1.002887    0.1820778 0.1422537    -0.007490926\n2 2026       0.999770    0.1849424 0.1888429     0.021539410"
+  },
+  {
+    "objectID": "analyses/04-exponential.html",
+    "href": "analyses/04-exponential.html",
+    "title": "Exponential Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"exponential\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/04-exponential.html#population-and-prediction",
+    "href": "analyses/04-exponential.html#population-and-prediction",
+    "title": "Exponential Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nThe observations are independent Exponential(rate = 1) values. The population mean and standard deviation are both 1, but the population has strong right skew. I predict a much larger (n) than for the symmetric populations because the skewness of the sample mean declines only gradually."
+  },
+  {
+    "objectID": "analyses/04-exponential.html#experimental-design-and-decision-rule",
+    "href": "analyses/04-exponential.html#experimental-design-and-decision-rule",
+    "title": "Exponential Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 sample means for candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. Every population uses the same four shape criteria: absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. I select the first value followed by two more passing candidate sizes."
+  },
+  {
+    "objectID": "analyses/04-exponential.html#results",
+    "href": "analyses/04-exponential.html#results",
+    "title": "Exponential Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n0.998\n0.698\n0.707\n1.316\n2.480\n0.952\n0.309\nno\nno\n\n\n5\n1.002\n0.444\n0.447\n0.906\n1.494\n0.979\n0.206\nno\nno\n\n\n10\n1.000\n0.315\n0.316\n0.671\n0.732\n0.988\n0.156\nno\nno\n\n\n15\n0.999\n0.258\n0.258\n0.560\n0.538\n0.991\n0.130\nno\nno\n\n\n20\n0.999\n0.224\n0.224\n0.468\n0.291\n0.994\n0.111\nno\nno\n\n\n30\n0.998\n0.183\n0.183\n0.398\n0.211\n0.996\n0.095\nno\nno\n\n\n40\n0.998\n0.157\n0.158\n0.346\n0.198\n0.997\n0.082\nno\nno\n\n\n50\n0.999\n0.140\n0.141\n0.293\n0.162\n0.998\n0.069\nno\nno\n\n\n75\n1.001\n0.117\n0.115\n0.221\n0.132\n0.999\n0.053\nno\nno\n\n\n100\n1.001\n0.101\n0.100\n0.189\n0.065\n0.999\n0.047\nyes\nyes\n\n\n150\n1.000\n0.082\n0.082\n0.153\n0.094\n0.999\n0.038\nyes\nyes\n\n\n200\n1.001\n0.071\n0.071\n0.143\n0.104\n0.999\n0.036\nyes\nyes\n\n\n300\n1.000\n0.058\n0.058\n0.117\n0.006\n1.000\n0.030\nyes\nno\n\n\n500\n1.000\n0.045\n0.045\n0.089\n-0.050\n1.000\n0.025\nyes\nno"
+  },
+  {
+    "objectID": "analyses/04-exponential.html#visual-evidence",
+    "href": "analyses/04-exponential.html#visual-evidence",
+    "title": "Exponential Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"darkorange\", border = \"white\",\n     main = paste(\"Sampling means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/04-exponential.html#conclusion",
+    "href": "analyses/04-exponential.html#conclusion",
+    "title": "Exponential Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is n = 100. The important conclusion is not that the CLT fails, but that a strongly skewed finite-variance population may require substantially more than 30 observations before a strict “normal enough” criterion is defensible."
+  },
+  {
+    "objectID": "analyses/04-exponential.html#reproducibility-check",
+    "href": "analyses/04-exponential.html#reproducibility-check",
+    "title": "Exponential Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"exponential\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd  skewness excess_kurtosis\n1 6599      1.0007087    0.1006150 0.1892660      0.06475683\n2 2026      0.9984315    0.1013146 0.1887374      0.04619441"
+  },
+  {
+    "objectID": "ai-log.html",
+    "href": "ai-log.html",
+    "title": "1 AI interaction log",
+    "section": "",
+    "text": "This file documents how AI assisted the project. It is not a list of answers copied from AI. Each entry should show the question, what was checked, and how the analysis or prompt changed afterward.\n\n\nUse one entry per meaningful prompt or prompt revision. Include:\n\n\n\n\n\n\n\nField\nWhat to write\n\n\n\n\nDate\nWhen the interaction happened.\n\n\nGoal\nWhat you were trying to understand or improve.\n\n\nPrompt\nThe exact prompt you gave AI.\n\n\nAI response summary\nThe useful suggestion, code, or explanation. Do not paste an entire response.\n\n\nYour validation\nHow you tested it in R, against the handout, or against a known result.\n\n\nProblem found\nAny error, unsupported assumption, misleading plot, or unanswered question.\n\n\nRevision\nWhat you changed in the prompt, code, design, or interpretation.\n\n\nResult\nWhat changed after the revision; include a file/range/figure name when useful.\n\n\nYour decision\nWhat you ultimately accepted and why.\n\n\n\nThe strongest entries show iteration:\n\nAsk a focused question.\nInspect the response rather than accepting it automatically.\nTest the code and identify a weakness or uncertainty.\nAsk a better follow-up question or revise the code.\nExplain why the final method is appropriate for this project.\n\n\n\n\n\nDate: 2026-09-15\nGoal: Turn the class handout in Inference/ into a reproducible project repository.\nPrompt: “Can you fill out all the files then? Please use these guidelines: [the five final-repository requirements]. Also, help me design the ai-log.md (what information i should use).”\nAI response summary: Created a Quarto website, 11 population analyses, a final comparison, shared base-R simulation helpers, generated diagnostic CSV files, and this interaction-log structure.\nYour validation: Inspected the handout’s required populations and deliverables; ran Rscript R/run_all.R with the current placeholder seed 6599; checked the cross-distribution results; parsed every R code block in all .qmd files.\nProblem found: The handout marks the dependent machine-failure and life/death specifications as “coming soon,” so their exact generators were not available.\nRevision: Used an explicit AR(1)-style dependent exponential process and a documented two-component mixture as provisional models. The individual files state that these generators must be replaced if official specifications are supplied.\nResult: The simulations produced reproducible diagnostics and the repository now has a consistent normality rule across populations.\nYour decision: Treat this as the working project framework. Replace 6599L with the last four digits of my student ID if needed, replace provisional generators when instructed, and inspect the plots before submitting conclusions.\n\nThis starter record documents the setup interaction only. Add additional entries for the decisions you make while inspecting plots, revising thresholds, debugging code, and interpreting surprising results.\n\n\n\n\n\n\nDate:\nGoal: Define “approximately normal” using more than one diagnostic.\nPrompt:\nAI response summary:\nYour validation: Check the proposed metrics on a known normal sample and on a clearly skewed sample.\nProblem found:\nRevision:\nResult:\nYour decision:\n\n\n\n\n\nDate:\nGoal: Turn the visual Q-Q comparison into a reproducible numerical diagnostic.\nPrompt:\nAI response summary:\nYour validation: Verify how the correlation and standardized RMSE behave when the sample is normal, skewed, or heavy-tailed.\nProblem found:\nRevision:\nResult:\nYour decision:\n\n\n\n\n\nDate:\nGoal: Implement or debug the generator for one assigned population.\nPrompt:\nAI response summary:\nYour validation: Confirm the population mean, spread, support, and dependence structure with a large simulated population.\nProblem found:\nRevision:\nResult:\nYour decision:\n\n\n\n\n\nDate:\nGoal: Explain a result that differed from the initial prediction.\nPrompt:\nAI response summary:\nYour validation: Re-run with the assigned seed and one alternative seed; compare the scientific conclusion, not just exact numbers.\nProblem found:\nRevision:\nResult:\nYour decision:\n\n\n\n\n\n\nI wrote the research questions and selected the populations/sample sizes.\nI ran and inspected the simulations myself.\nI treated AI suggestions as hypotheses to test, not as evidence.\nI can explain every submitted line of code and every reported conclusion.\nAny AI-generated code that was not used should not be presented as project evidence."
+  },
+  {
+    "objectID": "ai-log.html#what-to-record-for-every-important-interaction",
+    "href": "ai-log.html#what-to-record-for-every-important-interaction",
+    "title": "1 AI interaction log",
+    "section": "",
+    "text": "Use one entry per meaningful prompt or prompt revision. Include:\n\n\n\n\n\n\n\nField\nWhat to write\n\n\n\n\nDate\nWhen the interaction happened.\n\n\nGoal\nWhat you were trying to understand or improve.\n\n\nPrompt\nThe exact prompt you gave AI.\n\n\nAI response summary\nThe useful suggestion, code, or explanation. Do not paste an entire response.\n\n\nYour validation\nHow you tested it in R, against the handout, or against a known result.\n\n\nProblem found\nAny error, unsupported assumption, misleading plot, or unanswered question.\n\n\nRevision\nWhat you changed in the prompt, code, design, or interpretation.\n\n\nResult\nWhat changed after the revision; include a file/range/figure name when useful.\n\n\nYour decision\nWhat you ultimately accepted and why.\n\n\n\nThe strongest entries show iteration:\n\nAsk a focused question.\nInspect the response rather than accepting it automatically.\nTest the code and identify a weakness or uncertainty.\nAsk a better follow-up question or revise the code.\nExplain why the final method is appropriate for this project."
+  },
+  {
+    "objectID": "ai-log.html#starter-record-project-setup",
+    "href": "ai-log.html#starter-record-project-setup",
+    "title": "1 AI interaction log",
+    "section": "",
+    "text": "Date: 2026-09-15\nGoal: Turn the class handout in Inference/ into a reproducible project repository.\nPrompt: “Can you fill out all the files then? Please use these guidelines: [the five final-repository requirements]. Also, help me design the ai-log.md (what information i should use).”\nAI response summary: Created a Quarto website, 11 population analyses, a final comparison, shared base-R simulation helpers, generated diagnostic CSV files, and this interaction-log structure.\nYour validation: Inspected the handout’s required populations and deliverables; ran Rscript R/run_all.R with the current placeholder seed 6599; checked the cross-distribution results; parsed every R code block in all .qmd files.\nProblem found: The handout marks the dependent machine-failure and life/death specifications as “coming soon,” so their exact generators were not available.\nRevision: Used an explicit AR(1)-style dependent exponential process and a documented two-component mixture as provisional models. The individual files state that these generators must be replaced if official specifications are supplied.\nResult: The simulations produced reproducible diagnostics and the repository now has a consistent normality rule across populations.\nYour decision: Treat this as the working project framework. Replace 6599L with the last four digits of my student ID if needed, replace provisional generators when instructed, and inspect the plots before submitting conclusions.\n\nThis starter record documents the setup interaction only. Add additional entries for the decisions you make while inspecting plots, revising thresholds, debugging code, and interpreting surprising results."
+  },
+  {
+    "objectID": "ai-log.html#suggested-entries",
+    "href": "ai-log.html#suggested-entries",
+    "title": "1 AI interaction log",
+    "section": "",
+    "text": "Date:\nGoal: Define “approximately normal” using more than one diagnostic.\nPrompt:\nAI response summary:\nYour validation: Check the proposed metrics on a known normal sample and on a clearly skewed sample.\nProblem found:\nRevision:\nResult:\nYour decision:\n\n\n\n\n\nDate:\nGoal: Turn the visual Q-Q comparison into a reproducible numerical diagnostic.\nPrompt:\nAI response summary:\nYour validation: Verify how the correlation and standardized RMSE behave when the sample is normal, skewed, or heavy-tailed.\nProblem found:\nRevision:\nResult:\nYour decision:\n\n\n\n\n\nDate:\nGoal: Implement or debug the generator for one assigned population.\nPrompt:\nAI response summary:\nYour validation: Confirm the population mean, spread, support, and dependence structure with a large simulated population.\nProblem found:\nRevision:\nResult:\nYour decision:\n\n\n\n\n\nDate:\nGoal: Explain a result that differed from the initial prediction.\nPrompt:\nAI response summary:\nYour validation: Re-run with the assigned seed and one alternative seed; compare the scientific conclusion, not just exact numbers.\nProblem found:\nRevision:\nResult:\nYour decision:"
+  },
+  {
+    "objectID": "ai-log.html#important-integrity-notes",
+    "href": "ai-log.html#important-integrity-notes",
+    "title": "1 AI interaction log",
+    "section": "",
+    "text": "I wrote the research questions and selected the populations/sample sizes.\nI ran and inspected the simulations myself.\nI treated AI suggestions as hypotheses to test, not as evidence.\nI can explain every submitted line of code and every reported conclusion.\nAny AI-generated code that was not used should not be presented as project evidence."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "How Fast Does Normal Happen?",
+    "section": "",
+    "text": "This repository investigates how quickly the sampling distribution of the sample mean becomes approximately normal. The analysis compares symmetric, skewed, discrete, heavy-tailed, dependent, non-identically distributed, and mixture populations."
+  },
+  {
+    "objectID": "index.html#research-question",
+    "href": "index.html#research-question",
+    "title": "How Fast Does Normal Happen?",
+    "section": "1 Research question",
+    "text": "1 Research question\n\nWhat is the smallest sample size at which the sampling distribution of the sample mean is reasonably defensible as approximately normal?\n\nThere is no universal answer. This project uses the same diagnostic standard for every population, then explains where that standard works and where the usual Central Limit Theorem assumptions fail."
+  },
+  {
+    "objectID": "index.html#answer-in-brief",
+    "href": "index.html#answer-in-brief",
+    "title": "How Fast Does Normal Happen?",
+    "section": "2 Answer in brief",
+    "text": "2 Answer in brief\nThe answer is ambiguous because “approximately normal” is a judgment based on the population being averaged, the diagnostic thresholds, the sample sizes investigated, Monte Carlo variation, and the assumptions behind the CLT. It is not a universal switch that turns on at (n=30).\nUsing B = 10000, the current seed 6599, and the same four diagnostics for every population, the first stable passing values were:\n\n\n\nPopulation\nFirst stable passing (n)\n\n\n\n\nStandard normal\n2\n\n\nContinuous uniform\n5\n\n\nSymmetric binomial\n5\n\n\nSix-sided die\n10\n\n\nPoisson\n30\n\n\nRare-success binomial\n50\n\n\nTwo-component mixture\n50\n\n\nNon-identical Bernoulli\n75\n\n\nExponential\n100\n\n\nDependent process\nNone through 500\n\n\nCauchy\nNone through 500\n\n\n\nFor example, the Poisson population passed at (n=30) with skewness about 0.142, while the Exponential population still had skewness about 0.398 at (n=30) and did not pass until (n=100). The Cauchy population failed even at (n=500), where its simulated skewness was about 87.46 and excess kurtosis was about 8213.51.\nTherefore, the defensible answer is population-specific: select the smallest sample size whose graphical and numerical evidence meets a clearly stated standard. In this project, the answer ranges from (n=2) to (n=100) for the finite-variance independent populations, while the dependent and Cauchy cases do not meet the standard within the investigated range."
+  },
+  {
+    "objectID": "index.html#how-to-read-the-project",
+    "href": "index.html#how-to-read-the-project",
+    "title": "How Fast Does Normal Happen?",
+    "section": "3 How to read the project",
+    "text": "3 How to read the project\n\nRead the individual population analyses for the simulations and evidence.\nRead the final summary for the cross-distribution comparison.\nSee R/helpers.R for the shared simulation and diagnostic definitions.\nSee ai-log.md for the record of prompts, validation, and revisions."
+  },
+  {
+    "objectID": "index.html#reproducibility",
+    "href": "index.html#reproducibility",
+    "title": "How Fast Does Normal Happen?",
+    "section": "4 Reproducibility",
+    "text": "4 Reproducibility\nThe analyses use base R and a single student seed. Replace student_id &lt;- 6599 in each analysis with the last four digits of your own student ID before rendering. The Monte Carlo repetition count is B = 10000."
+  },
+  {
+    "objectID": "analyses/09-dependent-machine.html",
+    "href": "analyses/09-dependent-machine.html",
+    "title": "Dependent Machine-Failure Process",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"dependent_machine\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/09-dependent-machine.html#population-and-prediction",
+    "href": "analyses/09-dependent-machine.html#population-and-prediction",
+    "title": "Dependent Machine-Failure Process",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nBecause the handout describes this process as “coming soon,” this analysis records an explicit assumption: I simulate a Gaussian AR(1) process with ( ho=0.80), then transform it so each marginal observation is exponential. ho=0.80), then transform it so each marginal observation is exponential. The dependence is positive, so adjacent failures carry information about one another. I predict slower convergence than for independent exponential data."
+  },
+  {
+    "objectID": "analyses/09-dependent-machine.html#experimental-design-and-decision-rule",
+    "href": "analyses/09-dependent-machine.html#experimental-design-and-decision-rule",
+    "title": "Dependent Machine-Failure Process",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 dependent sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. I apply the same skewness, kurtosis, Q-Q correlation, and Q-Q I generated r paste0(\"B = \", B) dependent sample means at candidate sizes r paste(N_VALUES, collapse = \", \"). I apply the same skewness, kurtosis, Q-Q correlation, and Q-Q RMSE thresholds as elsewhere, requiring three consecutive passes. The simulated standard deviation is compared descriptively; the independent formula (1/) is not used because dependence changes the variance of a mean."
+  },
+  {
+    "objectID": "analyses/09-dependent-machine.html#results",
+    "href": "analyses/09-dependent-machine.html#results",
+    "title": "Dependent Machine-Failure Process",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\n```{r}\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"skewness\",\n                 \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n0.993\n0.946\n2.006\n6.488\n0.908\n0.430\nno\nno\n\n\n5\n0.995\n0.831\n1.659\n3.848\n0.928\n0.380\nno\nno\n\n\n10\n0.995\n0.709\n1.438\n2.884\n0.945\n0.332\nno\nno\n\n\n15\n0.995\n0.627\n1.318\n2.491\n0.954\n0.303\nno\nno\n\n\n20\n0.992\n0.561\n1.171\n2.220\n0.964\n0.266\nno\nno\n\n\n30\n0.999\n0.480\n0.985\n1.404\n0.974\n0.230\nno\nno\n\n\n40\n1.000\n0.427\n0.917\n1.356\n0.978\n0.211\nno\nno\n\n\n50\n1.001\n0.383\n0.828\n1.162\n0.982\n0.190\nno\nno\n\n\n75\n1.001\n0.320\n0.699\n0.897\n0.987\n0.160\nno\nno\n\n\n100\n1.001\n0.280\n0.573\n0.538\n0.991\n0.134\nno\nno\n\n\n150\n1.000\n0.231\n0.514\n0.440\n0.993\n0.120\nno\nno\n\n\n200\n1.000\n0.199\n0.384\n0.156\n0.996\n0.092\nno\nno\n\n\n300\n1.000\n0.165\n0.376\n0.238\n0.996\n0.089\nno\nno\n\n\n500\n1.001\n0.127\n0.282\n0.125\n0.998\n0.068\nno\nno"
+  },
+  {
+    "objectID": "analyses/09-dependent-machine.html#visual-evidence",
+    "href": "analyses/09-dependent-machine.html#visual-evidence",
+    "title": "Dependent Machine-Failure Process",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\n```{r}\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"goldenrod\", border = \"white\",\n     main = paste(\"Dependent means: n =\", plot_n), xlab = \"Sample mean\")\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\n\n\n\n\n\n\n\n\n\nCode\nqqline(x, col = \"firebrick\", lwd = 2)\npar(old_par)\n:::\n\n\n5 Conclusion\nThe first stable pass is no stable value in the investigated range. Positive dependence reduces the effective amount of independent information, so the same nominal (n) should be interpreted as less informative than (n) independent observations. If the instructor supplies a different machine-failure generator, I will replace the generator while preserving the design and criteria. The first stable pass is r ifelse(is.na(study$selected_n), \"no stable value in the investigated range\", paste0(\"n = \", study$selected_n)). Positive dependence reduces the effective amount of independent information, so the same nominal (n) should be interpreted as less informative than (n) independent observations. If the instructor supplies a different machine-failure generator, I will replace the generator while preserving the design and criteria.\n\n\n6 Reproducibility check\n\n\nCode\n```{r}\nreproducibility_check(\"dependent_machine\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n::: {.cell-output .cell-output-stdout}\n\nseed simulated_mean simulated_sd skewness excess_kurtosis 1 6599 1.001085 0.1270336 0.2823299 0.1245924 2 2026 1.000839 0.1276784 0.2814298 0.2024287 ```"
+  },
+  {
+    "objectID": "analyses/09-dependent-machine.html#conclusion",
+    "href": "analyses/09-dependent-machine.html#conclusion",
+    "title": "Dependent Machine-Failure Process",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is no stable value in the investigated range. Positive dependence reduces the effective amount of independent information, so the same nominal (n) should be interpreted as less informative than (n) independent observations. If the instructor supplies a different machine-failure generator, I will replace the generator while preserving the design and criteria. The first stable pass is r ifelse(is.na(study$selected_n), \"no stable value in the investigated range\", paste0(\"n = \", study$selected_n)). Positive dependence reduces the effective amount of independent information, so the same nominal (n) should be interpreted as less informative than (n) independent observations. If the instructor supplies a different machine-failure generator, I will replace the generator while preserving the design and criteria."
+  },
+  {
+    "objectID": "analyses/09-dependent-machine.html#reproducibility-check",
+    "href": "analyses/09-dependent-machine.html#reproducibility-check",
+    "title": "Dependent Machine-Failure Process",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\n```{r}\nreproducibility_check(\"dependent_machine\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n::: {.cell-output .cell-output-stdout}\n\nseed simulated_mean simulated_sd skewness excess_kurtosis 1 6599 1.001085 0.1270336 0.2823299 0.1245924 2 2026 1.000839 0.1276784 0.2814298 0.2024287 ```"
+  },
+  {
+    "objectID": "analyses/03-six-sided-die.html",
+    "href": "analyses/03-six-sided-die.html",
+    "title": "Six-Sided Die Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"die\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/03-six-sided-die.html#population-and-prediction",
+    "href": "analyses/03-six-sided-die.html#population-and-prediction",
+    "title": "Six-Sided Die Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nEach observation is an independent roll of a fair six-sided die. The population is discrete and uniform on 1 through 6, with mean 3.5 and standard deviation (). Its symmetry should support relatively fast convergence, but small (n) values will produce visibly discrete sample means."
+  },
+  {
+    "objectID": "analyses/03-six-sided-die.html#experimental-design-and-decision-rule",
+    "href": "analyses/03-six-sided-die.html#experimental-design-and-decision-rule",
+    "title": "Six-Sided Die Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The common rule requires absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. The first value must pass, along with the next two investigated sizes."
+  },
+  {
+    "objectID": "analyses/03-six-sided-die.html#results",
+    "href": "analyses/03-six-sided-die.html#results",
+    "title": "Six-Sided Die Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n3.502\n1.214\n1.208\n0.017\n-0.619\n0.987\n0.158\nno\nno\n\n\n5\n3.488\n0.769\n0.764\n-0.011\n-0.249\n0.997\n0.081\nno\nno\n\n\n10\n3.492\n0.547\n0.540\n-0.005\n-0.126\n0.998\n0.056\nyes\nyes\n\n\n15\n3.496\n0.443\n0.441\n-0.024\n-0.195\n0.999\n0.050\nyes\nyes\n\n\n20\n3.498\n0.386\n0.382\n-0.007\n-0.095\n0.999\n0.042\nyes\nyes\n\n\n30\n3.500\n0.314\n0.312\n-0.019\n-0.041\n0.999\n0.034\nyes\nyes\n\n\n40\n3.498\n0.270\n0.270\n-0.002\n-0.002\n0.999\n0.033\nyes\nyes\n\n\n50\n3.496\n0.244\n0.242\n-0.020\n0.094\n1.000\n0.029\nyes\nyes\n\n\n75\n3.498\n0.199\n0.197\n0.008\n0.035\n1.000\n0.022\nyes\nyes\n\n\n100\n3.498\n0.174\n0.171\n-0.015\n0.036\n1.000\n0.020\nyes\nyes\n\n\n150\n3.498\n0.141\n0.139\n0.014\n0.003\n1.000\n0.018\nyes\nyes\n\n\n200\n3.499\n0.123\n0.121\n-0.012\n-0.031\n1.000\n0.017\nyes\nyes\n\n\n300\n3.499\n0.099\n0.099\n-0.007\n-0.085\n1.000\n0.017\nyes\nno\n\n\n500\n3.500\n0.076\n0.076\n-0.006\n0.041\n1.000\n0.014\nyes\nno"
+  },
+  {
+    "objectID": "analyses/03-six-sided-die.html#visual-evidence",
+    "href": "analyses/03-six-sided-die.html#visual-evidence",
+    "title": "Six-Sided Die Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"mediumpurple\", border = \"white\",\n     main = paste(\"Sampling means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/03-six-sided-die.html#conclusion",
+    "href": "analyses/03-six-sided-die.html#conclusion",
+    "title": "Six-Sided Die Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is n = 10. This result describes how quickly averaging smooths a discrete but symmetric population; it should not be interpreted as evidence that the individual die rolls are normal."
+  },
+  {
+    "objectID": "analyses/03-six-sided-die.html#reproducibility-check",
+    "href": "analyses/03-six-sided-die.html#reproducibility-check",
+    "title": "Six-Sided Die Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"die\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd     skewness excess_kurtosis\n1 6599        3.49236    0.5467445 -0.005216058      -0.1259529\n2 2026        3.49779    0.5402752 -0.026471152      -0.1385873"
+  },
+  {
+    "objectID": "analyses/01-normal.html",
+    "href": "analyses/01-normal.html",
+    "title": "Standard Normal Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"normal\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/01-normal.html#population-and-prediction",
+    "href": "analyses/01-normal.html#population-and-prediction",
+    "title": "Standard Normal Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nThe observations are independent standard normal values, (X_i N(0,1)). The sample mean of normal observations is exactly normal for every positive sample size, so I expect the smallest investigated value, (n=2), to pass."
+  },
+  {
+    "objectID": "analyses/01-normal.html#experimental-design-and-decision-rule",
+    "href": "analyses/01-normal.html#experimental-design-and-decision-rule",
+    "title": "Standard Normal Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nFor each candidate (n), I generated B = 10000 independent Monte Carlo samples and saved the mean of each sample. I investigated 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. “Approximately normal” requires absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. I require three consecutive passing candidate sizes before selecting the first stable value."
+  },
+  {
+    "objectID": "analyses/01-normal.html#results",
+    "href": "analyses/01-normal.html#results",
+    "title": "Standard Normal Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n0.008\n0.709\n0.707\n0.002\n0.051\n1\n0.013\nyes\nyes\n\n\n5\n0.003\n0.448\n0.447\n0.011\n0.001\n1\n0.011\nyes\nyes\n\n\n10\n0.002\n0.316\n0.316\n0.006\n-0.052\n1\n0.011\nyes\nyes\n\n\n15\n0.003\n0.257\n0.258\n-0.018\n-0.015\n1\n0.014\nyes\nyes\n\n\n20\n0.003\n0.223\n0.224\n0.016\n-0.010\n1\n0.013\nyes\nyes\n\n\n30\n0.001\n0.182\n0.183\n-0.013\n-0.068\n1\n0.013\nyes\nyes\n\n\n40\n0.000\n0.157\n0.158\n-0.031\n-0.009\n1\n0.013\nyes\nyes\n\n\n50\n-0.001\n0.140\n0.141\n-0.001\n0.020\n1\n0.013\nyes\nyes\n\n\n75\n0.000\n0.115\n0.115\n-0.006\n0.041\n1\n0.017\nyes\nyes\n\n\n100\n-0.001\n0.100\n0.100\n0.007\n-0.041\n1\n0.012\nyes\nyes\n\n\n150\n0.000\n0.082\n0.082\n-0.004\n0.000\n1\n0.009\nyes\nyes\n\n\n200\n0.000\n0.071\n0.071\n0.012\n-0.111\n1\n0.015\nyes\nyes\n\n\n300\n0.000\n0.058\n0.058\n-0.017\n-0.015\n1\n0.014\nyes\nno\n\n\n500\n0.000\n0.044\n0.045\n-0.011\n0.054\n1\n0.018\nyes\nno"
+  },
+  {
+    "objectID": "analyses/01-normal.html#visual-evidence",
+    "href": "analyses/01-normal.html#visual-evidence",
+    "title": "Standard Normal Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"skyblue\", border = \"white\",\n     main = paste(\"Sampling means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/01-normal.html#conclusion",
+    "href": "analyses/01-normal.html#conclusion",
+    "title": "Standard Normal Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass under the pre-specified rule is n = 2. This agrees with the theoretical result: normality is preserved under averaging, so this population is a useful baseline for interpreting the more difficult cases."
+  },
+  {
+    "objectID": "analyses/01-normal.html#reproducibility-check",
+    "href": "analyses/01-normal.html#reproducibility-check",
+    "title": "Standard Normal Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"normal\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd    skewness excess_kurtosis\n1 6599    0.007620303    0.7085607 0.001796392      0.05137215\n2 2026    0.010569596    0.7098162 0.008686944     -0.01669831\n\n\nThe exact Monte Carlo summaries change with the seed, but the scientific conclusion should remain unchanged."
+  },
+  {
+    "objectID": "analyses/11-mixture.html",
+    "href": "analyses/11-mixture.html",
+    "title": "Two-Component Mixture Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"mixture\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/11-mixture.html#population-and-prediction",
+    "href": "analyses/11-mixture.html#population-and-prediction",
+    "title": "Two-Component Mixture Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nThis analysis uses a two-component mixture: 90% N(0, 1) and 10% N(5, 1). It is an explicit irregular, life/death-style substitute because the handout marks the official life/death population as “coming soon.” The population is asymmetric, with a separated minority component. I expect slower convergence than for symmetric populations, but eventual convergence because the mixture has finite mean and variance."
+  },
+  {
+    "objectID": "analyses/11-mixture.html#experimental-design-and-decision-rule",
+    "href": "analyses/11-mixture.html#experimental-design-and-decision-rule",
+    "title": "Two-Component Mixture Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The common criteria are absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. Three consecutive passing values are required."
+  },
+  {
+    "objectID": "analyses/11-mixture.html#results",
+    "href": "analyses/11-mixture.html#results",
+    "title": "Two-Component Mixture Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n0.525\n1.288\n1.275\n1.075\n1.194\n0.962\n0.274\nno\nno\n\n\n5\n0.490\n0.806\n0.806\n0.727\n0.634\n0.984\n0.176\nno\nno\n\n\n10\n0.508\n0.573\n0.570\n0.498\n0.237\n0.993\n0.121\nno\nno\n\n\n15\n0.500\n0.464\n0.465\n0.378\n0.124\n0.996\n0.091\nno\nno\n\n\n20\n0.497\n0.401\n0.403\n0.324\n0.020\n0.997\n0.080\nno\nno\n\n\n30\n0.498\n0.329\n0.329\n0.274\n0.002\n0.998\n0.067\nno\nno\n\n\n40\n0.501\n0.281\n0.285\n0.271\n0.107\n0.998\n0.065\nno\nno\n\n\n50\n0.497\n0.253\n0.255\n0.184\n0.013\n0.999\n0.045\nyes\nyes\n\n\n75\n0.497\n0.209\n0.208\n0.177\n0.004\n0.999\n0.044\nyes\nyes\n\n\n100\n0.501\n0.180\n0.180\n0.132\n-0.080\n0.999\n0.035\nyes\nyes\n\n\n150\n0.501\n0.149\n0.147\n0.094\n-0.044\n1.000\n0.025\nyes\nyes\n\n\n200\n0.501\n0.128\n0.127\n0.157\n0.086\n0.999\n0.040\nyes\nyes\n\n\n300\n0.499\n0.105\n0.104\n0.112\n0.023\n1.000\n0.028\nyes\nno\n\n\n500\n0.500\n0.081\n0.081\n0.042\n-0.026\n1.000\n0.014\nyes\nno"
+  },
+  {
+    "objectID": "analyses/11-mixture.html#visual-evidence",
+    "href": "analyses/11-mixture.html#visual-evidence",
+    "title": "Two-Component Mixture Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"darkseagreen\", border = \"white\",\n     main = paste(\"Mixture means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/11-mixture.html#conclusion",
+    "href": "analyses/11-mixture.html#conclusion",
+    "title": "Two-Component Mixture Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is n = 50. The minority high-value component creates skewness and tail behavior that averaging must dilute. This is a useful reminder that finite variance is enough for eventual CLT behavior in theory, but not necessarily enough for a small-(n) normal approximation."
+  },
+  {
+    "objectID": "analyses/11-mixture.html#reproducibility-check",
+    "href": "analyses/11-mixture.html#reproducibility-check",
+    "title": "Two-Component Mixture Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"mixture\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd  skewness excess_kurtosis\n1 6599      0.4966796    0.2529458 0.1836090     0.013415778\n2 2026      0.4974961    0.2530491 0.2414014     0.004843707"
+  },
+  {
+    "objectID": "analyses/10-nonidentical-bernoulli.html",
+    "href": "analyses/10-nonidentical-bernoulli.html",
+    "title": "Non-identical Bernoulli Process",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"nonidentical_bernoulli\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/10-nonidentical-bernoulli.html#population-and-prediction",
+    "href": "analyses/10-nonidentical-bernoulli.html#population-and-prediction",
+    "title": "Non-identical Bernoulli Process",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nFor a sample of size (n), the observations are independent Bernoulli values, but their probabilities change linearly from 0.50 to 0.90. They are therefore not identically distributed. The average success probability is 0.70. Because the observations remain bounded, I expect a bell shape eventually, although the usual iid explanation of the CLT does not apply directly."
+  },
+  {
+    "objectID": "analyses/10-nonidentical-bernoulli.html#experimental-design-and-decision-rule",
+    "href": "analyses/10-nonidentical-bernoulli.html#experimental-design-and-decision-rule",
+    "title": "Non-identical Bernoulli Process",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. I use the same four criteria for approximate normality: absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. Three consecutive passes define a stable selection. The theoretical standard deviation uses the sum of the individual Bernoulli variances rather than an iid formula."
+  },
+  {
+    "objectID": "analyses/10-nonidentical-bernoulli.html#results",
+    "href": "analyses/10-nonidentical-bernoulli.html#results",
+    "title": "Non-identical Bernoulli Process",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"theoretical_sd\",\n                 \"skewness\", \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\ntheoretical_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n0.704\n0.294\n0.292\n-0.405\n-0.705\n0.856\n0.537\nno\nno\n\n\n5\n0.699\n0.198\n0.195\n-0.326\n-0.273\n0.949\n0.321\nno\nno\n\n\n10\n0.702\n0.138\n0.139\n-0.240\n-0.187\n0.975\n0.222\nno\nno\n\n\n15\n0.700\n0.114\n0.114\n-0.170\n-0.119\n0.984\n0.176\nno\nno\n\n\n20\n0.700\n0.099\n0.099\n-0.207\n0.001\n0.988\n0.155\nno\nno\n\n\n30\n0.699\n0.081\n0.081\n-0.154\n-0.057\n0.992\n0.125\nno\nno\n\n\n40\n0.699\n0.070\n0.070\n-0.166\n0.039\n0.994\n0.112\nno\nno\n\n\n50\n0.698\n0.063\n0.063\n-0.117\n0.015\n0.995\n0.097\nno\nno\n\n\n75\n0.700\n0.051\n0.051\n-0.105\n-0.002\n0.997\n0.080\nyes\nyes\n\n\n100\n0.700\n0.044\n0.044\n-0.070\n0.015\n0.998\n0.068\nyes\nyes\n\n\n150\n0.700\n0.037\n0.036\n-0.072\n0.031\n0.998\n0.057\nyes\nyes\n\n\n200\n0.700\n0.031\n0.031\n-0.079\n0.037\n0.999\n0.051\nyes\nyes\n\n\n300\n0.700\n0.026\n0.026\n-0.070\n0.025\n0.999\n0.042\nyes\nno\n\n\n500\n0.700\n0.020\n0.020\n-0.067\n0.041\n0.999\n0.035\nyes\nno"
+  },
+  {
+    "objectID": "analyses/10-nonidentical-bernoulli.html#visual-evidence",
+    "href": "analyses/10-nonidentical-bernoulli.html#visual-evidence",
+    "title": "Non-identical Bernoulli Process",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 40, probability = TRUE, col = \"cadetblue\", border = \"white\",\n     main = paste(\"Non-identical means: n =\", plot_n), xlab = \"Sample mean\")\ncurve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),\n      add = TRUE, col = \"firebrick\", lwd = 2)\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/10-nonidentical-bernoulli.html#conclusion",
+    "href": "analyses/10-nonidentical-bernoulli.html#conclusion",
+    "title": "Non-identical Bernoulli Process",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is n = 75. This case separates identical distribution from independence: changing probabilities alter the variance and centering calculation, but the bounded independent contributions can still produce an approximately normal average."
+  },
+  {
+    "objectID": "analyses/10-nonidentical-bernoulli.html#reproducibility-check",
+    "href": "analyses/10-nonidentical-bernoulli.html#reproducibility-check",
+    "title": "Non-identical Bernoulli Process",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"nonidentical_bernoulli\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd   skewness excess_kurtosis\n1 6599      0.7001440   0.05119333 -0.1054431    -0.001884653\n2 2026      0.6995867   0.05143406 -0.1126526     0.042075664"
+  },
+  {
+    "objectID": "analyses/08-cauchy.html",
+    "href": "analyses/08-cauchy.html",
+    "title": "Cauchy Population",
+    "section": "",
+    "text": "Code\nsource(\"../R/helpers.R\")\nstudent_id &lt;- 6599L  # Replace with the last four digits of your student ID.\nB &lt;- B_DEFAULT\nstudy &lt;- study_population(\"cauchy\", seed = student_id, B = B)\nd &lt;- study$diagnostics"
+  },
+  {
+    "objectID": "analyses/08-cauchy.html#population-and-prediction",
+    "href": "analyses/08-cauchy.html#population-and-prediction",
+    "title": "Cauchy Population",
+    "section": "1 Population and prediction",
+    "text": "1 Population and prediction\nThe observations are independent Cauchy(location = 0, scale = 1) values. The Cauchy distribution has no finite population mean or variance, so the usual finite-variance Central Limit Theorem does not apply. I predict that ordinary sample means will remain unstable and will not meet the normality criteria."
+  },
+  {
+    "objectID": "analyses/08-cauchy.html#experimental-design-and-decision-rule",
+    "href": "analyses/08-cauchy.html#experimental-design-and-decision-rule",
+    "title": "Cauchy Population",
+    "section": "2 Experimental design and decision rule",
+    "text": "2 Experimental design and decision rule\nI generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The common shape screen requires absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08, with three consecutive passing values required. For Cauchy data, the simulated mean and standard deviation are reported descriptively only; they are not estimates of finite population parameters."
+  },
+  {
+    "objectID": "analyses/08-cauchy.html#results",
+    "href": "analyses/08-cauchy.html#results",
+    "title": "Cauchy Population",
+    "section": "3 Results",
+    "text": "3 Results\n\n\nCode\ndisplay &lt;- d[, c(\"n\", \"simulated_mean\", \"simulated_sd\", \"skewness\",\n                 \"excess_kurtosis\", \"qq_correlation\", \"qq_rmse\",\n                 \"normal_enough\", \"stable_pass\")]\ndisplay$normal_enough &lt;- ifelse(display$normal_enough, \"yes\", \"no\")\ndisplay$stable_pass &lt;- ifelse(display$stable_pass, \"yes\", \"no\")\nknitr::kable(display, digits = 3)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nn\nsimulated_mean\nsimulated_sd\nskewness\nexcess_kurtosis\nqq_correlation\nqq_rmse\nnormal_enough\nstable_pass\n\n\n\n\n2\n-1.994\n113.688\n-54.852\n3336.658\n0.150\n1.304\nno\nno\n\n\n5\n-3.405\n382.589\n-90.938\n8865.814\n0.085\n1.353\nno\nno\n\n\n10\n-0.509\n245.964\n-24.542\n4319.152\n0.125\n1.322\nno\nno\n\n\n15\n-0.148\n165.019\n-24.035\n4211.811\n0.141\n1.311\nno\nno\n\n\n20\n-0.196\n125.388\n-23.319\n3999.900\n0.158\n1.298\nno\nno\n\n\n30\n3.738\n360.161\n88.251\n8477.575\n0.088\n1.351\nno\nno\n\n\n40\n-0.809\n462.581\n-34.880\n5217.802\n0.090\n1.349\nno\nno\n\n\n50\n-0.640\n370.225\n-34.833\n5208.478\n0.095\n1.346\nno\nno\n\n\n75\n-0.609\n248.431\n-34.189\n5073.220\n0.108\n1.336\nno\nno\n\n\n100\n-0.562\n189.967\n-32.519\n4702.149\n0.126\n1.322\nno\nno\n\n\n150\n0.463\n156.822\n1.341\n3042.485\n0.144\n1.309\nno\nno\n\n\n200\n2.482\n231.607\n63.307\n5614.586\n0.116\n1.330\nno\nno\n\n\n300\n6.788\n553.360\n89.159\n8437.354\n0.078\n1.358\nno\nno\n\n\n500\n4.191\n334.261\n87.461\n8213.515\n0.093\n1.346\nno\nno"
+  },
+  {
+    "objectID": "analyses/08-cauchy.html#visual-evidence",
+    "href": "analyses/08-cauchy.html#visual-evidence",
+    "title": "Cauchy Population",
+    "section": "4 Visual evidence",
+    "text": "4 Visual evidence\n\n\nCode\nplot_n &lt;- max(N_VALUES)\nx &lt;- study$samples[[as.character(plot_n)]]\nold_par &lt;- par(mfrow = c(1, 2))\nhist(x, breaks = 50, probability = TRUE, col = \"gray60\", border = \"white\",\n     main = paste(\"Cauchy sample means: n =\", plot_n), xlab = \"Sample mean\")\nqqnorm(x, main = paste(\"Normal Q-Q plot: n =\", plot_n), pch = 16, cex = 0.3)\nqqline(x, col = \"firebrick\", lwd = 2)\n\n\n\n\n\n\n\n\n\nCode\npar(old_par)"
+  },
+  {
+    "objectID": "analyses/08-cauchy.html#conclusion",
+    "href": "analyses/08-cauchy.html#conclusion",
+    "title": "Cauchy Population",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion\nThe first stable pass is no stable value in the investigated range. Within the investigated range, no stable (n) met all criteria. This is not evidence that a larger finite (n) must eventually work; it is evidence that ordinary sample means are not governed by the usual finite-mean, finite-variance CLT here. The heavy tails also make exact summaries highly seed-sensitive."
+  },
+  {
+    "objectID": "analyses/08-cauchy.html#reproducibility-check",
+    "href": "analyses/08-cauchy.html#reproducibility-check",
+    "title": "Cauchy Population",
+    "section": "6 Reproducibility check",
+    "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"cauchy\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd skewness excess_kurtosis\n1 6599      4.1905855    334.26111 87.46118        8213.515\n2 2026      0.7312819     77.49533 63.95637        5618.054"
+  }
+]
