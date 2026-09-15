@@ -12,6 +12,27 @@ studies <- run_all_studies(seed = student_id, B = B, keep_samples = FALSE)
 summary <- summary_table(studies)
 ```
 
+::: {.callout-important}
+## Executive conclusion
+
+There is no universal sample size at which a sample mean becomes “normal.” Under the pre-specified diagnostics, the current simulations range from **n = 2** for a standard normal population to **n = 100** for an exponential population; the dependent and Cauchy cases do not pass through **n = 500**. The right answer is a documented, population-specific judgment supported by both numerical and graphical evidence.
+:::
+
+::: {.metric-grid}
+::: {.metric-card}
+<span class="metric-value">2–100</span><span class="metric-label">stable thresholds for finite-variance independent populations</span>
+:::
+::: {.metric-card}
+<span class="metric-value">n = 30</span><span class="metric-label">works for Poisson(1), not as a universal rule</span>
+:::
+::: {.metric-card}
+<span class="metric-value">500+</span><span class="metric-label">still insufficient for the Cauchy case in this study</span>
+:::
+::: {.metric-card}
+<span class="metric-value">4 + 3</span><span class="metric-label">diagnostics plus three consecutive passing grid points</span>
+:::
+:::
+
 ## Research question
 
 The project asks whether there is a universal sample size at which a sampling

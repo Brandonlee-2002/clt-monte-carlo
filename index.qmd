@@ -3,65 +3,95 @@ title: "How Fast Does Normal Happen?"
 subtitle: "Stress-testing the Central Limit Theorem with Monte Carlo simulation"
 ---
 
-This repository investigates how quickly the sampling distribution of the sample
-mean becomes approximately normal. The analysis compares symmetric, skewed,
-discrete, heavy-tailed, dependent, non-identically distributed, and mixture
-populations.
+::: {.hero-panel}
+<div class="eyebrow">R / QUARTO · STATISTICAL COMPUTING · MONTE CARLO</div>
+
+<p class="hero-question">What is the smallest sample size at which the sampling distribution of a sample mean is reasonably defensible as approximately normal?</p>
+
+<p>This project treats that question as an empirical modeling problem. It applies one transparent decision rule across 11 populations, tests the result with numerical and graphical evidence, and documents where the usual CLT intuition breaks down.</p>
+
+<p class="hero-note">The headline finding: there is no universal “n = 30” switch. The defensible threshold depends on population shape, dependence, tails, and the standard used to define “approximately normal.”</p>
+:::
+
+::: {.metric-grid}
+::: {.metric-card}
+<span class="metric-value">11</span><span class="metric-label">populations and processes compared</span>
+:::
+::: {.metric-card}
+<span class="metric-value">10,000</span><span class="metric-label">Monte Carlo means per candidate n</span>
+:::
+::: {.metric-card}
+<span class="metric-value">4</span><span class="metric-label">pre-specified normality diagnostics</span>
+:::
+::: {.metric-card}
+<span class="metric-value">2–500</span><span class="metric-label">candidate sample sizes investigated</span>
+:::
+:::
+
+<div class="section-kicker">Executive readout</div>
+
+## The result in one minute
+
+The same diagnostic screen produced thresholds from **n = 2** for a standard normal population to **n = 100** for an exponential population. The Cauchy and dependent-process cases did not meet the stability rule through **n = 500**. This range is the central result: sample size alone is not enough to justify a normal approximation.
+
+| Population | First stable pass | Evidence at the selected threshold |
+|---|---:|---|
+| Standard normal | **n = 2** | Normality is preserved exactly under averaging. |
+| Continuous uniform | **n = 5** | Symmetry supports fast convergence. |
+| Six-sided die | **n = 10** | Discreteness smooths through averaging. |
+| Poisson(1) | **n = 30** | Skewness ≈ 0.142; Q-Q correlation ≈ 0.998. |
+| Exponential(1) | **n = 100** | Skewness falls to ≈ 0.189; at n = 30, it is ≈ 0.398. |
+| Cauchy | None through 500 | Skewness ≈ 87.46 and excess kurtosis ≈ 8213.51 at n = 500. |
+
+For the full comparison—including rare-success binomial, mixture, non-identical Bernoulli, and dependent-process results—see the [final summary](final-summary.qmd).
+
+## What this project demonstrates
+
+::: {.card-grid}
+::: {.project-card}
+
+### Experimental design
+
+Each population is evaluated on the same candidate-n grid with **B = 10,000** simulated sample means per candidate. The seed is reset before each experiment so every result can be reproduced independently.
+
+:::
+::: {.project-card}
+
+### Evidence-based judgment
+
+“Approximately normal” is operationalized with skewness, excess kurtosis, normal Q-Q correlation, and standardized Q-Q RMSE. A threshold must pass at three consecutive candidate sizes.
+
+:::
+::: {.project-card}
+
+### Assumption awareness
+
+The study deliberately includes skewed, discrete, heavy-tailed, dependent, non-identical, and mixture populations to test the limits of a rule-of-thumb rather than merely confirm it.
+
+:::
+:::
 
 ## Research question
 
-> What is the smallest sample size at which the sampling distribution of the
-> sample mean is reasonably defensible as approximately normal?
+> What is the smallest sample size at which the sampling distribution of the sample mean is reasonably defensible as approximately normal?
 
-There is no universal answer. This project uses the same diagnostic standard
-for every population, then explains where that standard works and where the
-usual Central Limit Theorem assumptions fail.
+There is no universal answer because “approximately normal” is not a binary population property. It depends on the population being averaged, the diagnostic thresholds, the candidate sample sizes, Monte Carlo variation, and whether the assumptions supporting the CLT are credible.
 
-## Answer in brief
+The professional answer is therefore population-specific: choose the smallest sample size whose numerical and graphical evidence meets a clearly stated standard. This project makes that judgment explicit rather than hiding it behind a single rule of thumb.
 
-The answer is ambiguous because “approximately normal” is a judgment based on
-the population being averaged, the diagnostic thresholds, the sample sizes
-investigated, Monte Carlo variation, and the assumptions behind the CLT. It is
-not a universal switch that turns on at (n=30).
+## Explore the work
 
-Using `B = 10000`, the current seed `6599`, and the same four diagnostics for
-every population, the first stable passing values were:
-
-| Population | First stable passing (n) |
-|---|---:|
-| Standard normal | 2 |
-| Continuous uniform | 5 |
-| Symmetric binomial | 5 |
-| Six-sided die | 10 |
-| Poisson | 30 |
-| Rare-success binomial | 50 |
-| Two-component mixture | 50 |
-| Non-identical Bernoulli | 75 |
-| Exponential | 100 |
-| Dependent process | None through 500 |
-| Cauchy | None through 500 |
-
-For example, the Poisson population passed at (n=30) with skewness about
-0.142, while the Exponential population still had skewness about 0.398 at
-(n=30) and did not pass until (n=100). The Cauchy population failed even at
-(n=500), where its simulated skewness was about 87.46 and excess kurtosis was
-about 8213.51.
-
-Therefore, the defensible answer is population-specific: select the smallest
-sample size whose graphical and numerical evidence meets a clearly stated
-standard. In this project, the answer ranges from (n=2) to (n=100) for the
-finite-variance independent populations, while the dependent and Cauchy cases
-do not meet the standard within the investigated range.
-
-## How to read the project
-
-- Read the individual population analyses for the simulations and evidence.
-- Read the [final summary](final-summary.qmd) for the cross-distribution comparison.
-- See `R/helpers.R` for the shared simulation and diagnostic definitions.
-- See `ai-log.md` for the record of prompts, validation, and revisions.
+- Start with the [final summary](final-summary.qmd) for the cross-distribution comparison and limitations.
+- Open the [individual analyses](analyses/01-normal.qmd) to inspect each population’s prediction, diagnostics, plots, and conclusion.
+- Review [`R/helpers.R`](R/helpers.R) for the shared simulation and decision-rule implementation.
+- Read the [AI log](ai-log.md) for the prompt record, validation steps, revisions, and remaining modeling assumptions.
 
 ## Reproducibility
 
-The analyses use base R and a single student seed. Replace `student_id <- 6599`
-in each analysis with the last four digits of your own student ID before
-rendering. The Monte Carlo repetition count is `B = 10000`.
+The project uses base R and a recorded student seed. Replace `student_id <- 6599L` in the analysis files and `R/run_all.R` with the last four digits of the intended student ID, then render from the repository root:
+
+```bash
+quarto render --no-clean --cache-refresh
+```
+
+The generated website is in `docs/`. The extra Quarto flags avoid the output-directory cleanup/move issue documented in the project README.

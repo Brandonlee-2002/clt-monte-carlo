@@ -21,11 +21,11 @@ population shapes and assumptions.
 3. Render the website with:
 
    ```bash
-   quarto render --no-clean --no-cache
+   quarto render --no-clean --cache-refresh
    ```
 
    The extra flags avoid a Quarto output-directory cleanup/move issue in this
-   project and clear stale rendering-session files.
+   project and refresh stale rendering-session files.
 
 To regenerate only the CSV result tables from the command line, run
 `Rscript R/run_all.R` from the repository root.

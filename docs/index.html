@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -45,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-445b8638c3d06994fee0907d791121c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-817f26bc32017455bb1226423fd1d8e9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -155,6 +190,16 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./final-summary.html"> 
+<span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ai-log.html"> 
+<span class="menu-text">AI log</span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
@@ -170,10 +215,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#research-question" id="toc-research-question" class="nav-link active" data-scroll-target="#research-question"><span class="header-section-number">1</span> Research question</a></li>
-  <li><a href="#answer-in-brief" id="toc-answer-in-brief" class="nav-link" data-scroll-target="#answer-in-brief"><span class="header-section-number">2</span> Answer in brief</a></li>
-  <li><a href="#how-to-read-the-project" id="toc-how-to-read-the-project" class="nav-link" data-scroll-target="#how-to-read-the-project"><span class="header-section-number">3</span> How to read the project</a></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">4</span> Reproducibility</a></li>
+  <li><a href="#the-result-in-one-minute" id="toc-the-result-in-one-minute" class="nav-link active" data-scroll-target="#the-result-in-one-minute"><span class="header-section-number">1</span> The result in one minute</a></li>
+  <li><a href="#what-this-project-demonstrates" id="toc-what-this-project-demonstrates" class="nav-link" data-scroll-target="#what-this-project-demonstrates"><span class="header-section-number">2</span> What this project demonstrates</a></li>
+  <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">3</span> Research question</a></li>
+  <li><a href="#explore-the-work" id="toc-explore-the-work" class="nav-link" data-scroll-target="#explore-the-work"><span class="header-section-number">4</span> Explore the work</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">5</span> Reproducibility</a></li>
   </ul>
 </nav>
     </div>
@@ -182,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">How Fast Does Normal Happen?</h1>
+<div class="quarto-title-block"><div><h1 class="title">How Fast Does Normal Happen?</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 <p class="subtitle lead">Stress-testing the Central Limit Theorem with Monte Carlo simulation</p>
 </div>
 
@@ -200,88 +246,130 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This repository investigates how quickly the sampling distribution of the sample mean becomes approximately normal. The analysis compares symmetric, skewed, discrete, heavy-tailed, dependent, non-identically distributed, and mixture populations.</p>
-<section id="research-question" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="research-question"><span class="header-section-number">1</span> Research question</h2>
-<blockquote class="blockquote">
-<p>What is the smallest sample size at which the sampling distribution of the sample mean is reasonably defensible as approximately normal?</p>
-</blockquote>
-<p>There is no universal answer. This project uses the same diagnostic standard for every population, then explains where that standard works and where the usual Central Limit Theorem assumptions fail.</p>
-</section>
-<section id="answer-in-brief" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="answer-in-brief"><span class="header-section-number">2</span> Answer in brief</h2>
-<p>The answer is ambiguous because “approximately normal” is a judgment based on the population being averaged, the diagnostic thresholds, the sample sizes investigated, Monte Carlo variation, and the assumptions behind the CLT. It is not a universal switch that turns on at (n=30).</p>
-<p>Using <code>B = 10000</code>, the current seed <code>6599</code>, and the same four diagnostics for every population, the first stable passing values were:</p>
+<div class="hero-panel">
+<div class="eyebrow">
+R / QUARTO · STATISTICAL COMPUTING · MONTE CARLO
+</div>
+<p class="hero-question">
+What is the smallest sample size at which the sampling distribution of a sample mean is reasonably defensible as approximately normal?
+</p>
+<p>
+This project treats that question as an empirical modeling problem. It applies one transparent decision rule across 11 populations, tests the result with numerical and graphical evidence, and documents where the usual CLT intuition breaks down.
+</p>
+<p class="hero-note">
+The headline finding: there is no universal “n = 30” switch. The defensible threshold depends on population shape, dependence, tails, and the standard used to define “approximately normal.”
+</p>
+</div>
+<div class="metric-grid">
+<div class="metric-card">
+<p><span class="metric-value">11</span><span class="metric-label">populations and processes compared</span></p>
+</div>
+<div class="metric-card">
+<p><span class="metric-value">10,000</span><span class="metric-label">Monte Carlo means per candidate n</span></p>
+</div>
+<div class="metric-card">
+<p><span class="metric-value">4</span><span class="metric-label">pre-specified normality diagnostics</span></p>
+</div>
+<div class="metric-card">
+<p><span class="metric-value">2–500</span><span class="metric-label">candidate sample sizes investigated</span></p>
+</div>
+</div>
+<div class="section-kicker">
+Executive readout
+</div>
+<section id="the-result-in-one-minute" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-result-in-one-minute"><span class="header-section-number">1</span> The result in one minute</h2>
+<p>The same diagnostic screen produced thresholds from <strong>n = 2</strong> for a standard normal population to <strong>n = 100</strong> for an exponential population. The Cauchy and dependent-process cases did not meet the stability rule through <strong>n = 500</strong>. This range is the central result: sample size alone is not enough to justify a normal approximation.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 40%">
+<col style="width: 30%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Population</th>
-<th style="text-align: right;">First stable passing (n)</th>
+<th style="text-align: right;">First stable pass</th>
+<th>Evidence at the selected threshold</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Standard normal</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: right;"><strong>n = 2</strong></td>
+<td>Normality is preserved exactly under averaging.</td>
 </tr>
 <tr class="even">
 <td>Continuous uniform</td>
-<td style="text-align: right;">5</td>
+<td style="text-align: right;"><strong>n = 5</strong></td>
+<td>Symmetry supports fast convergence.</td>
 </tr>
 <tr class="odd">
-<td>Symmetric binomial</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="even">
 <td>Six-sided die</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="odd">
-<td>Poisson</td>
-<td style="text-align: right;">30</td>
+<td style="text-align: right;"><strong>n = 10</strong></td>
+<td>Discreteness smooths through averaging.</td>
 </tr>
 <tr class="even">
-<td>Rare-success binomial</td>
-<td style="text-align: right;">50</td>
+<td>Poisson(1)</td>
+<td style="text-align: right;"><strong>n = 30</strong></td>
+<td>Skewness ≈ 0.142; Q-Q correlation ≈ 0.998.</td>
 </tr>
 <tr class="odd">
-<td>Two-component mixture</td>
-<td style="text-align: right;">50</td>
+<td>Exponential(1)</td>
+<td style="text-align: right;"><strong>n = 100</strong></td>
+<td>Skewness falls to ≈ 0.189; at n = 30, it is ≈ 0.398.</td>
 </tr>
 <tr class="even">
-<td>Non-identical Bernoulli</td>
-<td style="text-align: right;">75</td>
-</tr>
-<tr class="odd">
-<td>Exponential</td>
-<td style="text-align: right;">100</td>
-</tr>
-<tr class="even">
-<td>Dependent process</td>
-<td style="text-align: right;">None through 500</td>
-</tr>
-<tr class="odd">
 <td>Cauchy</td>
 <td style="text-align: right;">None through 500</td>
+<td>Skewness ≈ 87.46 and excess kurtosis ≈ 8213.51 at n = 500.</td>
 </tr>
 </tbody>
 </table>
-<p>For example, the Poisson population passed at (n=30) with skewness about 0.142, while the Exponential population still had skewness about 0.398 at (n=30) and did not pass until (n=100). The Cauchy population failed even at (n=500), where its simulated skewness was about 87.46 and excess kurtosis was about 8213.51.</p>
-<p>Therefore, the defensible answer is population-specific: select the smallest sample size whose graphical and numerical evidence meets a clearly stated standard. In this project, the answer ranges from (n=2) to (n=100) for the finite-variance independent populations, while the dependent and Cauchy cases do not meet the standard within the investigated range.</p>
+<p>For the full comparison—including rare-success binomial, mixture, non-identical Bernoulli, and dependent-process results—see the <a href="./final-summary.html">final summary</a>.</p>
 </section>
-<section id="how-to-read-the-project" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="how-to-read-the-project"><span class="header-section-number">3</span> How to read the project</h2>
+<section id="what-this-project-demonstrates" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="what-this-project-demonstrates"><span class="header-section-number">2</span> What this project demonstrates</h2>
+<div class="card-grid">
+<section id="experimental-design" class="level3 project-card" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="experimental-design"><span class="header-section-number">2.1</span> Experimental design</h3>
+<p>Each population is evaluated on the same candidate-n grid with <strong>B = 10,000</strong> simulated sample means per candidate. The seed is reset before each experiment so every result can be reproduced independently.</p>
+</section>
+<section id="evidence-based-judgment" class="level3 project-card" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="evidence-based-judgment"><span class="header-section-number">2.2</span> Evidence-based judgment</h3>
+<p>“Approximately normal” is operationalized with skewness, excess kurtosis, normal Q-Q correlation, and standardized Q-Q RMSE. A threshold must pass at three consecutive candidate sizes.</p>
+</section>
+<section id="assumption-awareness" class="level3 project-card" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="assumption-awareness"><span class="header-section-number">2.3</span> Assumption awareness</h3>
+<p>The study deliberately includes skewed, discrete, heavy-tailed, dependent, non-identical, and mixture populations to test the limits of a rule-of-thumb rather than merely confirm it.</p>
+</section>
+</div>
+</section>
+<section id="research-question" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="research-question"><span class="header-section-number">3</span> Research question</h2>
+<blockquote class="blockquote">
+<p>What is the smallest sample size at which the sampling distribution of the sample mean is reasonably defensible as approximately normal?</p>
+</blockquote>
+<p>There is no universal answer because “approximately normal” is not a binary population property. It depends on the population being averaged, the diagnostic thresholds, the candidate sample sizes, Monte Carlo variation, and whether the assumptions supporting the CLT are credible.</p>
+<p>The professional answer is therefore population-specific: choose the smallest sample size whose numerical and graphical evidence meets a clearly stated standard. This project makes that judgment explicit rather than hiding it behind a single rule of thumb.</p>
+</section>
+<section id="explore-the-work" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="explore-the-work"><span class="header-section-number">4</span> Explore the work</h2>
 <ul>
-<li>Read the individual population analyses for the simulations and evidence.</li>
-<li>Read the <a href="./final-summary.html">final summary</a> for the cross-distribution comparison.</li>
-<li>See <code>R/helpers.R</code> for the shared simulation and diagnostic definitions.</li>
-<li>See <code>ai-log.md</code> for the record of prompts, validation, and revisions.</li>
+<li>Start with the <a href="./final-summary.html">final summary</a> for the cross-distribution comparison and limitations.</li>
+<li>Open the <a href="./analyses/01-normal.html">individual analyses</a> to inspect each population’s prediction, diagnostics, plots, and conclusion.</li>
+<li>Review <a href="R/helpers.R"><code>R/helpers.R</code></a> for the shared simulation and decision-rule implementation.</li>
+<li>Read the <a href="./ai-log.html">AI log</a> for the prompt record, validation steps, revisions, and remaining modeling assumptions.</li>
 </ul>
 </section>
-<section id="reproducibility" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="reproducibility"><span class="header-section-number">4</span> Reproducibility</h2>
-<p>The analyses use base R and a single student seed. Replace <code>student_id &lt;- 6599</code> in each analysis with the last four digits of your own student ID before rendering. The Monte Carlo repetition count is <code>B = 10000</code>.</p>
+<section id="reproducibility" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="reproducibility"><span class="header-section-number">5</span> Reproducibility</h2>
+<p>The project uses base R and a recorded student seed. Replace <code>student_id &lt;- 6599L</code> in the analysis files and <code>R/run_all.R</code> with the last four digits of the intended student ID, then render from the repository root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--no-clean</span> <span class="at">--cache-refresh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The generated website is in <code>docs/</code>. The extra Quarto flags avoid the output-directory cleanup/move issue documented in the project README.</p>
 
+
+<!-- -->
 
 </section>
 
@@ -356,6 +444,57 @@ ul.task-list li input[type="checkbox"] {
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -685,8 +824,119 @@ ul.task-list li input[type="checkbox"] {
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "How Fast Does Normal Happen?"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Stress-testing the Central Limit Theorem with Monte Carlo simulation"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>::: {.hero-panel}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"eyebrow"</span><span class="dt">&gt;</span>R / QUARTO · STATISTICAL COMPUTING · MONTE CARLO<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"hero-question"</span><span class="dt">&gt;</span>What is the smallest sample size at which the sampling distribution of a sample mean is reasonably defensible as approximately normal?<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>This project treats that question as an empirical modeling problem. It applies one transparent decision rule across 11 populations, tests the result with numerical and graphical evidence, and documents where the usual CLT intuition breaks down.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"hero-note"</span><span class="dt">&gt;</span>The headline finding: there is no universal “n = 30” switch. The defensible threshold depends on population shape, dependence, tails, and the standard used to define “approximately normal.”<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>::: {.metric-grid}</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>::: {.metric-card}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>11<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-label"</span><span class="dt">&gt;</span>populations and processes compared<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>::: {.metric-card}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>10,000<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-label"</span><span class="dt">&gt;</span>Monte Carlo means per candidate n<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>::: {.metric-card}</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>4<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-label"</span><span class="dt">&gt;</span>pre-specified normality diagnostics<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>::: {.metric-card}</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>2–500<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-label"</span><span class="dt">&gt;</span>candidate sample sizes investigated<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"section-kicker"</span><span class="dt">&gt;</span>Executive readout<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## The result in one minute</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>The same diagnostic screen produced thresholds from **n = 2** for a standard normal population to **n = 100** for an exponential population. The Cauchy and dependent-process cases did not meet the stability rule through **n = 500**. This range is the central result: sample size alone is not enough to justify a normal approximation.</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Population <span class="pp">|</span> First stable pass <span class="pp">|</span> Evidence at the selected threshold <span class="pp">|</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---|</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Standard normal <span class="pp">|</span> **n = 2** <span class="pp">|</span> Normality is preserved exactly under averaging. <span class="pp">|</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Continuous uniform <span class="pp">|</span> **n = 5** <span class="pp">|</span> Symmetry supports fast convergence. <span class="pp">|</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Six-sided die <span class="pp">|</span> **n = 10** <span class="pp">|</span> Discreteness smooths through averaging. <span class="pp">|</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Poisson(1) <span class="pp">|</span> **n = 30** <span class="pp">|</span> Skewness ≈ 0.142; Q-Q correlation ≈ 0.998. <span class="pp">|</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Exponential(1) <span class="pp">|</span> **n = 100** <span class="pp">|</span> Skewness falls to ≈ 0.189; at n = 30, it is ≈ 0.398. <span class="pp">|</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cauchy <span class="pp">|</span> None through 500 <span class="pp">|</span> Skewness ≈ 87.46 and excess kurtosis ≈ 8213.51 at n = 500. <span class="pp">|</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>For the full comparison—including rare-success binomial, mixture, non-identical Bernoulli, and dependent-process results—see the <span class="co">[</span><span class="ot">final summary</span><span class="co">](final-summary.qmd)</span>.</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## What this project demonstrates</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>::: {.card-grid}</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>::: {.project-card}</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Experimental design</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>Each population is evaluated on the same candidate-n grid with **B = 10,000** simulated sample means per candidate. The seed is reset before each experiment so every result can be reproduced independently.</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>::: {.project-card}</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evidence-based judgment</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>“Approximately normal” is operationalized with skewness, excess kurtosis, normal Q-Q correlation, and standardized Q-Q RMSE. A threshold must pass at three consecutive candidate sizes.</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>::: {.project-card}</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="fu">### Assumption awareness</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>The study deliberately includes skewed, discrete, heavy-tailed, dependent, non-identical, and mixture populations to test the limits of a rule-of-thumb rather than merely confirm it.</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research question</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; What is the smallest sample size at which the sampling distribution of the sample mean is reasonably defensible as approximately normal?</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>There is no universal answer because “approximately normal” is not a binary population property. It depends on the population being averaged, the diagnostic thresholds, the candidate sample sizes, Monte Carlo variation, and whether the assumptions supporting the CLT are credible.</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>The professional answer is therefore population-specific: choose the smallest sample size whose numerical and graphical evidence meets a clearly stated standard. This project makes that judgment explicit rather than hiding it behind a single rule of thumb.</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Explore the work</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Start with the <span class="co">[</span><span class="ot">final summary</span><span class="co">](final-summary.qmd)</span> for the cross-distribution comparison and limitations.</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Open the <span class="co">[</span><span class="ot">individual analyses</span><span class="co">](analyses/01-normal.qmd)</span> to inspect each population’s prediction, diagnostics, plots, and conclusion.</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Review <span class="co">[</span><span class="ot">`R/helpers.R`</span><span class="co">](R/helpers.R)</span> for the shared simulation and decision-rule implementation.</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read the <span class="co">[</span><span class="ot">AI log</span><span class="co">](ai-log.md)</span> for the prompt record, validation steps, revisions, and remaining modeling assumptions.</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>The project uses base R and a recorded student seed. Replace <span class="in">`student_id &lt;- 6599L`</span> in the analysis files and <span class="in">`R/run_all.R`</span> with the last four digits of the intended student ID, then render from the repository root:</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--no-clean</span> <span class="at">--cache-refresh</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>The generated website is in <span class="in">`docs/`</span>. The extra Quarto flags avoid the output-directory cleanup/move issue documented in the project README.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>CLT Monte Carlo · Reproducible statistical computing</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with R and Quarto</p>
+</div>
+  </div>
+</footer>
 
 
 

@@ -1,0 +1,307 @@
+/* Portfolio-oriented visual system for the CLT Monte Carlo report. */
+
+$ink: #102a43;
+$muted: #52606d;
+$teal: #0f766e;
+$teal-dark: #115e59;
+$sky: #e8f3f8;
+$line: #d9e2ec;
+$paper: #ffffff;
+$canvas: #f7fafc;
+$warm: #fff8eb;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: $canvas;
+  color: $ink;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  line-height: 1.65;
+}
+
+.navbar {
+  box-shadow: 0 1px 0 rgba(16, 42, 67, 0.18), 0 8px 24px rgba(16, 42, 67, 0.08);
+  font-size: 0.94rem;
+  font-weight: 600;
+}
+
+.navbar-brand {
+  letter-spacing: -0.01em;
+}
+
+.navbar .nav-link {
+  opacity: 0.86;
+  transition: opacity 160ms ease, color 160ms ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #b8f3ec !important;
+  opacity: 1;
+}
+
+#quarto-content {
+  padding-top: 2.25rem;
+  padding-bottom: 3rem;
+}
+
+.quarto-title-block .title {
+  color: $ink;
+  font-size: clamp(2.25rem, 4vw, 3.65rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  max-width: 850px;
+}
+
+.quarto-title-block .subtitle {
+  color: $muted;
+  font-size: 1.15rem;
+  max-width: 760px;
+}
+
+.hero-panel {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(111, 224, 211, 0.22), transparent 33%),
+    linear-gradient(135deg, #102a43 0%, #163f5f 58%, #0f766e 140%);
+  border: 1px solid rgba(184, 243, 236, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(16, 42, 67, 0.16);
+  color: #f8fafc;
+  margin: 0.5rem 0 2.5rem;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+  position: relative;
+}
+
+.hero-panel::after {
+  border: 1px solid rgba(184, 243, 236, 0.18);
+  border-radius: 50%;
+  content: "";
+  height: 20rem;
+  position: absolute;
+  right: -8rem;
+  top: -9rem;
+  width: 20rem;
+}
+
+.hero-panel h1,
+.hero-panel h2,
+.hero-panel h3 {
+  color: #ffffff;
+  letter-spacing: -0.035em;
+  margin-top: 0.25rem;
+}
+
+.hero-panel p {
+  color: #d9f3f0;
+  max-width: 700px;
+}
+
+.eyebrow {
+  color: #8ce4d9;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-panel .hero-question {
+  border-left: 3px solid #8ce4d9;
+  color: #ffffff;
+  font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+  font-weight: 650;
+  line-height: 1.35;
+  margin: 1.35rem 0 0.5rem;
+  padding-left: 1rem;
+}
+
+.hero-panel .hero-note {
+  font-size: 0.92rem;
+  margin-bottom: 0;
+}
+
+.metric-grid,
+.card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 1.25rem 0 2.25rem;
+}
+
+.metric-card,
+.project-card {
+  background: $paper;
+  border: 1px solid $line;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(16, 42, 67, 0.045);
+  padding: 1.1rem 1.15rem;
+}
+
+.metric-card .metric-value {
+  color: $teal-dark;
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.metric-card .metric-label {
+  color: $muted;
+  display: block;
+  font-size: 0.83rem;
+  margin-top: 0.4rem;
+}
+
+.project-card h3 {
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.project-card p {
+  color: $muted;
+  font-size: 0.93rem;
+  margin-bottom: 0;
+}
+
+.section-kicker {
+  color: $teal-dark;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.callout {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(16, 42, 67, 0.04);
+}
+
+.callout-important {
+  border-left-color: $teal;
+  background: $sky;
+}
+
+.callout-note {
+  border-left-color: #d97706;
+  background: $warm;
+}
+
+h1, h2, h3, h4 {
+  color: $ink;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  border-bottom: 1px solid $line;
+  padding-bottom: 0.45rem;
+}
+
+h3 {
+  color: $teal-dark;
+}
+
+a {
+  color: $teal-dark;
+}
+
+a:hover {
+  color: #0b4f4a;
+}
+
+table {
+  background: $paper;
+  border: 1px solid $line;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(16, 42, 67, 0.04);
+  font-size: 0.91rem;
+  overflow: hidden;
+}
+
+table thead th {
+  background: $ink;
+  color: #ffffff;
+  font-size: 0.78rem;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+table tbody tr:nth-child(even) {
+  background: #f7fafc;
+}
+
+table tbody tr:hover {
+  background: #edf8f6;
+}
+
+.cell-output-display {
+  margin: 1rem 0 1.5rem;
+  overflow-x: auto;
+}
+
+pre.sourceCode {
+  border: 1px solid $line;
+  border-radius: 9px;
+}
+
+.figure {
+  background: $paper;
+  border: 1px solid $line;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(16, 42, 67, 0.04);
+  padding: 0.75rem;
+}
+
+.figure p.caption {
+  color: $muted;
+  font-size: 0.86rem;
+}
+
+#TOC {
+  border-left: 1px solid $line;
+  padding-left: 1rem;
+}
+
+#TOC .active {
+  color: $teal-dark;
+  font-weight: 700;
+}
+
+.page-footer,
+.nav-footer {
+  background: $ink;
+  color: #d9e2ec;
+  font-size: 0.82rem;
+  padding: 1.1rem 0;
+}
+
+code {
+  color: $teal-dark;
+}
+
+@media (max-width: 900px) {
+  .metric-grid,
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575px) {
+  #quarto-content {
+    padding-top: 1.25rem;
+  }
+
+  .metric-grid,
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel {
+    border-radius: 12px;
+  }
+}
