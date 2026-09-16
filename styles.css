@@ -1,26 +1,15 @@
 /* Portfolio-oriented visual system for the CLT Monte Carlo report. */
 
-/*-- scss:defaults --*/
 
-$ink: #102a43;
-$muted: #52606d;
-$teal: #0f766e;
-$teal-dark: #115e59;
-$sky: #e8f3f8;
-$line: #d9e2ec;
-$paper: #ffffff;
-$canvas: #f7fafc;
-$warm: #fff8eb;
 
-/*-- scss:rules --*/
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: $canvas;
-  color: $ink;
+  background: #f7fafc;
+  color: #102a43;
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
   line-height: 1.65;
@@ -53,7 +42,7 @@ body {
 }
 
 .quarto-title-block .title {
-  color: $ink;
+  color: #102a43;
   font-size: clamp(2.25rem, 4vw, 3.65rem);
   font-weight: 800;
   letter-spacing: -0.045em;
@@ -62,9 +51,15 @@ body {
 }
 
 .quarto-title-block .subtitle {
-  color: $muted;
-  font-size: 1.15rem;
-  max-width: 760px;
+  color: #52606d;
+  font-size: clamp(0.98rem, 1.35vw, 1.15rem);
+  max-width: 100%;
+}
+
+@media (min-width: 992px) {
+  .quarto-title-block .subtitle {
+    white-space: nowrap;
+  }
 }
 
 .hero-panel {
@@ -138,15 +133,15 @@ body {
 
 .metric-card,
 .project-card {
-  background: $paper;
-  border: 1px solid $line;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
   border-radius: 12px;
   box-shadow: 0 5px 18px rgba(16, 42, 67, 0.045);
   padding: 1.1rem 1.15rem;
 }
 
 .metric-card .metric-value {
-  color: $teal-dark;
+  color: #115e59;
   display: block;
   font-size: 1.6rem;
   font-weight: 800;
@@ -155,7 +150,7 @@ body {
 }
 
 .metric-card .metric-label {
-  color: $muted;
+  color: #52606d;
   display: block;
   font-size: 0.83rem;
   margin-top: 0.4rem;
@@ -167,13 +162,13 @@ body {
 }
 
 .project-card p {
-  color: $muted;
+  color: #52606d;
   font-size: 0.93rem;
   margin-bottom: 0;
 }
 
 .section-kicker {
-  color: $teal-dark;
+  color: #115e59;
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -186,32 +181,32 @@ body {
 }
 
 .callout-important {
-  border-left-color: $teal;
-  background: $sky;
+  border-left-color: #0f766e;
+  background: #e8f3f8;
 }
 
 .callout-note {
   border-left-color: #d97706;
-  background: $warm;
+  background: #fff8eb;
 }
 
 h1, h2, h3, h4 {
-  color: $ink;
+  color: #102a43;
   font-weight: 750;
   letter-spacing: -0.025em;
 }
 
 h2 {
-  border-bottom: 1px solid $line;
+  border-bottom: 1px solid #d9e2ec;
   padding-bottom: 0.45rem;
 }
 
 h3 {
-  color: $teal-dark;
+  color: #115e59;
 }
 
 a {
-  color: $teal-dark;
+  color: #115e59;
 }
 
 a:hover {
@@ -219,8 +214,8 @@ a:hover {
 }
 
 table {
-  background: $paper;
-  border: 1px solid $line;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(16, 42, 67, 0.04);
   font-size: 0.91rem;
@@ -228,7 +223,7 @@ table {
 }
 
 table thead th {
-  background: $ink;
+  background: #102a43;
   color: #ffffff;
   font-size: 0.78rem;
   letter-spacing: 0.025em;
@@ -249,43 +244,43 @@ table tbody tr:hover {
 }
 
 pre.sourceCode {
-  border: 1px solid $line;
+  border: 1px solid #d9e2ec;
   border-radius: 9px;
 }
 
 .figure {
-  background: $paper;
-  border: 1px solid $line;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(16, 42, 67, 0.04);
   padding: 0.75rem;
 }
 
 .figure p.caption {
-  color: $muted;
+  color: #52606d;
   font-size: 0.86rem;
 }
 
 #TOC {
-  border-left: 1px solid $line;
+  border-left: 1px solid #d9e2ec;
   padding-left: 1rem;
 }
 
 #TOC .active {
-  color: $teal-dark;
+  color: #115e59;
   font-weight: 700;
 }
 
 .page-footer,
 .nav-footer {
-  background: $ink;
+  background: #102a43;
   color: #d9e2ec;
   font-size: 0.82rem;
   padding: 1.1rem 0;
 }
 
 code {
-  color: $teal-dark;
+  color: #115e59;
 }
 
 @media (max-width: 900px) {

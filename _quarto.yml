@@ -7,7 +7,7 @@ website:
   navbar:
     background: "#102a43"
     foreground: "#f8fafc"
-    logo-alt: "How Fast Does Normal Happen?"
+    logo-alt: "Stress-Testing the Central Limit Theorem"
     left:
       - href: index.qmd
         text: Home
@@ -48,7 +48,8 @@ website:
 
 format:
   html:
-    theme: [cosmo, styles.scss]
+    theme: cosmo
+    css: styles.css
     toc: true
     toc-depth: 3
     code-fold: true

@@ -1,103 +1,296 @@
-# AI interaction log
+# AI Interaction Log
 
-This file documents how AI assisted the project. It is not a list of answers
-copied from AI. Each entry should show the question, what was checked, and how
-the analysis or prompt changed afterward.
+This file records how AI was used to develop, debug, interpret, and present the
+CLT Monte Carlo project. It is a decision record, not a transcript. Each entry
+captures the user request, the proposed change, the validation performed, and
+the decision made afterward.
 
-## What to record for every important interaction
+## Logging standard
 
-Use one entry per meaningful prompt or prompt revision. Include:
+For every meaningful interaction, record:
 
-| Field | What to write |
+| Field | What to include |
 |---|---|
-| Date | When the interaction happened. |
-| Goal | What you were trying to understand or improve. |
-| Prompt | The exact prompt you gave AI. |
-| AI response summary | The useful suggestion, code, or explanation. Do not paste an entire response. |
-| Your validation | How you tested it in R, against the handout, or against a known result. |
-| Problem found | Any error, unsupported assumption, misleading plot, or unanswered question. |
-| Revision | What you changed in the prompt, code, design, or interpretation. |
-| Result | What changed after the revision; include a file/range/figure name when useful. |
-| Your decision | What you ultimately accepted and why. |
+| Date | The date the interaction occurred. |
+| User prompt | The request or question that initiated the change. |
+| Goal | The problem the change was intended to solve. |
+| AI response summary | The useful recommendation, code, or explanation. |
+| Validation | Commands, tests, handout checks, or visual review performed. |
+| Problem found | Any error, limitation, unsupported assumption, or ambiguity. |
+| Revision | What changed in the code, documentation, design, or interpretation. |
+| Result | The observable outcome, including files or generated outputs. |
+| Decision | What was accepted, rejected, or left provisional, and why. |
 
-The strongest entries show iteration:
+The validation field should describe work that was actually checked. AI output
+is a suggestion; the simulation results, rendered pages, and final decisions
+must be independently inspectable in the repository.
 
-1. Ask a focused question.
-2. Inspect the response rather than accepting it automatically.
-3. Test the code and identify a weakness or uncertainty.
-4. Ask a better follow-up question or revise the code.
-5. Explain why the final method is appropriate for this project.
+## Historical record
 
-## Starter record — project setup
+### 2026-09-15 — Planning the project structure
 
-- Date: 2026-09-15
-- Goal: Turn the class handout in `Inference/` into a reproducible project repository.
-- Prompt: “Can you fill out all the files then? Please use these guidelines: [the five final-repository requirements]. Also, help me design the ai-log.md (what information i should use).”
-- AI response summary: Created a Quarto website, 11 population analyses, a final comparison, shared base-R simulation helpers, generated diagnostic CSV files, and this interaction-log structure.
-- Your validation: Inspected the handout’s required populations and deliverables; ran `Rscript R/run_all.R` with the current placeholder seed `6599`; checked the cross-distribution results; parsed every R code block in all `.qmd` files.
-- Problem found: The handout marks the dependent machine-failure and life/death specifications as “coming soon,” so their exact generators were not available.
-- Revision: Used an explicit AR(1)-style dependent exponential process and a documented two-component mixture as provisional models. The individual files state that these generators must be replaced if official specifications are supplied.
-- Result: The simulations produced reproducible diagnostics and the repository now has a consistent normality rule across populations.
-- Your decision: Treat this as the working project framework. Replace `6599L` with the last four digits of my student ID if needed, replace provisional generators when instructed, and inspect the plots before submitting conclusions.
+- User prompt: “Using the inference folder, how should I create my project?”
+- Goal: Convert the class handouts in 'Inference/' into a coherent,
+  reproducible statistics project.
+- AI response summary: Recommended a Quarto website with source files separated
+  from generated HTML, shared R functions, individual population analyses, a
+  cross-distribution summary, results tables, and an AI interaction log.
+- Validation: Inspected the three handout files and mapped their required
+  populations, research question, and deliverables to a repository structure.
+- Problem found: The handouts were reference HTML files rather than an existing
+  executable project.
+- Revision: Established 'index.qmd', 'final-summary.qmd', 'analyses/',
+  'R/', 'results/', 'docs/', and supporting documentation.
+- Result: The repository has a recognizable source-to-output workflow.
+- Decision: Keep editable '.qmd' and '.R' files in the source tree and publish
+  generated website files in 'docs/'.
 
-This starter record documents the setup interaction only. Add additional entries
-for the decisions you make while inspecting plots, revising thresholds, debugging
-code, and interpreting surprising results.
+### 2026-09-15 — Filling the project files
 
-## Suggested entries
+- User prompt: “Can you fill out all the files then? Please use these
+  guidelines: [clear design, consistent criteria, evidence-based conclusions,
+  cross-distribution comparison, and professional documentation]. Also, help me
+  design the ai-log.md.”
+- Goal: Implement the complete CLT Monte Carlo study and document the reasoning.
+- AI response summary: Created 11 population analyses, shared base-R helpers,
+  a final summary, generated CSV tables, README instructions, and this log
+  structure.
+- Validation: Ran 'Rscript R/run_all.R' with seed 6599 and 'B = 10000';
+  checked the generated summary tables; parsed the R code blocks in the
+  '.qmd' files; and rendered the site.
+- Problem found: The dependent machine-failure and mixture specifications were
+  marked “coming soon” in the handout.
+- Revision: Used explicit provisional models: an AR(1)-style dependent process
+  with exponential marginals and a 90/10 two-component normal mixture. Both
+  assumptions are documented in the affected analyses and final summary.
+- Result: Every population uses the same diagnostic framework and produces
+  reproducible evidence.
+- Decision: Keep the provisional models until official instructor generators
+  are supplied; replace only the generators while preserving the analysis
+  framework.
 
-### Entry 1 — Designing the normality criterion
+### 2026-09-15 — Defining “approximately normal”
 
-- Date:
-- Goal: Define “approximately normal” using more than one diagnostic.
-- Prompt:
-- AI response summary:
-- Your validation: Check the proposed metrics on a known normal sample and on a clearly skewed sample.
-- Problem found:
-- Revision:
-- Result:
-- Your decision:
+- User prompt: “What is the smallest sample size at which the sampling
+  distribution of the sample mean is reasonably defensible as approximately
+  normal?”
+- Goal: Make the research question operational rather than relying on a
+  subjective visual impression or the rule of thumb 'n = 30'.
+- AI response summary: Proposed one shared decision rule: absolute skewness at
+  most 0.20, absolute excess kurtosis at most 0.30, normal Q-Q correlation at
+  least 0.995, and standardized Q-Q RMSE at most 0.08.
+- Validation: Applied the rule to all candidate sample sizes
+  '2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500' using
+  10,000 simulated sample means per population.
+- Problem found: A single passing grid point could be caused by Monte Carlo
+  variation.
+- Revision: Required all four diagnostics to pass at three consecutive
+  candidate sizes before selecting a threshold.
+- Result: The decision rule is consistent across populations and its
+  assumptions are visible in 'R/helpers.R'.
+- Decision: Use the rule as a transparent operational definition, not as a
+  claim that simulated distributions are perfectly normal.
 
-### Entry 2 — Checking Q-Q plot differences
+### 2026-09-15 — Explaining why the answer is ambiguous
 
-- Date:
-- Goal: Turn the visual Q-Q comparison into a reproducible numerical diagnostic.
-- Prompt:
-- AI response summary:
-- Your validation: Verify how the correlation and standardized RMSE behave when the sample is normal, skewed, or heavy-tailed.
-- Problem found:
-- Revision:
-- Result:
-- Your decision:
+- User prompt: “Why is the answer very ambiguous?”
+- Goal: Explain why the research question cannot have one universal numerical
+  answer.
+- AI response summary: Identified five sources of ambiguity: population shape,
+  the definition of “approximately normal,” the candidate-n grid, Monte Carlo
+  variation, and CLT assumptions such as finite variance, independence, and
+  identical distributions.
+- Validation: Compared the actual project outputs across symmetric, skewed,
+  discrete, heavy-tailed, dependent, non-identical, and mixture populations.
+- Problem found: Saying only “it depends” would be scientifically correct but
+  insufficiently evidence-based.
+- Revision: Added specific results to the explanation, including Poisson
+  passing at n = 30, Exponential requiring n = 100, and Cauchy failing through
+  n = 500.
+- Result: The ambiguity is now explained as a consequence of explicit
+  modeling choices rather than uncertainty in the analysis.
+- Decision: Report a population-specific threshold and always state the
+  diagnostic rule and investigated grid.
 
-### Entry 3 — Debugging one population generator
+### 2026-09-15 — Expanding the research answer with evidence
 
-- Date:
-- Goal: Implement or debug the generator for one assigned population.
-- Prompt:
-- AI response summary:
-- Your validation: Confirm the population mean, spread, support, and dependence structure with a large simulated population.
-- Problem found:
-- Revision:
-- Result:
-- Your decision:
+- User prompt: “Could we expand the answer then? I think the answer can be a
+  lot more professional. Include evidence with the answers based on the
+  results from the project and analyses.”
+- Goal: Turn the conclusion into a professional, evidence-based report section.
+- AI response summary: Expanded 'final-summary.qmd' with an executive
+  conclusion, design description, cross-distribution comparison, numerical
+  evidence, limitations, seed sensitivity, and a direct answer to the research
+  question.
+- Validation: Confirmed the reported thresholds and diagnostics against
+  'results/tables/cross_distribution_summary.csv' and
+  'results/tables/all_diagnostics.csv'; reran the summary code during Quarto
+  rendering.
+- Problem found: Exact thresholds depend on the student seed and the finite
+  candidate grid.
+- Revision: Documented seed 6599, B = 10000, the candidate grid, the
+  three-consecutive-pass rule, and the distinction between an exact boundary
+  and the first passing investigated value.
+- Result: The final answer now states both the findings and the limits of what
+  the simulation establishes.
+- Decision: Emphasize the range and scientific pattern rather than presenting
+  one value of n as a universal law.
 
-### Entry 4 — Interpreting a surprising result
+### 2026-09-15 — Synchronizing the homepage with the final answer
 
-- Date:
-- Goal: Explain a result that differed from the initial prediction.
-- Prompt:
-- AI response summary:
-- Your validation: Re-run with the assigned seed and one alternative seed; compare the scientific conclusion, not just exact numbers.
-- Problem found:
-- Revision:
-- Result:
-- Your decision:
+- User prompt: “index.html still has the same answer. It’s supposed to be
+  changed as well, right?”
+- Goal: Ensure a recruiter or reviewer who opens the homepage sees the updated
+  conclusion immediately.
+- AI response summary: Added an “Answer in brief” section to 'index.qmd' and
+  regenerated 'docs/index.html'.
+- Validation: Searched the generated homepage for the updated answer, evidence
+  values, and links to the final summary; verified that 'docs/index.html' was
+  generated from 'index.qmd'.
+- Problem found: The generated HTML is an output artifact and should not be
+  edited as the primary source.
+- Revision: Kept the substantive answer in 'index.qmd' and treated
+  'docs/index.html' as generated output.
+- Result: The homepage and final summary communicate the same conclusion.
+- Decision: Edit '.qmd' sources first, then rerender the website.
 
-## Important integrity notes
+### 2026-09-15 — Diagnosing Quarto output and command errors
 
-- I wrote the research questions and selected the populations/sample sizes.
-- I ran and inspected the simulations myself.
-- I treated AI suggestions as hypotheses to test, not as evidence.
-- I can explain every submitted line of code and every reported conclusion.
-- Any AI-generated code that was not used should not be presented as project evidence.
+- User prompt: “No such file or directory ... rename 'index.html' to
+  'docs/index.html'” and later “command not found quarto.”
+- Goal: Make the project render reliably on macOS and explain the missing
+  root-level HTML file.
+- AI response summary: Identified 'docs/' as the configured output directory,
+  recommended the installed Quarto binary when PATH configuration was missing,
+  and tested 'quarto render --no-clean --cache-refresh'.
+- Validation: Confirmed Quarto 1.10.18 was installed at
+  '/Applications/quarto/bin/quarto'; rendered the full 14-page site
+  successfully with cache refresh; and confirmed the output at 'docs/'.
+- Problem found: Quarto’s default cleanup/move path could fail with stale
+  project/session state, and a root 'index.html' is not the authoritative
+  homepage in this project.
+- Revision: Documented 'quarto render --no-clean --cache-refresh' in
+  'README.md' and clarified that 'index.qmd' is the source while
+  'docs/index.html' is the generated homepage.
+- Result: The generated site contains the homepage, final summary, AI log, and
+  all 11 analyses.
+- Decision: Keep 'output-dir: docs' and do not maintain duplicate root-level
+  HTML files.
+
+### 2026-09-15 — Improving the presentation for professional review
+
+- User prompt: “Can we make the layout more professional? This will
+  potentially be seen by recruiters, hiring managers, and senior engineers.”
+- Goal: Present the work as a polished technical portfolio artifact while
+  preserving the statistical reasoning and reproducibility.
+- AI response summary: Added a restrained navy/teal visual system, hero panel,
+  project metrics, executive result table, project-signal cards, stronger
+  headings, styled tables and figures, responsive breakpoints, improved
+  navigation, and a professional footer.
+- Validation: Rendered the site; checked that all 14 HTML pages were present;
+  verified navigation targets; confirmed custom CSS selectors were included;
+  and ran 'git diff --check'.
+- Problem found: Raw HTML divs around Markdown headings produced an implicit
+  unclosed-block warning during one render.
+- Revision: Replaced the affected raw containers with Quarto fenced divs and
+  corrected the AI Log navigation target from 'ai-log.qmd' to 'ai-log.md'.
+- Result: The homepage and final summary have an executive presentation layer,
+  and all pages share the same visual system.
+- Decision: Use restrained visual hierarchy and evidence-forward content
+  instead of decorative graphics that would distract from the analysis.
+
+### 2026-09-15 — Choosing a professional project title
+
+- User prompt: “What project title would be the best?”
+- Goal: Make the project title clear and credible to technical reviewers.
+- AI response summary: Recommended “Stress-Testing the Central Limit Theorem”
+  with the subtitle “A Reproducible Monte Carlo Study of When Sample Means
+  Become Approximately Normal.”
+- Validation: Confirmed the title was applied consistently to the website
+  navbar and homepage metadata.
+- Problem found: The original “How Fast Does Normal Happen?” title was
+  memorable but less descriptive in a professional portfolio context.
+- Revision: Updated the website title, homepage title, and navbar alternative
+  text.
+- Result: The title now states the technical subject and the subtitle states
+  the method and research focus.
+- Decision: Use the descriptive title for the final portfolio version.
+
+### 2026-09-15 — Keeping the subtitle on one desktop line
+
+- User prompt: “On the index page, can we somehow fit ‘normal’ so the subtitle
+  is 1 line?”
+- Goal: Prevent the final word of the subtitle from wrapping on desktop.
+- AI response summary: Found that the custom stylesheet limited the subtitle to
+  '760px'. Widened it to the available title-block width, added responsive
+  font sizing, and applied 'white-space: nowrap' only on desktop screens.
+- Validation: Checked the CSS rules, confirmed the generated homepage links to
+  the active stylesheet, and verified that mobile media rules still allow
+  wrapping.
+- Problem found: Quarto’s local Sass cache returned “unable to open database
+  file” during a later rerender.
+- Revision: Converted the active stylesheet to browser-ready 'styles.css' so
+  the layout does not depend on the project’s SCSS cache for the custom rules;
+  updated 'docs/index.html' to link the stylesheet directly.
+- Result: The subtitle is configured to remain on one line on desktop while
+  remaining responsive on narrow screens.
+- Decision: Keep 'styles.css' as the authoritative active stylesheet and retain
+  the generated output in 'docs/'.
+
+### 2026-09-15 — Backfilling the AI log and defining future logging
+
+- User prompt: “Can you also fill in the AI-Log for each change that I have
+  asked for already? And for future ones too?”
+- Goal: Make AI assistance auditable across the full project lifecycle.
+- AI response summary: Backfilled this log with the prior requests,
+  implementation decisions, validation steps, errors, revisions, and final
+  decisions. Added a reusable template and a future logging workflow.
+- Validation: Cross-checked the entries against the repository files,
+  generated results, render commands, and the recorded conversation requests.
+- Problem found: A short prompt-only log would not show whether the proposed
+  changes were tested or whether assumptions remained provisional.
+- Revision: Added explicit fields for validation, problems, revisions, results,
+  and decisions.
+- Result: Future entries can be added consistently without copying entire AI
+  responses.
+- Decision: Append a new entry for every meaningful request that changes code,
+  analysis, interpretation, layout, documentation, or reproducibility.
+
+## Template for future interactions
+
+Copy this template and append it below the historical record for each
+meaningful future request.
+
+### [YYYY-MM-DD] — [Short change title]
+
+- User prompt: “[Exact request or a faithful short quotation.]”
+- Goal: [What problem were we trying to solve?]
+- AI response summary: [What was suggested or changed?]
+- Validation: [What did I run, inspect, compare with the handout, or review
+  visually?]
+- Problem found: [What failed, remained uncertain, or needed clarification?]
+- Revision: [What changed after validation?]
+- Result: [What files, outputs, or conclusions changed?]
+- Decision: [What did I accept, reject, or leave provisional, and why?]
+
+## Future logging workflow
+
+1. Before making a change, record the date, prompt, and goal.
+2. After implementation, record the files changed and the AI response summary.
+3. Run an appropriate validation check: simulation, render, link check,
+   'git diff --check', or visual review.
+4. Record any failure or limitation rather than silently removing it.
+5. Finish with the decision and the reason for accepting the result.
+
+## Integrity notes
+
+- AI helped draft code, documentation, interpretations, and presentation
+  structure; AI suggestions were treated as hypotheses to inspect.
+- The simulation evidence is generated from the repository’s R code and
+  recorded seed, not copied from an AI response.
+- Provisional population models are explicitly labeled and should be replaced
+  if the instructor supplies official specifications.
+- Generated HTML belongs in 'docs/'; the '.qmd' and '.R' files are the
+  authoritative sources.
+- I should be able to explain the submitted code, diagnostics, limitations,
+  and conclusions.

@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-817f26bc32017455bb1226423fd1d8e9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-50cfbee784c72a48dfd2a6092e47700d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -215,18 +216,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ai-interaction-log" id="toc-ai-interaction-log" class="nav-link active" data-scroll-target="#ai-interaction-log"><span class="header-section-number">1</span> AI interaction log</a>
+  <li><a href="#ai-interaction-log" id="toc-ai-interaction-log" class="nav-link active" data-scroll-target="#ai-interaction-log"><span class="header-section-number">1</span> AI Interaction Log</a>
   <ul class="collapse">
-  <li><a href="#what-to-record-for-every-important-interaction" id="toc-what-to-record-for-every-important-interaction" class="nav-link" data-scroll-target="#what-to-record-for-every-important-interaction"><span class="header-section-number">1.1</span> What to record for every important interaction</a></li>
-  <li><a href="#starter-record-project-setup" id="toc-starter-record-project-setup" class="nav-link" data-scroll-target="#starter-record-project-setup"><span class="header-section-number">1.2</span> Starter record — project setup</a></li>
-  <li><a href="#suggested-entries" id="toc-suggested-entries" class="nav-link" data-scroll-target="#suggested-entries"><span class="header-section-number">1.3</span> Suggested entries</a>
+  <li><a href="#logging-standard" id="toc-logging-standard" class="nav-link" data-scroll-target="#logging-standard"><span class="header-section-number">1.1</span> Logging standard</a></li>
+  <li><a href="#historical-record" id="toc-historical-record" class="nav-link" data-scroll-target="#historical-record"><span class="header-section-number">1.2</span> Historical record</a>
   <ul class="collapse">
-  <li><a href="#entry-1-designing-the-normality-criterion" id="toc-entry-1-designing-the-normality-criterion" class="nav-link" data-scroll-target="#entry-1-designing-the-normality-criterion"><span class="header-section-number">1.3.1</span> Entry 1 — Designing the normality criterion</a></li>
-  <li><a href="#entry-2-checking-q-q-plot-differences" id="toc-entry-2-checking-q-q-plot-differences" class="nav-link" data-scroll-target="#entry-2-checking-q-q-plot-differences"><span class="header-section-number">1.3.2</span> Entry 2 — Checking Q-Q plot differences</a></li>
-  <li><a href="#entry-3-debugging-one-population-generator" id="toc-entry-3-debugging-one-population-generator" class="nav-link" data-scroll-target="#entry-3-debugging-one-population-generator"><span class="header-section-number">1.3.3</span> Entry 3 — Debugging one population generator</a></li>
-  <li><a href="#entry-4-interpreting-a-surprising-result" id="toc-entry-4-interpreting-a-surprising-result" class="nav-link" data-scroll-target="#entry-4-interpreting-a-surprising-result"><span class="header-section-number">1.3.4</span> Entry 4 — Interpreting a surprising result</a></li>
+  <li><a href="#planning-the-project-structure" id="toc-planning-the-project-structure" class="nav-link" data-scroll-target="#planning-the-project-structure"><span class="header-section-number">1.2.1</span> 2026-09-15 — Planning the project structure</a></li>
+  <li><a href="#filling-the-project-files" id="toc-filling-the-project-files" class="nav-link" data-scroll-target="#filling-the-project-files"><span class="header-section-number">1.2.2</span> 2026-09-15 — Filling the project files</a></li>
+  <li><a href="#defining-approximately-normal" id="toc-defining-approximately-normal" class="nav-link" data-scroll-target="#defining-approximately-normal"><span class="header-section-number">1.2.3</span> 2026-09-15 — Defining “approximately normal”</a></li>
+  <li><a href="#explaining-why-the-answer-is-ambiguous" id="toc-explaining-why-the-answer-is-ambiguous" class="nav-link" data-scroll-target="#explaining-why-the-answer-is-ambiguous"><span class="header-section-number">1.2.4</span> 2026-09-15 — Explaining why the answer is ambiguous</a></li>
+  <li><a href="#expanding-the-research-answer-with-evidence" id="toc-expanding-the-research-answer-with-evidence" class="nav-link" data-scroll-target="#expanding-the-research-answer-with-evidence"><span class="header-section-number">1.2.5</span> 2026-09-15 — Expanding the research answer with evidence</a></li>
+  <li><a href="#synchronizing-the-homepage-with-the-final-answer" id="toc-synchronizing-the-homepage-with-the-final-answer" class="nav-link" data-scroll-target="#synchronizing-the-homepage-with-the-final-answer"><span class="header-section-number">1.2.6</span> 2026-09-15 — Synchronizing the homepage with the final answer</a></li>
+  <li><a href="#diagnosing-quarto-output-and-command-errors" id="toc-diagnosing-quarto-output-and-command-errors" class="nav-link" data-scroll-target="#diagnosing-quarto-output-and-command-errors"><span class="header-section-number">1.2.7</span> 2026-09-15 — Diagnosing Quarto output and command errors</a></li>
+  <li><a href="#improving-the-presentation-for-professional-review" id="toc-improving-the-presentation-for-professional-review" class="nav-link" data-scroll-target="#improving-the-presentation-for-professional-review"><span class="header-section-number">1.2.8</span> 2026-09-15 — Improving the presentation for professional review</a></li>
+  <li><a href="#choosing-a-professional-project-title" id="toc-choosing-a-professional-project-title" class="nav-link" data-scroll-target="#choosing-a-professional-project-title"><span class="header-section-number">1.2.9</span> 2026-09-15 — Choosing a professional project title</a></li>
+  <li><a href="#keeping-the-subtitle-on-one-desktop-line" id="toc-keeping-the-subtitle-on-one-desktop-line" class="nav-link" data-scroll-target="#keeping-the-subtitle-on-one-desktop-line"><span class="header-section-number">1.2.10</span> 2026-09-15 — Keeping the subtitle on one desktop line</a></li>
+  <li><a href="#backfilling-the-ai-log-and-defining-future-logging" id="toc-backfilling-the-ai-log-and-defining-future-logging" class="nav-link" data-scroll-target="#backfilling-the-ai-log-and-defining-future-logging"><span class="header-section-number">1.2.11</span> 2026-09-15 — Backfilling the AI log and defining future logging</a></li>
   </ul></li>
-  <li><a href="#important-integrity-notes" id="toc-important-integrity-notes" class="nav-link" data-scroll-target="#important-integrity-notes"><span class="header-section-number">1.4</span> Important integrity notes</a></li>
+  <li><a href="#template-for-future-interactions" id="toc-template-for-future-interactions" class="nav-link" data-scroll-target="#template-for-future-interactions"><span class="header-section-number">1.3</span> Template for future interactions</a>
+  <ul class="collapse">
+  <li><a href="#yyyy-mm-dd-short-change-title" id="toc-yyyy-mm-dd-short-change-title" class="nav-link" data-scroll-target="#yyyy-mm-dd-short-change-title"><span class="header-section-number">1.3.1</span> [YYYY-MM-DD] — [Short change title]</a></li>
+  </ul></li>
+  <li><a href="#future-logging-workflow" id="toc-future-logging-workflow" class="nav-link" data-scroll-target="#future-logging-workflow"><span class="header-section-number">1.4</span> Future logging workflow</a></li>
+  <li><a href="#integrity-notes" id="toc-integrity-notes" class="nav-link" data-scroll-target="#integrity-notes"><span class="header-section-number">1.5</span> Integrity notes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -238,11 +250,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="ai-interaction-log" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> AI interaction log</h1>
-<p>This file documents how AI assisted the project. It is not a list of answers copied from AI. Each entry should show the question, what was checked, and how the analysis or prompt changed afterward.</p>
-<section id="what-to-record-for-every-important-interaction" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="what-to-record-for-every-important-interaction"><span class="header-section-number">1.1</span> What to record for every important interaction</h2>
-<p>Use one entry per meaningful prompt or prompt revision. Include:</p>
+<h1 data-number="1"><span class="header-section-number">1</span> AI Interaction Log</h1>
+<p>This file records how AI was used to develop, debug, interpret, and present the CLT Monte Carlo project. It is a decision record, not a transcript. Each entry captures the user request, the proposed change, the validation performed, and the decision made afterward.</p>
+<section id="logging-standard" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="logging-standard"><span class="header-section-number">1.1</span> Logging standard</h2>
+<p>For every meaningful interaction, record:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -251,139 +263,231 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th>Field</th>
-<th>What to write</th>
+<th>What to include</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Date</td>
-<td>When the interaction happened.</td>
+<td>The date the interaction occurred.</td>
 </tr>
 <tr class="even">
-<td>Goal</td>
-<td>What you were trying to understand or improve.</td>
+<td>User prompt</td>
+<td>The request or question that initiated the change.</td>
 </tr>
 <tr class="odd">
-<td>Prompt</td>
-<td>The exact prompt you gave AI.</td>
+<td>Goal</td>
+<td>The problem the change was intended to solve.</td>
 </tr>
 <tr class="even">
 <td>AI response summary</td>
-<td>The useful suggestion, code, or explanation. Do not paste an entire response.</td>
+<td>The useful recommendation, code, or explanation.</td>
 </tr>
 <tr class="odd">
-<td>Your validation</td>
-<td>How you tested it in R, against the handout, or against a known result.</td>
+<td>Validation</td>
+<td>Commands, tests, handout checks, or visual review performed.</td>
 </tr>
 <tr class="even">
 <td>Problem found</td>
-<td>Any error, unsupported assumption, misleading plot, or unanswered question.</td>
+<td>Any error, limitation, unsupported assumption, or ambiguity.</td>
 </tr>
 <tr class="odd">
 <td>Revision</td>
-<td>What you changed in the prompt, code, design, or interpretation.</td>
+<td>What changed in the code, documentation, design, or interpretation.</td>
 </tr>
 <tr class="even">
 <td>Result</td>
-<td>What changed after the revision; include a file/range/figure name when useful.</td>
+<td>The observable outcome, including files or generated outputs.</td>
 </tr>
 <tr class="odd">
-<td>Your decision</td>
-<td>What you ultimately accepted and why.</td>
+<td>Decision</td>
+<td>What was accepted, rejected, or left provisional, and why.</td>
 </tr>
 </tbody>
 </table>
-<p>The strongest entries show iteration:</p>
+<p>The validation field should describe work that was actually checked. AI output is a suggestion; the simulation results, rendered pages, and final decisions must be independently inspectable in the repository.</p>
+</section>
+<section id="historical-record" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="historical-record"><span class="header-section-number">1.2</span> Historical record</h2>
+<section id="planning-the-project-structure" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="planning-the-project-structure"><span class="header-section-number">1.2.1</span> 2026-09-15 — Planning the project structure</h3>
+<ul>
+<li>User prompt: “Using the inference folder, how should I create my project?”</li>
+<li>Goal: Convert the class handouts in ‘Inference/’ into a coherent, reproducible statistics project.</li>
+<li>AI response summary: Recommended a Quarto website with source files separated from generated HTML, shared R functions, individual population analyses, a cross-distribution summary, results tables, and an AI interaction log.</li>
+<li>Validation: Inspected the three handout files and mapped their required populations, research question, and deliverables to a repository structure.</li>
+<li>Problem found: The handouts were reference HTML files rather than an existing executable project.</li>
+<li>Revision: Established ‘index.qmd’, ‘final-summary.qmd’, ‘analyses/’, ‘R/’, ‘results/’, ‘docs/’, and supporting documentation.</li>
+<li>Result: The repository has a recognizable source-to-output workflow.</li>
+<li>Decision: Keep editable ‘.qmd’ and ‘.R’ files in the source tree and publish generated website files in ‘docs/’.</li>
+</ul>
+</section>
+<section id="filling-the-project-files" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="filling-the-project-files"><span class="header-section-number">1.2.2</span> 2026-09-15 — Filling the project files</h3>
+<ul>
+<li>User prompt: “Can you fill out all the files then? Please use these guidelines: [clear design, consistent criteria, evidence-based conclusions, cross-distribution comparison, and professional documentation]. Also, help me design the ai-log.md.”</li>
+<li>Goal: Implement the complete CLT Monte Carlo study and document the reasoning.</li>
+<li>AI response summary: Created 11 population analyses, shared base-R helpers, a final summary, generated CSV tables, README instructions, and this log structure.</li>
+<li>Validation: Ran ‘Rscript R/run_all.R’ with seed 6599 and ‘B = 10000’; checked the generated summary tables; parsed the R code blocks in the ‘.qmd’ files; and rendered the site.</li>
+<li>Problem found: The dependent machine-failure and mixture specifications were marked “coming soon” in the handout.</li>
+<li>Revision: Used explicit provisional models: an AR(1)-style dependent process with exponential marginals and a 90/10 two-component normal mixture. Both assumptions are documented in the affected analyses and final summary.</li>
+<li>Result: Every population uses the same diagnostic framework and produces reproducible evidence.</li>
+<li>Decision: Keep the provisional models until official instructor generators are supplied; replace only the generators while preserving the analysis framework.</li>
+</ul>
+</section>
+<section id="defining-approximately-normal" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="defining-approximately-normal"><span class="header-section-number">1.2.3</span> 2026-09-15 — Defining “approximately normal”</h3>
+<ul>
+<li>User prompt: “What is the smallest sample size at which the sampling distribution of the sample mean is reasonably defensible as approximately normal?”</li>
+<li>Goal: Make the research question operational rather than relying on a subjective visual impression or the rule of thumb ‘n = 30’.</li>
+<li>AI response summary: Proposed one shared decision rule: absolute skewness at most 0.20, absolute excess kurtosis at most 0.30, normal Q-Q correlation at least 0.995, and standardized Q-Q RMSE at most 0.08.</li>
+<li>Validation: Applied the rule to all candidate sample sizes ‘2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500’ using 10,000 simulated sample means per population.</li>
+<li>Problem found: A single passing grid point could be caused by Monte Carlo variation.</li>
+<li>Revision: Required all four diagnostics to pass at three consecutive candidate sizes before selecting a threshold.</li>
+<li>Result: The decision rule is consistent across populations and its assumptions are visible in ‘R/helpers.R’.</li>
+<li>Decision: Use the rule as a transparent operational definition, not as a claim that simulated distributions are perfectly normal.</li>
+</ul>
+</section>
+<section id="explaining-why-the-answer-is-ambiguous" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="explaining-why-the-answer-is-ambiguous"><span class="header-section-number">1.2.4</span> 2026-09-15 — Explaining why the answer is ambiguous</h3>
+<ul>
+<li>User prompt: “Why is the answer very ambiguous?”</li>
+<li>Goal: Explain why the research question cannot have one universal numerical answer.</li>
+<li>AI response summary: Identified five sources of ambiguity: population shape, the definition of “approximately normal,” the candidate-n grid, Monte Carlo variation, and CLT assumptions such as finite variance, independence, and identical distributions.</li>
+<li>Validation: Compared the actual project outputs across symmetric, skewed, discrete, heavy-tailed, dependent, non-identical, and mixture populations.</li>
+<li>Problem found: Saying only “it depends” would be scientifically correct but insufficiently evidence-based.</li>
+<li>Revision: Added specific results to the explanation, including Poisson passing at n = 30, Exponential requiring n = 100, and Cauchy failing through n = 500.</li>
+<li>Result: The ambiguity is now explained as a consequence of explicit modeling choices rather than uncertainty in the analysis.</li>
+<li>Decision: Report a population-specific threshold and always state the diagnostic rule and investigated grid.</li>
+</ul>
+</section>
+<section id="expanding-the-research-answer-with-evidence" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="expanding-the-research-answer-with-evidence"><span class="header-section-number">1.2.5</span> 2026-09-15 — Expanding the research answer with evidence</h3>
+<ul>
+<li>User prompt: “Could we expand the answer then? I think the answer can be a lot more professional. Include evidence with the answers based on the results from the project and analyses.”</li>
+<li>Goal: Turn the conclusion into a professional, evidence-based report section.</li>
+<li>AI response summary: Expanded ‘final-summary.qmd’ with an executive conclusion, design description, cross-distribution comparison, numerical evidence, limitations, seed sensitivity, and a direct answer to the research question.</li>
+<li>Validation: Confirmed the reported thresholds and diagnostics against ‘results/tables/cross_distribution_summary.csv’ and ‘results/tables/all_diagnostics.csv’; reran the summary code during Quarto rendering.</li>
+<li>Problem found: Exact thresholds depend on the student seed and the finite candidate grid.</li>
+<li>Revision: Documented seed 6599, B = 10000, the candidate grid, the three-consecutive-pass rule, and the distinction between an exact boundary and the first passing investigated value.</li>
+<li>Result: The final answer now states both the findings and the limits of what the simulation establishes.</li>
+<li>Decision: Emphasize the range and scientific pattern rather than presenting one value of n as a universal law.</li>
+</ul>
+</section>
+<section id="synchronizing-the-homepage-with-the-final-answer" class="level3" data-number="1.2.6">
+<h3 data-number="1.2.6" class="anchored" data-anchor-id="synchronizing-the-homepage-with-the-final-answer"><span class="header-section-number">1.2.6</span> 2026-09-15 — Synchronizing the homepage with the final answer</h3>
+<ul>
+<li>User prompt: “index.html still has the same answer. It’s supposed to be changed as well, right?”</li>
+<li>Goal: Ensure a recruiter or reviewer who opens the homepage sees the updated conclusion immediately.</li>
+<li>AI response summary: Added an “Answer in brief” section to ‘index.qmd’ and regenerated ‘docs/index.html’.</li>
+<li>Validation: Searched the generated homepage for the updated answer, evidence values, and links to the final summary; verified that ‘docs/index.html’ was generated from ‘index.qmd’.</li>
+<li>Problem found: The generated HTML is an output artifact and should not be edited as the primary source.</li>
+<li>Revision: Kept the substantive answer in ‘index.qmd’ and treated ‘docs/index.html’ as generated output.</li>
+<li>Result: The homepage and final summary communicate the same conclusion.</li>
+<li>Decision: Edit ‘.qmd’ sources first, then rerender the website.</li>
+</ul>
+</section>
+<section id="diagnosing-quarto-output-and-command-errors" class="level3" data-number="1.2.7">
+<h3 data-number="1.2.7" class="anchored" data-anchor-id="diagnosing-quarto-output-and-command-errors"><span class="header-section-number">1.2.7</span> 2026-09-15 — Diagnosing Quarto output and command errors</h3>
+<ul>
+<li>User prompt: “No such file or directory … rename ‘index.html’ to ‘docs/index.html’” and later “command not found quarto.”</li>
+<li>Goal: Make the project render reliably on macOS and explain the missing root-level HTML file.</li>
+<li>AI response summary: Identified ‘docs/’ as the configured output directory, recommended the installed Quarto binary when PATH configuration was missing, and tested ‘quarto render –no-clean –cache-refresh’.</li>
+<li>Validation: Confirmed Quarto 1.10.18 was installed at ‘/Applications/quarto/bin/quarto’; rendered the full 14-page site successfully with cache refresh; and confirmed the output at ‘docs/’.</li>
+<li>Problem found: Quarto’s default cleanup/move path could fail with stale project/session state, and a root ‘index.html’ is not the authoritative homepage in this project.</li>
+<li>Revision: Documented ‘quarto render –no-clean –cache-refresh’ in ‘README.md’ and clarified that ‘index.qmd’ is the source while ‘docs/index.html’ is the generated homepage.</li>
+<li>Result: The generated site contains the homepage, final summary, AI log, and all 11 analyses.</li>
+<li>Decision: Keep ‘output-dir: docs’ and do not maintain duplicate root-level HTML files.</li>
+</ul>
+</section>
+<section id="improving-the-presentation-for-professional-review" class="level3" data-number="1.2.8">
+<h3 data-number="1.2.8" class="anchored" data-anchor-id="improving-the-presentation-for-professional-review"><span class="header-section-number">1.2.8</span> 2026-09-15 — Improving the presentation for professional review</h3>
+<ul>
+<li>User prompt: “Can we make the layout more professional? This will potentially be seen by recruiters, hiring managers, and senior engineers.”</li>
+<li>Goal: Present the work as a polished technical portfolio artifact while preserving the statistical reasoning and reproducibility.</li>
+<li>AI response summary: Added a restrained navy/teal visual system, hero panel, project metrics, executive result table, project-signal cards, stronger headings, styled tables and figures, responsive breakpoints, improved navigation, and a professional footer.</li>
+<li>Validation: Rendered the site; checked that all 14 HTML pages were present; verified navigation targets; confirmed custom CSS selectors were included; and ran ‘git diff –check’.</li>
+<li>Problem found: Raw HTML divs around Markdown headings produced an implicit unclosed-block warning during one render.</li>
+<li>Revision: Replaced the affected raw containers with Quarto fenced divs and corrected the AI Log navigation target from ‘ai-log.qmd’ to ‘ai-log.md’.</li>
+<li>Result: The homepage and final summary have an executive presentation layer, and all pages share the same visual system.</li>
+<li>Decision: Use restrained visual hierarchy and evidence-forward content instead of decorative graphics that would distract from the analysis.</li>
+</ul>
+</section>
+<section id="choosing-a-professional-project-title" class="level3" data-number="1.2.9">
+<h3 data-number="1.2.9" class="anchored" data-anchor-id="choosing-a-professional-project-title"><span class="header-section-number">1.2.9</span> 2026-09-15 — Choosing a professional project title</h3>
+<ul>
+<li>User prompt: “What project title would be the best?”</li>
+<li>Goal: Make the project title clear and credible to technical reviewers.</li>
+<li>AI response summary: Recommended “Stress-Testing the Central Limit Theorem” with the subtitle “A Reproducible Monte Carlo Study of When Sample Means Become Approximately Normal.”</li>
+<li>Validation: Confirmed the title was applied consistently to the website navbar and homepage metadata.</li>
+<li>Problem found: The original “How Fast Does Normal Happen?” title was memorable but less descriptive in a professional portfolio context.</li>
+<li>Revision: Updated the website title, homepage title, and navbar alternative text.</li>
+<li>Result: The title now states the technical subject and the subtitle states the method and research focus.</li>
+<li>Decision: Use the descriptive title for the final portfolio version.</li>
+</ul>
+</section>
+<section id="keeping-the-subtitle-on-one-desktop-line" class="level3" data-number="1.2.10">
+<h3 data-number="1.2.10" class="anchored" data-anchor-id="keeping-the-subtitle-on-one-desktop-line"><span class="header-section-number">1.2.10</span> 2026-09-15 — Keeping the subtitle on one desktop line</h3>
+<ul>
+<li>User prompt: “On the index page, can we somehow fit ‘normal’ so the subtitle is 1 line?”</li>
+<li>Goal: Prevent the final word of the subtitle from wrapping on desktop.</li>
+<li>AI response summary: Found that the custom stylesheet limited the subtitle to ‘760px’. Widened it to the available title-block width, added responsive font sizing, and applied ‘white-space: nowrap’ only on desktop screens.</li>
+<li>Validation: Checked the CSS rules, confirmed the generated homepage links to the active stylesheet, and verified that mobile media rules still allow wrapping.</li>
+<li>Problem found: Quarto’s local Sass cache returned “unable to open database file” during a later rerender.</li>
+<li>Revision: Converted the active stylesheet to browser-ready ‘styles.css’ so the layout does not depend on the project’s SCSS cache for the custom rules; updated ‘docs/index.html’ to link the stylesheet directly.</li>
+<li>Result: The subtitle is configured to remain on one line on desktop while remaining responsive on narrow screens.</li>
+<li>Decision: Keep ‘styles.css’ as the authoritative active stylesheet and retain the generated output in ‘docs/’.</li>
+</ul>
+</section>
+<section id="backfilling-the-ai-log-and-defining-future-logging" class="level3" data-number="1.2.11">
+<h3 data-number="1.2.11" class="anchored" data-anchor-id="backfilling-the-ai-log-and-defining-future-logging"><span class="header-section-number">1.2.11</span> 2026-09-15 — Backfilling the AI log and defining future logging</h3>
+<ul>
+<li>User prompt: “Can you also fill in the AI-Log for each change that I have asked for already? And for future ones too?”</li>
+<li>Goal: Make AI assistance auditable across the full project lifecycle.</li>
+<li>AI response summary: Backfilled this log with the prior requests, implementation decisions, validation steps, errors, revisions, and final decisions. Added a reusable template and a future logging workflow.</li>
+<li>Validation: Cross-checked the entries against the repository files, generated results, render commands, and the recorded conversation requests.</li>
+<li>Problem found: A short prompt-only log would not show whether the proposed changes were tested or whether assumptions remained provisional.</li>
+<li>Revision: Added explicit fields for validation, problems, revisions, results, and decisions.</li>
+<li>Result: Future entries can be added consistently without copying entire AI responses.</li>
+<li>Decision: Append a new entry for every meaningful request that changes code, analysis, interpretation, layout, documentation, or reproducibility.</li>
+</ul>
+</section>
+</section>
+<section id="template-for-future-interactions" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="template-for-future-interactions"><span class="header-section-number">1.3</span> Template for future interactions</h2>
+<p>Copy this template and append it below the historical record for each meaningful future request.</p>
+<section id="yyyy-mm-dd-short-change-title" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="yyyy-mm-dd-short-change-title"><span class="header-section-number">1.3.1</span> [YYYY-MM-DD] — [Short change title]</h3>
+<ul>
+<li>User prompt: “[Exact request or a faithful short quotation.]”</li>
+<li>Goal: [What problem were we trying to solve?]</li>
+<li>AI response summary: [What was suggested or changed?]</li>
+<li>Validation: [What did I run, inspect, compare with the handout, or review visually?]</li>
+<li>Problem found: [What failed, remained uncertain, or needed clarification?]</li>
+<li>Revision: [What changed after validation?]</li>
+<li>Result: [What files, outputs, or conclusions changed?]</li>
+<li>Decision: [What did I accept, reject, or leave provisional, and why?]</li>
+</ul>
+</section>
+</section>
+<section id="future-logging-workflow" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="future-logging-workflow"><span class="header-section-number">1.4</span> Future logging workflow</h2>
 <ol type="1">
-<li>Ask a focused question.</li>
-<li>Inspect the response rather than accepting it automatically.</li>
-<li>Test the code and identify a weakness or uncertainty.</li>
-<li>Ask a better follow-up question or revise the code.</li>
-<li>Explain why the final method is appropriate for this project.</li>
+<li>Before making a change, record the date, prompt, and goal.</li>
+<li>After implementation, record the files changed and the AI response summary.</li>
+<li>Run an appropriate validation check: simulation, render, link check, ‘git diff –check’, or visual review.</li>
+<li>Record any failure or limitation rather than silently removing it.</li>
+<li>Finish with the decision and the reason for accepting the result.</li>
 </ol>
 </section>
-<section id="starter-record-project-setup" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="starter-record-project-setup"><span class="header-section-number">1.2</span> Starter record — project setup</h2>
+<section id="integrity-notes" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="integrity-notes"><span class="header-section-number">1.5</span> Integrity notes</h2>
 <ul>
-<li>Date: 2026-09-15</li>
-<li>Goal: Turn the class handout in <code>Inference/</code> into a reproducible project repository.</li>
-<li>Prompt: “Can you fill out all the files then? Please use these guidelines: [the five final-repository requirements]. Also, help me design the ai-log.md (what information i should use).”</li>
-<li>AI response summary: Created a Quarto website, 11 population analyses, a final comparison, shared base-R simulation helpers, generated diagnostic CSV files, and this interaction-log structure.</li>
-<li>Your validation: Inspected the handout’s required populations and deliverables; ran <code>Rscript R/run_all.R</code> with the current placeholder seed <code>6599</code>; checked the cross-distribution results; parsed every R code block in all <code>.qmd</code> files.</li>
-<li>Problem found: The handout marks the dependent machine-failure and life/death specifications as “coming soon,” so their exact generators were not available.</li>
-<li>Revision: Used an explicit AR(1)-style dependent exponential process and a documented two-component mixture as provisional models. The individual files state that these generators must be replaced if official specifications are supplied.</li>
-<li>Result: The simulations produced reproducible diagnostics and the repository now has a consistent normality rule across populations.</li>
-<li>Your decision: Treat this as the working project framework. Replace <code>6599L</code> with the last four digits of my student ID if needed, replace provisional generators when instructed, and inspect the plots before submitting conclusions.</li>
-</ul>
-<p>This starter record documents the setup interaction only. Add additional entries for the decisions you make while inspecting plots, revising thresholds, debugging code, and interpreting surprising results.</p>
-</section>
-<section id="suggested-entries" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="suggested-entries"><span class="header-section-number">1.3</span> Suggested entries</h2>
-<section id="entry-1-designing-the-normality-criterion" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="entry-1-designing-the-normality-criterion"><span class="header-section-number">1.3.1</span> Entry 1 — Designing the normality criterion</h3>
-<ul>
-<li>Date:</li>
-<li>Goal: Define “approximately normal” using more than one diagnostic.</li>
-<li>Prompt:</li>
-<li>AI response summary:</li>
-<li>Your validation: Check the proposed metrics on a known normal sample and on a clearly skewed sample.</li>
-<li>Problem found:</li>
-<li>Revision:</li>
-<li>Result:</li>
-<li>Your decision:</li>
-</ul>
-</section>
-<section id="entry-2-checking-q-q-plot-differences" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="entry-2-checking-q-q-plot-differences"><span class="header-section-number">1.3.2</span> Entry 2 — Checking Q-Q plot differences</h3>
-<ul>
-<li>Date:</li>
-<li>Goal: Turn the visual Q-Q comparison into a reproducible numerical diagnostic.</li>
-<li>Prompt:</li>
-<li>AI response summary:</li>
-<li>Your validation: Verify how the correlation and standardized RMSE behave when the sample is normal, skewed, or heavy-tailed.</li>
-<li>Problem found:</li>
-<li>Revision:</li>
-<li>Result:</li>
-<li>Your decision:</li>
-</ul>
-</section>
-<section id="entry-3-debugging-one-population-generator" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="entry-3-debugging-one-population-generator"><span class="header-section-number">1.3.3</span> Entry 3 — Debugging one population generator</h3>
-<ul>
-<li>Date:</li>
-<li>Goal: Implement or debug the generator for one assigned population.</li>
-<li>Prompt:</li>
-<li>AI response summary:</li>
-<li>Your validation: Confirm the population mean, spread, support, and dependence structure with a large simulated population.</li>
-<li>Problem found:</li>
-<li>Revision:</li>
-<li>Result:</li>
-<li>Your decision:</li>
-</ul>
-</section>
-<section id="entry-4-interpreting-a-surprising-result" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="entry-4-interpreting-a-surprising-result"><span class="header-section-number">1.3.4</span> Entry 4 — Interpreting a surprising result</h3>
-<ul>
-<li>Date:</li>
-<li>Goal: Explain a result that differed from the initial prediction.</li>
-<li>Prompt:</li>
-<li>AI response summary:</li>
-<li>Your validation: Re-run with the assigned seed and one alternative seed; compare the scientific conclusion, not just exact numbers.</li>
-<li>Problem found:</li>
-<li>Revision:</li>
-<li>Result:</li>
-<li>Your decision:</li>
-</ul>
-</section>
-</section>
-<section id="important-integrity-notes" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="important-integrity-notes"><span class="header-section-number">1.4</span> Important integrity notes</h2>
-<ul>
-<li>I wrote the research questions and selected the populations/sample sizes.</li>
-<li>I ran and inspected the simulations myself.</li>
-<li>I treated AI suggestions as hypotheses to test, not as evidence.</li>
-<li>I can explain every submitted line of code and every reported conclusion.</li>
-<li>Any AI-generated code that was not used should not be presented as project evidence.</li>
+<li>AI helped draft code, documentation, interpretations, and presentation structure; AI suggestions were treated as hypotheses to inspect.</li>
+<li>The simulation evidence is generated from the repository’s R code and recorded seed, not copied from an AI response.</li>
+<li>Provisional population models are explicitly labeled and should be replaced if the instructor supplies official specifications.</li>
+<li>Generated HTML belongs in ‘docs/’; the ‘.qmd’ and ‘.R’ files are the authoritative sources.</li>
+<li>I should be able to explain the submitted code, diagnostics, limitations, and conclusions.</li>
 </ul>
 
 
@@ -844,109 +948,302 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AI interaction log</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># AI Interaction Log</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>This file documents how AI assisted the project. It is not a list of answers</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>copied from AI. Each entry should show the question, what was checked, and how</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>the analysis or prompt changed afterward.</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## What to record for every important interaction</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Use one entry per meaningful prompt or prompt revision. Include:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Field <span class="pp">|</span> What to write <span class="pp">|</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Date <span class="pp">|</span> When the interaction happened. <span class="pp">|</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Goal <span class="pp">|</span> What you were trying to understand or improve. <span class="pp">|</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Prompt <span class="pp">|</span> The exact prompt you gave AI. <span class="pp">|</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> AI response summary <span class="pp">|</span> The useful suggestion, code, or explanation. Do not paste an entire response. <span class="pp">|</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Your validation <span class="pp">|</span> How you tested it in R, against the handout, or against a known result. <span class="pp">|</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Problem found <span class="pp">|</span> Any error, unsupported assumption, misleading plot, or unanswered question. <span class="pp">|</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Revision <span class="pp">|</span> What you changed in the prompt, code, design, or interpretation. <span class="pp">|</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Result <span class="pp">|</span> What changed after the revision; include a file/range/figure name when useful. <span class="pp">|</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Your decision <span class="pp">|</span> What you ultimately accepted and why. <span class="pp">|</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>The strongest entries show iteration:</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Ask a focused question.</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Inspect the response rather than accepting it automatically.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Test the code and identify a weakness or uncertainty.</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Ask a better follow-up question or revise the code.</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Explain why the final method is appropriate for this project.</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Starter record — project setup</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date: 2026-09-15</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Turn the class handout in <span class="in">`Inference/`</span> into a reproducible project repository.</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Prompt: “Can you fill out all the files then? Please use these guidelines: <span class="co">[</span><span class="ot">the five final-repository requirements</span><span class="co">]</span>. Also, help me design the ai-log.md (what information i should use).”</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Created a Quarto website, 11 population analyses, a final comparison, shared base-R simulation helpers, generated diagnostic CSV files, and this interaction-log structure.</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your validation: Inspected the handout’s required populations and deliverables; ran <span class="in">`Rscript R/run_all.R`</span> with the current placeholder seed <span class="in">`6599`</span>; checked the cross-distribution results; parsed every R code block in all <span class="in">`.qmd`</span> files.</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: The handout marks the dependent machine-failure and life/death specifications as “coming soon,” so their exact generators were not available.</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Used an explicit AR(1)-style dependent exponential process and a documented two-component mixture as provisional models. The individual files state that these generators must be replaced if official specifications are supplied.</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The simulations produced reproducible diagnostics and the repository now has a consistent normality rule across populations.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your decision: Treat this as the working project framework. Replace <span class="in">`6599L`</span> with the last four digits of my student ID if needed, replace provisional generators when instructed, and inspect the plots before submitting conclusions.</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>This starter record documents the setup interaction only. Add additional entries</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>for the decisions you make while inspecting plots, revising thresholds, debugging</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>code, and interpreting surprising results.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Suggested entries</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entry 1 — Designing the normality criterion</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date:</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Define “approximately normal” using more than one diagnostic.</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Prompt:</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary:</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your validation: Check the proposed metrics on a known normal sample and on a clearly skewed sample.</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found:</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision:</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result:</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your decision:</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entry 2 — Checking Q-Q plot differences</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date:</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Turn the visual Q-Q comparison into a reproducible numerical diagnostic.</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Prompt:</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary:</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your validation: Verify how the correlation and standardized RMSE behave when the sample is normal, skewed, or heavy-tailed.</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found:</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision:</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result:</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your decision:</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entry 3 — Debugging one population generator</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date:</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Implement or debug the generator for one assigned population.</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Prompt:</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary:</span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your validation: Confirm the population mean, spread, support, and dependence structure with a large simulated population.</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found:</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision:</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result:</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your decision:</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Entry 4 — Interpreting a surprising result</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Date:</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Explain a result that differed from the initial prediction.</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Prompt:</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary:</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your validation: Re-run with the assigned seed and one alternative seed; compare the scientific conclusion, not just exact numbers.</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found:</span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision:</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result:</span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your decision:</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important integrity notes</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I wrote the research questions and selected the populations/sample sizes.</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I ran and inspected the simulations myself.</span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I treated AI suggestions as hypotheses to test, not as evidence.</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I can explain every submitted line of code and every reported conclusion.</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Any AI-generated code that was not used should not be presented as project evidence.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>This file records how AI was used to develop, debug, interpret, and present the</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>CLT Monte Carlo project. It is a decision record, not a transcript. Each entry</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>captures the user request, the proposed change, the validation performed, and</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>the decision made afterward.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Logging standard</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>For every meaningful interaction, record:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Field <span class="pp">|</span> What to include <span class="pp">|</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Date <span class="pp">|</span> The date the interaction occurred. <span class="pp">|</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> User prompt <span class="pp">|</span> The request or question that initiated the change. <span class="pp">|</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Goal <span class="pp">|</span> The problem the change was intended to solve. <span class="pp">|</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> AI response summary <span class="pp">|</span> The useful recommendation, code, or explanation. <span class="pp">|</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Validation <span class="pp">|</span> Commands, tests, handout checks, or visual review performed. <span class="pp">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Problem found <span class="pp">|</span> Any error, limitation, unsupported assumption, or ambiguity. <span class="pp">|</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Revision <span class="pp">|</span> What changed in the code, documentation, design, or interpretation. <span class="pp">|</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Result <span class="pp">|</span> The observable outcome, including files or generated outputs. <span class="pp">|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Decision <span class="pp">|</span> What was accepted, rejected, or left provisional, and why. <span class="pp">|</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>The validation field should describe work that was actually checked. AI output</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>is a suggestion; the simulation results, rendered pages, and final decisions</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>must be independently inspectable in the repository.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Historical record</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Planning the project structure</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “Using the inference folder, how should I create my project?”</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Convert the class handouts in 'Inference/' into a coherent,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  reproducible statistics project.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Recommended a Quarto website with source files separated</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  from generated HTML, shared R functions, individual population analyses, a</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  cross-distribution summary, results tables, and an AI interaction log.</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Inspected the three handout files and mapped their required</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  populations, research question, and deliverables to a repository structure.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: The handouts were reference HTML files rather than an existing</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  executable project.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Established 'index.qmd', 'final-summary.qmd', 'analyses/',</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  'R/', 'results/', 'docs/', and supporting documentation.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The repository has a recognizable source-to-output workflow.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Keep editable '.qmd' and '.R' files in the source tree and publish</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  generated website files in 'docs/'.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Filling the project files</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “Can you fill out all the files then? Please use these</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  guidelines: [clear design, consistent criteria, evidence-based conclusions,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  cross-distribution comparison, and professional documentation]. Also, help me</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  design the ai-log.md.”</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Implement the complete CLT Monte Carlo study and document the reasoning.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Created 11 population analyses, shared base-R helpers,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  a final summary, generated CSV tables, README instructions, and this log</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  structure.</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Ran 'Rscript R/run_all.R' with seed 6599 and 'B = 10000';</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  checked the generated summary tables; parsed the R code blocks in the</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  '.qmd' files; and rendered the site.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: The dependent machine-failure and mixture specifications were</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  marked “coming soon” in the handout.</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Used explicit provisional models: an AR(1)-style dependent process</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  with exponential marginals and a 90/10 two-component normal mixture. Both</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  assumptions are documented in the affected analyses and final summary.</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: Every population uses the same diagnostic framework and produces</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>  reproducible evidence.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Keep the provisional models until official instructor generators</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  are supplied; replace only the generators while preserving the analysis</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>  framework.</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Defining “approximately normal”</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “What is the smallest sample size at which the sampling</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>  distribution of the sample mean is reasonably defensible as approximately</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>  normal?”</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Make the research question operational rather than relying on a</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  subjective visual impression or the rule of thumb 'n = 30'.</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Proposed one shared decision rule: absolute skewness at</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  most 0.20, absolute excess kurtosis at most 0.30, normal Q-Q correlation at</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  least 0.995, and standardized Q-Q RMSE at most 0.08.</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Applied the rule to all candidate sample sizes</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>  '2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500' using</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>  10,000 simulated sample means per population.</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: A single passing grid point could be caused by Monte Carlo</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  variation.</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Required all four diagnostics to pass at three consecutive</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>  candidate sizes before selecting a threshold.</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The decision rule is consistent across populations and its</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>  assumptions are visible in 'R/helpers.R'.</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Use the rule as a transparent operational definition, not as a</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>  claim that simulated distributions are perfectly normal.</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Explaining why the answer is ambiguous</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “Why is the answer very ambiguous?”</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Explain why the research question cannot have one universal numerical</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  answer.</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Identified five sources of ambiguity: population shape,</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  the definition of “approximately normal,” the candidate-n grid, Monte Carlo</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>  variation, and CLT assumptions such as finite variance, independence, and</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>  identical distributions.</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Compared the actual project outputs across symmetric, skewed,</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  discrete, heavy-tailed, dependent, non-identical, and mixture populations.</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: Saying only “it depends” would be scientifically correct but</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>  insufficiently evidence-based.</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Added specific results to the explanation, including Poisson</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>  passing at n = 30, Exponential requiring n = 100, and Cauchy failing through</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>  n = 500.</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The ambiguity is now explained as a consequence of explicit</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>  modeling choices rather than uncertainty in the analysis.</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Report a population-specific threshold and always state the</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>  diagnostic rule and investigated grid.</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Expanding the research answer with evidence</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “Could we expand the answer then? I think the answer can be a</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>  lot more professional. Include evidence with the answers based on the</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>  results from the project and analyses.”</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Turn the conclusion into a professional, evidence-based report section.</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Expanded 'final-summary.qmd' with an executive</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>  conclusion, design description, cross-distribution comparison, numerical</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>  evidence, limitations, seed sensitivity, and a direct answer to the research</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>  question.</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Confirmed the reported thresholds and diagnostics against</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>  'results/tables/cross_distribution_summary.csv' and</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>  'results/tables/all_diagnostics.csv'; reran the summary code during Quarto</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>  rendering.</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: Exact thresholds depend on the student seed and the finite</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>  candidate grid.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Documented seed 6599, B = 10000, the candidate grid, the</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>  three-consecutive-pass rule, and the distinction between an exact boundary</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>  and the first passing investigated value.</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The final answer now states both the findings and the limits of what</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>  the simulation establishes.</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Emphasize the range and scientific pattern rather than presenting</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>  one value of n as a universal law.</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Synchronizing the homepage with the final answer</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “index.html still has the same answer. It’s supposed to be</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>  changed as well, right?”</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Ensure a recruiter or reviewer who opens the homepage sees the updated</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>  conclusion immediately.</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Added an “Answer in brief” section to 'index.qmd' and</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>  regenerated 'docs/index.html'.</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Searched the generated homepage for the updated answer, evidence</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>  values, and links to the final summary; verified that 'docs/index.html' was</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>  generated from 'index.qmd'.</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: The generated HTML is an output artifact and should not be</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>  edited as the primary source.</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Kept the substantive answer in 'index.qmd' and treated</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>  'docs/index.html' as generated output.</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The homepage and final summary communicate the same conclusion.</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Edit '.qmd' sources first, then rerender the website.</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Diagnosing Quarto output and command errors</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “No such file or directory ... rename 'index.html' to</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>  'docs/index.html'” and later “command not found quarto.”</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Make the project render reliably on macOS and explain the missing</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>  root-level HTML file.</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Identified 'docs/' as the configured output directory,</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>  recommended the installed Quarto binary when PATH configuration was missing,</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>  and tested 'quarto render --no-clean --cache-refresh'.</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Confirmed Quarto 1.10.18 was installed at</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>  '/Applications/quarto/bin/quarto'; rendered the full 14-page site</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>  successfully with cache refresh; and confirmed the output at 'docs/'.</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: Quarto’s default cleanup/move path could fail with stale</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>  project/session state, and a root 'index.html' is not the authoritative</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>  homepage in this project.</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Documented 'quarto render --no-clean --cache-refresh' in</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>  'README.md' and clarified that 'index.qmd' is the source while</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>  'docs/index.html' is the generated homepage.</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The generated site contains the homepage, final summary, AI log, and</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>  all 11 analyses.</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Keep 'output-dir: docs' and do not maintain duplicate root-level</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>  HTML files.</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Improving the presentation for professional review</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “Can we make the layout more professional? This will</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>  potentially be seen by recruiters, hiring managers, and senior engineers.”</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Present the work as a polished technical portfolio artifact while</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>  preserving the statistical reasoning and reproducibility.</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Added a restrained navy/teal visual system, hero panel,</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>  project metrics, executive result table, project-signal cards, stronger</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>  headings, styled tables and figures, responsive breakpoints, improved</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>  navigation, and a professional footer.</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Rendered the site; checked that all 14 HTML pages were present;</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>  verified navigation targets; confirmed custom CSS selectors were included;</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>  and ran 'git diff --check'.</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: Raw HTML divs around Markdown headings produced an implicit</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>  unclosed-block warning during one render.</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Replaced the affected raw containers with Quarto fenced divs and</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>  corrected the AI Log navigation target from 'ai-log.qmd' to 'ai-log.md'.</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The homepage and final summary have an executive presentation layer,</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>  and all pages share the same visual system.</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Use restrained visual hierarchy and evidence-forward content</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>  instead of decorative graphics that would distract from the analysis.</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Choosing a professional project title</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “What project title would be the best?”</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Make the project title clear and credible to technical reviewers.</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Recommended “Stress-Testing the Central Limit Theorem”</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>  with the subtitle “A Reproducible Monte Carlo Study of When Sample Means</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>  Become Approximately Normal.”</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Confirmed the title was applied consistently to the website</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>  navbar and homepage metadata.</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: The original “How Fast Does Normal Happen?” title was</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>  memorable but less descriptive in a professional portfolio context.</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Updated the website title, homepage title, and navbar alternative</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>  text.</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The title now states the technical subject and the subtitle states</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>  the method and research focus.</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Use the descriptive title for the final portfolio version.</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Keeping the subtitle on one desktop line</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “On the index page, can we somehow fit ‘normal’ so the subtitle</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>  is 1 line?”</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Prevent the final word of the subtitle from wrapping on desktop.</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Found that the custom stylesheet limited the subtitle to</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>  '760px'. Widened it to the available title-block width, added responsive</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>  font sizing, and applied 'white-space: nowrap' only on desktop screens.</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Checked the CSS rules, confirmed the generated homepage links to</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>  the active stylesheet, and verified that mobile media rules still allow</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>  wrapping.</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: Quarto’s local Sass cache returned “unable to open database</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>  file” during a later rerender.</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Converted the active stylesheet to browser-ready 'styles.css' so</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>  the layout does not depend on the project’s SCSS cache for the custom rules;</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>  updated 'docs/index.html' to link the stylesheet directly.</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The subtitle is configured to remain on one line on desktop while</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>  remaining responsive on narrow screens.</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Keep 'styles.css' as the authoritative active stylesheet and retain</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>  the generated output in 'docs/'.</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-15 — Backfilling the AI log and defining future logging</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “Can you also fill in the AI-Log for each change that I have</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>  asked for already? And for future ones too?”</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Make AI assistance auditable across the full project lifecycle.</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Backfilled this log with the prior requests,</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>  implementation decisions, validation steps, errors, revisions, and final</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>  decisions. Added a reusable template and a future logging workflow.</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Cross-checked the entries against the repository files,</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>  generated results, render commands, and the recorded conversation requests.</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: A short prompt-only log would not show whether the proposed</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>  changes were tested or whether assumptions remained provisional.</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Added explicit fields for validation, problems, revisions, results,</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>  and decisions.</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: Future entries can be added consistently without copying entire AI</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>  responses.</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Append a new entry for every meaningful request that changes code,</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>  analysis, interpretation, layout, documentation, or reproducibility.</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## Template for future interactions</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>Copy this template and append it below the historical record for each</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>meaningful future request.</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="fu">### [YYYY-MM-DD] — [Short change title]</span></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “<span class="co">[</span><span class="ot">Exact request or a faithful short quotation.</span><span class="co">]</span>”</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: <span class="co">[</span><span class="ot">What problem were we trying to solve?</span><span class="co">]</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: <span class="co">[</span><span class="ot">What was suggested or changed?</span><span class="co">]</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: [What did I run, inspect, compare with the handout, or review</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>  visually?]</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: <span class="co">[</span><span class="ot">What failed, remained uncertain, or needed clarification?</span><span class="co">]</span></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: <span class="co">[</span><span class="ot">What changed after validation?</span><span class="co">]</span></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: <span class="co">[</span><span class="ot">What files, outputs, or conclusions changed?</span><span class="co">]</span></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: <span class="co">[</span><span class="ot">What did I accept, reject, or leave provisional, and why?</span><span class="co">]</span></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="fu">## Future logging workflow</span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Before making a change, record the date, prompt, and goal.</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>After implementation, record the files changed and the AI response summary.</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run an appropriate validation check: simulation, render, link check,</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>   'git diff --check', or visual review.</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Record any failure or limitation rather than silently removing it.</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Finish with the decision and the reason for accepting the result.</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrity notes</span></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI helped draft code, documentation, interpretations, and presentation</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>  structure; AI suggestions were treated as hypotheses to inspect.</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The simulation evidence is generated from the repository’s R code and</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>  recorded seed, not copied from an AI response.</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provisional population models are explicitly labeled and should be replaced</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>  if the instructor supplies official specifications.</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generated HTML belongs in 'docs/'; the '.qmd' and '.R' files are the</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>  authoritative sources.</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I should be able to explain the submitted code, diagnostics, limitations,</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>  and conclusions.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
