@@ -304,6 +304,25 @@ must be independently inspectable in the repository.
 - Decision: Treat the annotation as non-blocking if the run is green, but keep
   the workflow action versions current to avoid future runner incompatibility.
 
+### 2026-09-16 — Removing redundant home navigation
+
+- User prompt: “Can you combine the Home button and the Title button? It
+  doesnt make sense for there to be 2 buttons that redirect to the same link.”
+- Goal: Eliminate duplicate navigation while preserving an obvious route back
+  to the homepage.
+- AI response summary: Confirmed that the Quarto navbar title already links to
+  'index.html', so the separate Home item was redundant.
+- Validation: Inspected the navbar configuration and confirmed the title link
+  and Home item both targeted the homepage.
+- Problem found: The duplicate controls added visual clutter and made the
+  navigation hierarchy less intentional.
+- Revision: Removed the Home entry from the left navbar in '_quarto.yml' while
+  retaining the clickable site title.
+- Result: The navbar now presents one homepage affordance, followed by the
+  summary and analysis navigation.
+- Decision: Keep the title as the home link because it is a conventional,
+  recognizable website pattern and leaves the navbar less crowded.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

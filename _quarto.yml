@@ -9,8 +9,6 @@ website:
     foreground: "#f8fafc"
     logo-alt: "Stress-Testing the Central Limit Theorem"
     left:
-      - href: index.qmd
-        text: Home
       - href: final-summary.qmd
         text: Final summary
       - text: Analyses
