@@ -9,3 +9,4 @@
 /analyses/*.html
 
 **/*.quarto_ipynb
+.DS_Store
