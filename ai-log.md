@@ -282,6 +282,28 @@ must be independently inspectable in the repository.
   the deployment URL reported by the successful Actions run. If the workflow
   fails, treat the Actions log as the next diagnostic source.
 
+### 2026-09-16 — Updating GitHub Actions for Node 24
+
+- User prompt: “There was an annotation when running the Github Action:
+  Node.js 20 is deprecated.”
+- Goal: Determine whether the annotation represented a failed deployment and
+  remove avoidable runtime deprecation warnings.
+- AI response summary: Verified the warning against the official action
+  repositories. The workflow was using older action versions, while current
+  releases support Node 24.
+- Validation: Checked the action release and source documentation for
+  'configure-pages', 'deploy-pages', and 'upload-pages-artifact'. The
+  annotation identifies the action runtime versions, not the Quarto site.
+- Problem found: 'configure-pages@v5', 'deploy-pages@v4', and
+  'upload-pages-artifact@v4' can trigger Node 20 deprecation annotations even
+  when the deployment succeeds.
+- Revision: Updated '.github/workflows/deploy-pages.yml' to
+  'configure-pages@v6', 'deploy-pages@v5', and 'upload-pages-artifact@v5'.
+- Result: The next workflow run will use the current Node 24-compatible action
+  releases and should eliminate this particular annotation.
+- Decision: Treat the annotation as non-blocking if the run is green, but keep
+  the workflow action versions current to avoid future runner incompatibility.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each
