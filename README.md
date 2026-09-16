@@ -1,9 +1,3 @@
-# How Fast Does Normal Happen?
-
-This repository is a reproducible R/Quarto investigation of how quickly the
-sampling distribution of a sample mean approaches normality under different
-population shapes and assumptions.
-
 # Stress-Testing the Central Limit Theorem
 
 [View the completed project](https://brandonlee-2002.github.io/clt-monte-carlo/) ·
