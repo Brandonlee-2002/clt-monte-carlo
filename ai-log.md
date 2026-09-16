@@ -256,6 +256,32 @@ must be independently inspectable in the repository.
 - Decision: Append a new entry for every meaningful request that changes code,
   analysis, interpretation, layout, documentation, or reproducibility.
 
+### 2026-09-16 — Making GitHub Pages deployment explicit
+
+- User prompt: “It is still not working on Github Pages” and then “still not
+  fixing the issue.”
+- Goal: Determine why the live project link was not serving the generated
+  website even though the local repository contained 'docs/index.html'.
+- AI response summary: Inspected the repository state and found the generated
+  'docs/' site and its assets tracked on 'origin/main', but no GitHub Pages
+  deployment workflow. Added '.github/workflows/deploy-pages.yml' to publish
+  the 'docs/' folder on pushes to 'main'.
+- Validation: Confirmed that 'origin/main' contains 'docs/index.html', all
+  Quarto asset files, and 35 tracked 'docs/' files. The live URL could not be
+  reached from the current environment because external DNS/network access was
+  unavailable, so GitHub’s Pages deployment status still requires checking in
+  the repository interface.
+- Problem found: Branch/folder publishing and GitHub Actions publishing are
+  different GitHub Pages modes; the repository had no workflow to support the
+  Actions mode.
+- Revision: Added the Pages workflow and documented the required setting—Pages
+  source must be **GitHub Actions**—in 'README.md'.
+- Result: Every push to 'main' can now upload the committed 'docs/' folder as a
+  Pages artifact and deploy it automatically.
+- Decision: Commit and push the workflow, set Pages to GitHub Actions, then use
+  the deployment URL reported by the successful Actions run. If the workflow
+  fails, treat the Actions log as the next diagnostic source.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

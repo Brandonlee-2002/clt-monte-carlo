@@ -36,6 +36,20 @@ The simulations use `B = 10000` repetitions and candidate sample sizes from 2
 through 500. The code sets the student seed immediately before each sample-size
 experiment so the results can be reproduced.
 
+## Publish the completed project
+
+The generated site is published from `docs/` by the workflow in
+`.github/workflows/deploy-pages.yml`. To enable it on GitHub:
+
+1. Open **Settings → Pages** for the repository.
+2. Set **Source** to **GitHub Actions**.
+3. Commit and push the workflow and generated `docs/` folder to `main`.
+4. Check the workflow under the repository’s **Actions** tab.
+
+The live project link is:
+
+[View the completed project](https://brandonlee-2002.github.io/clt-monte-carlo/)
+
 ## Decision rule
 
 The same pre-specified screen is used for all populations:
