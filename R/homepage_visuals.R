@@ -161,6 +161,8 @@ heatmap_x <- 250
 heatmap_y <- 125
 cell_width <- 51
 cell_height <- 30
+table_right <- heatmap_x + length(n_values) * cell_width
+threshold_label_x <- table_right + 18
 heatmap <- c(
   svg_rect(0, 0, heatmap_width, heatmap_height, fill = background),
   svg_text(60, 42, "Normality screen across populations and sample sizes", size = 24, weight = 700),
@@ -193,7 +195,7 @@ for (i in seq_along(populations)) {
     }
   }
   threshold_label <- if (is.na(selected[[population]])) "no stable pass ≤ 500" else paste0("first stable n = ", selected[[population]])
-  heatmap <- c(heatmap, svg_text(1068, y + cell_height / 2, threshold_label, size = 12, fill = if (is.na(selected[[population]])) danger else slate, baseline = "middle"))
+  heatmap <- c(heatmap, svg_text(threshold_label_x, y + cell_height / 2, threshold_label, size = 12, fill = if (is.na(selected[[population]])) danger else slate, baseline = "middle"))
 }
 
 legend_y <- heatmap_y + length(populations) * cell_height + 28

@@ -486,6 +486,25 @@ must be independently inspectable in the repository.
 - Decision: Preserve the current canvas dimensions and responsive CSS; adjust
   the internal composition so the visuals remain stable across page widths.
 
+### 2026-09-17 — Equalizing Visual 2 table-label spacing
+
+- User prompt: “For visual 2, the text on the right side of the table is not
+  the same distance as the text on the left. Can you make it even?”
+- Goal: Give the heatmap’s row labels and threshold annotations equal spacing
+  from the table.
+- AI response summary: Replaced the hard-coded right-label position with a
+  calculated position based on the table’s right edge plus the same 18-pixel
+  gap used on the left.
+- Validation: Regenerated both SVG copies, checked XML validity, and reviewed
+  the updated heatmap preview.
+- Problem found: The right annotations began substantially farther from the
+  table than the left population labels.
+- Revision: Added `table_right` and `threshold_label_x` calculations in
+  `R/homepage_visuals.R`.
+- Result: The right-side labels now align with an even visual gap and remain
+  correctly positioned if the heatmap width changes.
+- Decision: Use calculated geometry instead of another fixed x-coordinate.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each
