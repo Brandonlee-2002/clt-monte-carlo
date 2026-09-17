@@ -1,6 +1,9 @@
 ---
 title: "Stress-Testing the Central Limit Theorem"
 subtitle: "A Reproducible Monte Carlo Study of When Sample Means Become Approximately Normal"
+format:
+  html:
+    toc: false
 ---
 
 ::: {.hero-panel}

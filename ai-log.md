@@ -389,6 +389,25 @@ must be independently inspectable in the repository.
 - Decision: Preserve the sidebar and the full-resolution SVGs; constrain the
   surrounding panel because it is the least disruptive responsive fix.
 
+### 2026-09-17 — Removing the homepage-only table of contents
+
+- User prompt: “The changes did not fix the issue.”
+- Goal: Resolve the continued overlap between the homepage visuals and the
+  right-hand Quarto table of contents.
+- AI response summary: Reassessed the layout rather than continuing to shrink
+  the SVGs. The homepage is a landing page, so its section TOC is unnecessary.
+- Validation: Reviewed Quarto's page-column CSS and the supplied screenshot.
+  The sidebar occupies a separate margin column while the large visual canvas
+  remains readable only at a wider width.
+- Problem found: A fixed 1,200-pixel maximum still allowed the visual to
+  compete with the homepage margin sidebar, especially in high-DPI captures.
+- Revision: Set `toc: false` in the homepage document format only. Summary and
+  analysis pages retain their table of contents.
+- Result: The homepage can use its full visual area without a right-hand TOC
+  covering the pipeline, heatmap, or threshold comparison.
+- Decision: Keep the homepage focused as a visual executive readout while
+  retaining detailed in-page navigation on analytical pages.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each
