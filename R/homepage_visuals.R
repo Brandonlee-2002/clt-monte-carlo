@@ -98,27 +98,25 @@ pipeline_steps <- data.frame(
   stringsAsFactors = FALSE
 )
 step_x <- c(60, 285, 510, 735, 960)
+pipeline_title_lines <- list(
+  c("Choose a", "population"),
+  c("Draw a", "sample"),
+  c("Calculate", "the mean"),
+  c("Repeat 10,000", "times"),
+  c("Apply the same", "screen")
+)
 for (i in seq_len(nrow(pipeline_steps))) {
-  title_lines <- if (i == nrow(pipeline_steps)) {
-    c("Apply the same", "screen")
-  } else {
-    pipeline_steps$title[i]
-  }
-  title_markup <- if (length(title_lines) == 1L) {
-    svg_text(step_x[i] + 18, 162, title_lines, size = 16, weight = 700)
-  } else {
-    c(
-      svg_text(step_x[i] + 18, 157, title_lines[1], size = 16, weight = 700),
-      svg_text(step_x[i] + 18, 178, title_lines[2], size = 16, weight = 700)
-    )
-  }
-  detail_y <- if (length(title_lines) == 1L) 187 else 204
+  title_lines <- pipeline_title_lines[[i]]
+  title_markup <- c(
+    svg_text(step_x[i] + 18, 157, title_lines[1], size = 16, weight = 700),
+    svg_text(step_x[i] + 18, 178, title_lines[2], size = 16, weight = 700)
+  )
   pipeline <- c(
     pipeline,
     svg_rect(step_x[i], 105, 180, 118, fill = surface, stroke = border, stroke_width = 1, radius = 12),
     svg_text(step_x[i] + 18, 132, pipeline_steps$number[i], size = 12, fill = teal, weight = 700),
     title_markup,
-    svg_text(step_x[i] + 18, detail_y, pipeline_steps$detail[i], size = 13, fill = slate),
+    svg_text(step_x[i] + 18, 204, pipeline_steps$detail[i], size = 13, fill = slate),
     if (i < nrow(pipeline_steps)) svg_line(step_x[i] + 186, 164, step_x[i + 1] - 10, 164, stroke = muted, width = 1.5, marker_end = "arrow") else character(0)
   )
 }
@@ -159,7 +157,7 @@ selected <- setNames(vapply(populations, function(population) {
 
 heatmap_width <- 1200
 heatmap_height <- 590
-heatmap_x <- 325
+heatmap_x <- 250
 heatmap_y <- 125
 cell_width <- 51
 cell_height <- 30
@@ -214,8 +212,8 @@ write_svg("normality-heatmap.svg", heatmap_width, heatmap_height, heatmap)
 
 dot_width <- 1200
 dot_height <- 610
-dot_x0 <- 335
-dot_x1 <- 1015
+dot_x0 <- 260
+dot_x1 <- 940
 dot_y0 <- 120
 dot_row_height <- 36
 log_x <- function(n) dot_x0 + (log10(n) - log10(min(n_values))) / (log10(max(n_values)) - log10(min(n_values))) * (dot_x1 - dot_x0)

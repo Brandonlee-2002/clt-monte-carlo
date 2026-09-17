@@ -447,6 +447,45 @@ must be independently inspectable in the repository.
 - Decision: Preserve the full wording rather than reducing the font size, since
   the two-line treatment is clearer and more consistent with the diagram.
 
+### 2026-09-17 — Standardizing all experimental-design cards
+
+- User prompt: “Can you fix all the boxes in visual 1 to make it the same as
+  box 5?”
+- Goal: Give every pipeline card the same title structure and prevent future
+  text overflow.
+- AI response summary: Changed all five pipeline titles to two-line labels and
+  aligned every supporting detail line at the same vertical position.
+- Validation: Regenerated both SVG copies, checked them as XML, and visually
+  reviewed the complete pipeline.
+- Problem found: Only the fifth card used a two-line title, creating an
+  inconsistent visual rhythm across the pipeline.
+- Revision: Added explicit two-line title labels for all five cards while
+  preserving the original wording and step order.
+- Result: Every box now has matching title spacing, detail alignment, and visual
+  hierarchy.
+- Decision: Use consistent composition across the pipeline instead of allowing
+  individual cards to choose their own text height.
+
+### 2026-09-17 — Centering the comparison charts
+
+- User prompt: “To me, Visuals 2 and 3 have their charts slightly off-center.
+  Can you double check the formatting there too?”
+- Goal: Improve the internal balance of the heatmap and threshold comparison
+  without changing their evidence or labels.
+- AI response summary: Reviewed the SVG coordinate layout and shifted the main
+  chart areas left within their fixed canvas.
+- Validation: Regenerated both SVG copies, checked them as XML, and reviewed
+  rendered previews of the heatmap and threshold plot.
+- Problem found: The heatmap grid and dot-plot region were centered relative to
+  the chart labels rather than the full visual canvas, making the data marks
+  appear slightly right-heavy.
+- Revision: Shifted the heatmap origin from x = 325 to x = 250 and the dot plot
+  range from x = 335–1015 to x = 260–940.
+- Result: The data regions now sit more centrally while the row labels,
+  threshold annotations, and legends remain inside the visual bounds.
+- Decision: Preserve the current canvas dimensions and responsive CSS; adjust
+  the internal composition so the visuals remain stable across page widths.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each
