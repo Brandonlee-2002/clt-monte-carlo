@@ -323,6 +323,52 @@ must be independently inspectable in the repository.
 - Decision: Keep the title as the home link because it is a conventional,
   recognizable website pattern and leaves the navbar less crowded.
 
+### 2026-09-16 — Adding homepage evidence visuals
+
+- User prompt: “Use the recommended 3 visuals, create them, add them to the
+  pages, and let me see how they look.”
+- Goal: Make the homepage more visually persuasive for recruiters, hiring
+  managers, and senior engineers while keeping every visual tied to the study.
+- AI response summary: Added an experimental-design pipeline, a
+  cross-distribution normality heatmap, and a smallest-threshold comparison
+  plot. All three are generated as SVG assets from the project diagnostics.
+- Validation: Ran 'Rscript R/homepage_visuals.R', inspected the rendered SVGs as
+  PNG previews, and confirmed the heatmap and threshold labels agree with
+  'results/tables/cross_distribution_summary.csv'.
+- Problem found: The full Quarto rebuild remains blocked by the local Sass
+  cache error ('unable to open database file').
+- Revision: Added a base-R generator at 'R/homepage_visuals.R', embedded the
+  visuals in 'index.qmd', copied the generated assets to both 'assets/' and
+  'docs/assets/', and added responsive homepage styling in 'styles.css'.
+- Result: The source homepage now contains a visual evidence section showing
+  the study workflow, pass/fail pattern, and population-specific thresholds.
+- Decision: Use static SVGs rather than decorative screenshots so the visuals
+  remain sharp, lightweight, accessible, and reproducible without new package
+  dependencies.
+
+### 2026-09-17 — Diagnosing missing live homepage visuals
+
+- User prompt: “I dont see the visuals on the live website.”
+- Goal: Determine why the local homepage visuals were not appearing on the
+  published GitHub Pages site.
+- AI response summary: Compared the deployment workflow, local generated HTML,
+  asset paths, and Git tracking state.
+- Validation: Confirmed that the workflow publishes only the committed `docs/`
+  directory. `git status` showed the homepage changes and SVG assets as local
+  modifications/untracked files, and `git ls-files` showed that the new assets
+  are not in the latest commit.
+- Problem found: The visuals were prepared locally but had not been committed
+  and pushed, so GitHub Pages had no access to `docs/assets/homepage/*.svg` or
+  the updated homepage HTML.
+- Revision: No source revision was needed; the existing source and generated
+  output are ready to publish. The required deployment action is to commit and
+  push the homepage files and assets to `main`.
+- Result: The root cause is deployment state rather than an incorrect image
+  path or broken SVG. The live site will update after the push and successful
+  GitHub Actions run.
+- Decision: Do not push externally without explicit permission. Provide the
+  exact commit/push step so the repository owner controls the deployment.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

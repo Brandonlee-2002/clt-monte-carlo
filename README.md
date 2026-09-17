@@ -12,6 +12,7 @@ sampling distribution of a sample mean approaches normality.
 - `analyses/` contains one analysis for each population or process.
 - `final-summary.qmd` compares the populations and answers the larger CLT questions.
 - `R/helpers.R` contains the shared simulation, diagnostic, and summary functions.
+- `R/homepage_visuals.R` regenerates the three evidence visuals shown on the home page.
 - `results/` stores generated summary tables and figures when the project is run.
 - `ai-log.md` records AI prompts, validation, revisions, and remaining limitations.
 
@@ -31,6 +32,9 @@ sampling distribution of a sample mean approaches normality.
 
 To regenerate only the CSV result tables from the command line, run
 `Rscript R/run_all.R` from the repository root.
+
+To regenerate the homepage SVG visuals after refreshing the result tables, run
+`Rscript R/homepage_visuals.R` from the repository root.
 
 The simulations use `B = 10000` repetitions and candidate sample sizes from 2
 through 500. The code sets the student seed immediately before each sample-size
