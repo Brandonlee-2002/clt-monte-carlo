@@ -408,6 +408,28 @@ must be independently inspectable in the repository.
 - Decision: Keep the homepage focused as a visual executive readout while
   retaining detailed in-page navigation on analytical pages.
 
+### 2026-09-17 — Restoring the homepage table of contents and resizing visuals
+
+- User prompt: “The visuals are a lot smaller than I expected. Also the
+  sidebar is missing from the home page, whereas the other pages have the menu
+  sidebar. Please make the visuals slightly bigger and keep the menu bar on the
+  side on the home page.”
+- Goal: Restore consistent navigation while improving visual scale without
+  allowing the diagrams to cross into the TOC column.
+- AI response summary: Restored the homepage TOC and constrained each visual
+  panel to a responsive 820-pixel content width.
+- Validation: Confirmed that the homepage source no longer overrides the
+  project-wide TOC setting, that the generated homepage contains the sidebar,
+  and that the visual panels use `width: min(100%, 820px)`.
+- Problem found: Removing the TOC solved the overlap by removing navigation,
+  but it made the homepage inconsistent with the rest of the site.
+- Revision: Restored the default Quarto TOC and replaced the previous
+  1,200-pixel cap with a content-column-safe 820-pixel width in both stylesheets.
+- Result: The homepage retains the “On this page” menu and the visuals remain
+  responsive while staying inside the main content column.
+- Decision: Favor consistent site navigation and a controlled visual width;
+  keep the SVG files unchanged so their evidence labels remain reproducible.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

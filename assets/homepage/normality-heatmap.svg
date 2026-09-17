@@ -2,24 +2,24 @@
 <title>normality-heatmap.svg</title>
 <desc>Evidence visual from the CLT Monte Carlo simulation project.</desc>
 <rect x="0" y="0" width="1200" height="590" rx="0" fill="#f7fafc" stroke="none" stroke-width="0" opacity="1"/>
-<text x="60" y="42" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="22" font-weight="700" text-anchor="start" dominant-baseline="alphabetic" opacity="1">Normality screen across populations and sample sizes</text>
-<text x="60" y="68" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="start" dominant-baseline="alphabetic" opacity="1">Each cell applies the same four diagnostic thresholds; the orange outline marks the first stable pass.</text>
-<text x="305" y="96" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="end" dominant-baseline="alphabetic" opacity="1">sample size n</text>
-<text x="350.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">2</text>
-<text x="401.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">5</text>
-<text x="452.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">10</text>
-<text x="503.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">15</text>
-<text x="554.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">20</text>
-<text x="605.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">30</text>
-<text x="656.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">40</text>
-<text x="707.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">50</text>
-<text x="758.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">75</text>
-<text x="809.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">100</text>
-<text x="860.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">150</text>
-<text x="911.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">200</text>
-<text x="962.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">300</text>
-<text x="1013.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">500</text>
-<text x="307" y="140" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Standard normal</text>
+<text x="60" y="42" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="700" text-anchor="start" dominant-baseline="alphabetic" opacity="1">Normality screen across populations and sample sizes</text>
+<text x="60" y="68" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="400" text-anchor="start" dominant-baseline="alphabetic" opacity="1">Each cell applies the same four diagnostic thresholds; the orange outline marks the first stable pass.</text>
+<text x="305" y="96" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="700" text-anchor="end" dominant-baseline="alphabetic" opacity="1">sample size n</text>
+<text x="350.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">2</text>
+<text x="401.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">5</text>
+<text x="452.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">10</text>
+<text x="503.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">15</text>
+<text x="554.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">20</text>
+<text x="605.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">30</text>
+<text x="656.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">40</text>
+<text x="707.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">50</text>
+<text x="758.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">75</text>
+<text x="809.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">100</text>
+<text x="860.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">150</text>
+<text x="911.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">200</text>
+<text x="962.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">300</text>
+<text x="1013.5" y="111" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="alphabetic" opacity="1">500</text>
+<text x="307" y="140" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Standard normal</text>
 <rect x="327" y="127" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="141" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="326" y="126" width="49" height="28" rx="6" fill="none" stroke="#d97706" stroke-width="2" opacity="1"/>
@@ -49,8 +49,8 @@
 <text x="962.5" y="141" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="127" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="141" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="140" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 2</text>
-<text x="307" y="170" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Continuous uniform</text>
+<text x="1068" y="140" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 2</text>
+<text x="307" y="170" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Continuous uniform</text>
 <rect x="327" y="157" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="171" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="157" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
@@ -80,8 +80,8 @@
 <text x="962.5" y="171" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="157" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="171" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="170" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 5</text>
-<text x="307" y="200" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Six-sided die</text>
+<text x="1068" y="170" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 5</text>
+<text x="307" y="200" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Six-sided die</text>
 <rect x="327" y="187" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="201" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="187" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
@@ -111,8 +111,8 @@
 <text x="962.5" y="201" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="187" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="201" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="200" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 10</text>
-<text x="307" y="230" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Exponential</text>
+<text x="1068" y="200" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 10</text>
+<text x="307" y="230" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Exponential</text>
 <rect x="327" y="217" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="231" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="217" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
@@ -142,8 +142,8 @@
 <text x="962.5" y="231" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="217" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="231" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="230" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 100</text>
-<text x="307" y="260" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Poisson</text>
+<text x="1068" y="230" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 100</text>
+<text x="307" y="260" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Poisson</text>
 <rect x="327" y="247" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="261" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="247" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
@@ -173,8 +173,8 @@
 <text x="962.5" y="261" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="247" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="261" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="260" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 30</text>
-<text x="307" y="290" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Binomial (rare success)</text>
+<text x="1068" y="260" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 30</text>
+<text x="307" y="290" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Binomial (rare success)</text>
 <rect x="327" y="277" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="291" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="277" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
@@ -204,8 +204,8 @@
 <text x="962.5" y="291" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="277" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="291" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="290" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 50</text>
-<text x="307" y="320" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Binomial (symmetric)</text>
+<text x="1068" y="290" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 50</text>
+<text x="307" y="320" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Binomial (symmetric)</text>
 <rect x="327" y="307" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="321" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="307" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
@@ -235,8 +235,8 @@
 <text x="962.5" y="321" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="307" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="321" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="320" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 5</text>
-<text x="307" y="350" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Cauchy</text>
+<text x="1068" y="320" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 5</text>
+<text x="307" y="350" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Cauchy</text>
 <rect x="327" y="337" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="351" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="337" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
@@ -265,8 +265,8 @@
 <text x="962.5" y="351" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="990" y="337" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="351" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
-<text x="1068" y="350" fill="#b42318" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">no stable pass ≤ 500</text>
-<text x="307" y="380" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Dependent process</text>
+<text x="1068" y="350" fill="#b42318" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">no stable pass ≤ 500</text>
+<text x="307" y="380" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Dependent process</text>
 <rect x="327" y="367" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="381" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="367" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
@@ -295,8 +295,8 @@
 <text x="962.5" y="381" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="990" y="367" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="381" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
-<text x="1068" y="380" fill="#b42318" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">no stable pass ≤ 500</text>
-<text x="307" y="410" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Non-identical Bernoulli</text>
+<text x="1068" y="380" fill="#b42318" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">no stable pass ≤ 500</text>
+<text x="307" y="410" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Non-identical Bernoulli</text>
 <rect x="327" y="397" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="411" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="397" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
@@ -326,8 +326,8 @@
 <text x="962.5" y="411" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="397" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="411" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="410" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 75</text>
-<text x="307" y="440" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Two-component mixture</text>
+<text x="1068" y="410" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 75</text>
+<text x="307" y="440" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Two-component mixture</text>
 <rect x="327" y="427" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
 <text x="350.5" y="441" fill="#7b8794" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">–</text>
 <rect x="378" y="427" width="47" height="26" rx="5" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
@@ -357,11 +357,11 @@
 <text x="962.5" y="441" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
 <rect x="990" y="427" width="47" height="26" rx="5" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
 <text x="1013.5" y="441" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="700" text-anchor="middle" dominant-baseline="middle" opacity="1">✓</text>
-<text x="1068" y="440" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 50</text>
+<text x="1068" y="440" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable n = 50</text>
 <rect x="325" y="483" width="16" height="16" rx="4" fill="#d9f3f0" stroke="none" stroke-width="0" opacity="1"/>
-<text x="349" y="491" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">passes all four criteria</text>
+<text x="349" y="491" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">passes all four criteria</text>
 <rect x="515" y="483" width="16" height="16" rx="4" fill="#e8edf2" stroke="none" stroke-width="0" opacity="1"/>
-<text x="539" y="491" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">fails at least one criterion</text>
+<text x="539" y="491" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">fails at least one criterion</text>
 <rect x="755" y="483" width="16" height="16" rx="4" fill="none" stroke="#d97706" stroke-width="2" opacity="1"/>
-<text x="779" y="491" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable pass</text>
+<text x="779" y="491" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable pass</text>
 </svg>
