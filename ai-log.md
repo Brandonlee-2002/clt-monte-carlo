@@ -430,6 +430,23 @@ must be independently inspectable in the repository.
 - Decision: Favor consistent site navigation and a controlled visual width;
   keep the SVG files unchanged so their evidence labels remain reproducible.
 
+### 2026-09-17 — Wrapping the fifth experimental-design step
+
+- User prompt: “Visual 1, Box number 5 has text running off. Can you fix that?”
+- Goal: Keep the final pipeline label inside its card at the responsive homepage
+  width.
+- AI response summary: Changed “Apply the same screen” to a two-line label:
+  “Apply the same” and “screen.”
+- Validation: Regenerated the SVG assets and reviewed the updated pipeline
+  rendering for card-boundary overflow.
+- Problem found: The fifth card’s single-line title was wider than its inner
+  text area after responsive scaling.
+- Revision: Added conditional two-line title rendering for the fifth pipeline
+  step and moved its supporting detail line lower within the card.
+- Result: Box 5 now keeps both the title and supporting detail inside the card.
+- Decision: Preserve the full wording rather than reducing the font size, since
+  the two-line treatment is clearer and more consistent with the diagram.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

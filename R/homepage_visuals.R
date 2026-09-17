@@ -99,12 +99,26 @@ pipeline_steps <- data.frame(
 )
 step_x <- c(60, 285, 510, 735, 960)
 for (i in seq_len(nrow(pipeline_steps))) {
+  title_lines <- if (i == nrow(pipeline_steps)) {
+    c("Apply the same", "screen")
+  } else {
+    pipeline_steps$title[i]
+  }
+  title_markup <- if (length(title_lines) == 1L) {
+    svg_text(step_x[i] + 18, 162, title_lines, size = 16, weight = 700)
+  } else {
+    c(
+      svg_text(step_x[i] + 18, 157, title_lines[1], size = 16, weight = 700),
+      svg_text(step_x[i] + 18, 178, title_lines[2], size = 16, weight = 700)
+    )
+  }
+  detail_y <- if (length(title_lines) == 1L) 187 else 204
   pipeline <- c(
     pipeline,
     svg_rect(step_x[i], 105, 180, 118, fill = surface, stroke = border, stroke_width = 1, radius = 12),
     svg_text(step_x[i] + 18, 132, pipeline_steps$number[i], size = 12, fill = teal, weight = 700),
-    svg_text(step_x[i] + 18, 162, pipeline_steps$title[i], size = 16, weight = 700),
-    svg_text(step_x[i] + 18, 187, pipeline_steps$detail[i], size = 13, fill = slate),
+    title_markup,
+    svg_text(step_x[i] + 18, detail_y, pipeline_steps$detail[i], size = 13, fill = slate),
     if (i < nrow(pipeline_steps)) svg_line(step_x[i] + 186, 164, step_x[i + 1] - 10, 164, stroke = muted, width = 1.5, marker_end = "arrow") else character(0)
   )
 }
