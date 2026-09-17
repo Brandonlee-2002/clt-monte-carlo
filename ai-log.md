@@ -369,6 +369,26 @@ must be independently inspectable in the repository.
 - Decision: Do not push externally without explicit permission. Provide the
   exact commit/push step so the repository owner controls the deployment.
 
+### 2026-09-17 — Constraining homepage visual width
+
+- User prompt: “The visuals are too big, where its going through the right hand
+  side of the sidebar. What is the best way to fix this?”
+- Goal: Keep the evidence visuals readable without allowing them to overlap the
+  Quarto right-hand table of contents.
+- AI response summary: Recommended a responsive width constraint on the visual
+  panels rather than removing or hiding the sidebar.
+- Validation: Reviewed the supplied screenshots and confirmed that the SVGs
+  were stretching to the available viewport width instead of respecting their
+  designed 1,200-pixel canvas.
+- Problem found: The image `max-width` rule alone did not constrain the parent
+  visual panel, so the panels continued beneath the margin sidebar.
+- Revision: Added `max-width: 1200px` and `width: 100%` to `.homepage-visual` in
+  both `styles.css` and `docs/styles.css`.
+- Result: The panels remain fluid below 1,200 pixels and stop at the designed
+  width on larger screens, leaving the sidebar clear.
+- Decision: Preserve the sidebar and the full-resolution SVGs; constrain the
+  surrounding panel because it is the least disruptive responsive fix.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each
