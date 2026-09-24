@@ -527,6 +527,71 @@ must be independently inspectable in the repository.
 - Decision: Keep source/render cache directories ignored while explicitly
   tracking the generated figures required by the published `docs/` site.
 
+### 2026-09-24 — Adding an exhaustive every-integer sample-size sensitivity page
+
+- User prompt: Professor feedback asked to inspect every integer sample size—for
+  example, whether \(n = 28\) works when the summary grid shows \(n = 30\)—while
+  keeping the existing increment-based summary graphs.
+- Goal: Add a separate page that evaluates every integer \(n = 2, \ldots, 500\)
+  using the same normality criteria and stable-pass rule as the primary report.
+- AI response summary: Added `full-grid.qmd`, `R/run_full_grid.R`, and reusable
+  full-grid functions in `R/helpers.R`. The implementation generates one
+  reproducible path of length 500 per repetition and uses cumulative sums to
+  evaluate all integer sample means without running 499 separate simulations
+  for each population. Added an **Every sample size** navigation item and README
+  instructions.
+- Validation: The generator completed with 5,489 rows (11 populations × 499
+  integers). A second complete run produced identical MD5 hashes for both
+  generated CSV files. Quarto rendered `docs/full-grid.html`; the local window
+  table explicitly shows \(n = 25\) through \(n = 35\), and the heatmap was
+  visually reviewed with \(n = 28\) and \(n = 30\) markers.
+- Problem found: The first implementation attempted to name discarded sample
+  vectors when `keep_samples = FALSE`; the first heatmap orientation did not
+  match base R's `image()` matrix convention; and `reshape()` preserved source
+  row identifiers in the local table. Quarto also initially rejected LaTeX
+  backslashes in the YAML subtitle, and the generated heatmap figure required a
+  `.gitignore` exception.
+- Revision: Guarded sample-vector naming, transposed the heatmap data and added
+  cell boundaries, removed the unwanted table row identifiers, simplified the
+  YAML subtitle, and allowed `docs/full-grid_files/` to be published.
+- Result: The repository now contains an exhaustive integer-grid analysis page,
+  its reproducible source and generator, two CSV evidence tables, and the
+  generated HTML/PNG assets needed by GitHub Pages.
+- Decision: Keep the candidate-grid summaries as the primary communication
+  layer and present the every-integer scan as a sensitivity-analysis page. This
+  preserves readable summary graphs while directly answering the professor's
+  question about intermediate values such as \(n = 28\).
+
+### 2026-09-24 — Replacing the static every-n page with an interactive explorer
+
+- User prompt: “Could you build a slider that lets me choose the value of n and
+  whatever n is, I can see the results? I would also like to choose the type of
+  graph.”
+- Goal: Turn the every-integer analysis into an interactive page where a reader
+  can select the exact sample size, population, and evidence view.
+- AI response summary: Reworked `full-grid.qmd` into an interactive explorer
+  with an n slider from 2 through 500, a population selector, and four graph
+  modes: sampling distribution, normal Q-Q plot, diagnostic thresholds, and
+  all-population pass/fail comparison. Added a vanilla JavaScript renderer so
+  the page does not depend on an external charting CDN.
+- Validation: Generated compact visual data for 11 populations × 499 sample
+  sizes using the same reusable simulation paths. Validated the JSON structure,
+  JavaScript syntax, Quarto output, and asset paths. Served `docs/` over local
+  HTTP and verified that the controls loaded, the slider changed n, and the
+  graph selector changed the chart to a Q-Q plot.
+- Problem found: Opening the generated page as a `file://` URL blocked the
+  browser's `fetch()` call for the JSON data. Quarto also initially escaped the
+  nested controls as code because the HTML was not marked as a raw HTML block.
+- Revision: Verified the page over HTTP, wrapped the explorer in a Quarto
+  `{=html}` block, and replaced awkward inline LaTeX ellipses with plain text in
+  the explanatory copy.
+- Result: The published page now supports immediate, interactive inspection of
+  any integer sample size and graph type while retaining the static summary
+  report for high-level communication.
+- Decision: Use precomputed, reproducible JSON visual summaries rather than
+  running R in the browser. This keeps GitHub Pages static, fast to interact
+  with, and independent of a server process.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

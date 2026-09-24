@@ -11,6 +11,8 @@ website:
     left:
       - href: final-summary.qmd
         text: Final summary
+      - href: full-grid.qmd
+        text: Interactive explorer
       - text: Analyses
         menu:
           - href: analyses/01-normal.qmd

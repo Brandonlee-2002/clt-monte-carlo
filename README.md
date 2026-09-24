@@ -11,7 +11,11 @@ sampling distribution of a sample mean approaches normality.
 - `Inference/` contains the class handouts and rendered reference documents.
 - `analyses/` contains one analysis for each population or process.
 - `final-summary.qmd` compares the populations and answers the larger CLT questions.
+- `full-grid.qmd` provides an interactive slider from `n = 2` through `n = 500`
+  with selectable sampling-distribution, Q-Q, diagnostic, and comparison graphs.
 - `R/helpers.R` contains the shared simulation, diagnostic, and summary functions.
+- `R/run_full_grid.R` generates the exhaustive integer-grid diagnostic tables.
+- `R/run_interactive_data.R` generates the compact JSON used by the explorer.
 - `R/homepage_visuals.R` regenerates the three evidence visuals shown on the home page.
 - `results/` stores generated summary tables and figures when the project is run.
 - `ai-log.md` records AI prompts, validation, revisions, and remaining limitations.
@@ -32,6 +36,16 @@ sampling distribution of a sample mean approaches normality.
 
 To regenerate only the CSV result tables from the command line, run
 `Rscript R/run_all.R` from the repository root.
+
+To regenerate the exhaustive every-integer sensitivity analysis, run
+`Rscript R/run_full_grid.R`. This writes
+`results/tables/full_grid_diagnostics.csv` and
+`results/tables/full_grid_summary.csv`.
+
+To regenerate the interactive graph data, run
+`Rscript R/run_interactive_data.R` after the full-grid diagnostics have been
+updated. This step uses the `jsonlite` package; install it once with
+`install.packages("jsonlite")` if needed.
 
 To regenerate the homepage SVG visuals after refreshing the result tables, run
 `Rscript R/homepage_visuals.R` from the repository root.

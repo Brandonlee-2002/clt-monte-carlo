@@ -212,7 +212,7 @@ study_population <- function(population, seed = 6599L, B = B_DEFAULT,
 
   selected <- which(diagnostics$stable_pass)[1]
   selected_n <- if (is.na(selected)) NA_integer_ else diagnostics$n[selected]
-  names(samples) <- as.character(n_values)
+  if (keep_samples) names(samples) <- as.character(n_values)
 
   list(
     population = population,
@@ -250,6 +250,118 @@ run_all_studies <- function(seed = 6599L, B = B_DEFAULT,
   studies <- lapply(populations, function(population) {
     study_population(population, seed = seed, B = B,
                      n_values = n_values, keep_samples = keep_samples)
+  })
+  names(studies) <- populations
+  studies
+}
+
+# Generate the reusable B x max_n observation matrix used by the fine-grid
+# analysis and by the interactive explorer. Keeping this path construction in
+# one function makes the two published views use the same simulation design.
+full_grid_observations <- function(population, spec, B, max_n) {
+  # These populations are iid, so one B x max_n matrix can be reused for all n.
+  iid_populations <- c(
+    "normal", "uniform", "die", "exponential", "poisson",
+    "binomial_small", "binomial_large", "cauchy", "mixture"
+  )
+
+  if (population %in% iid_populations) {
+    return(matrix(
+      replicate(max_n, spec$generator(B)),
+      nrow = B,
+      ncol = max_n
+    ))
+  }
+
+  if (population == "nonidentical_bernoulli") {
+    probabilities <- seq(0.50, 0.90, length.out = max_n)
+    uniforms <- matrix(runif(B * max_n), nrow = B, ncol = max_n)
+    return(sweep(uniforms, 2, probabilities, "<") * 1)
+  }
+
+  if (population == "dependent_machine") {
+    rho <- 0.80
+    z <- matrix(0, nrow = B, ncol = max_n)
+    z[, 1] <- rnorm(B)
+    if (max_n > 1L) {
+      for (j in 2:max_n) {
+        z[, j] <- rho * z[, j - 1] + sqrt(1 - rho^2) * rnorm(B)
+      }
+    }
+    return(-log(pmax(pnorm(z), .Machine$double.xmin)))
+  }
+
+  stop("No full-grid generator defined for: ", population)
+}
+
+# Fine-grid version used for the exhaustive sensitivity analysis. Instead of
+# running a separate 10,000-repetition experiment for every n, this function
+# generates one reusable path of length max(n_values) for each repetition and
+# obtains every sample mean from cumulative sums. The normality diagnostics and
+# the stable-pass rule are otherwise identical to study_population().
+study_population_full_grid <- function(population, seed = 6599L,
+                                       B = B_DEFAULT, n_values = 2:500,
+                                       keep_samples = FALSE) {
+  specs <- population_specs()
+  spec <- specs[[population]]
+  if (is.null(spec)) stop("Unknown population: ", population)
+
+  n_values <- sort(unique(as.integer(n_values)))
+  if (!length(n_values) || any(!is.finite(n_values)) || any(n_values < 1L)) {
+    stop("n_values must contain positive integers")
+  }
+
+  max_n <- max(n_values)
+  set.seed(seed)
+
+  observations <- full_grid_observations(population, spec, B, max_n)
+
+  cumulative <- t(apply(observations, 1, cumsum))
+  diagnostics <- vector("list", length(n_values))
+  samples <- if (keep_samples) vector("list", length(n_values)) else list()
+
+  for (i in seq_along(n_values)) {
+    n <- n_values[i]
+    sample_means <- cumulative[, n] / n
+    if (keep_samples) samples[[i]] <- sample_means
+    diagnostics[[i]] <- diagnose_sample_means(sample_means, n, spec)
+  }
+
+  diagnostics <- do.call(rbind, diagnostics)
+  diagnostics$stable_pass <- vapply(seq_len(nrow(diagnostics)), function(i) {
+    j <- i:min(i + NORMAL_CRITERIA$consecutive_passes - 1L,
+               nrow(diagnostics))
+    length(j) == NORMAL_CRITERIA$consecutive_passes &&
+      all(diagnostics$normal_enough[j])
+  }, logical(1))
+
+  selected <- which(diagnostics$stable_pass)[1]
+  selected_n <- if (is.na(selected)) NA_integer_ else diagnostics$n[selected]
+  if (keep_samples) names(samples) <- as.character(n_values)
+
+  list(
+    population = population,
+    spec = spec,
+    seed = seed,
+    B = B,
+    n_values = n_values,
+    diagnostics = diagnostics,
+    samples = samples,
+    selected_n = selected_n,
+    criteria = NORMAL_CRITERIA,
+    design = "Reusable simulation path with cumulative means for every integer n."
+  )
+}
+
+run_all_studies_full_grid <- function(seed = 6599L, B = B_DEFAULT,
+                                      n_values = 2:500,
+                                      keep_samples = FALSE) {
+  populations <- names(population_specs())
+  studies <- lapply(populations, function(population) {
+    study_population_full_grid(
+      population, seed = seed, B = B, n_values = n_values,
+      keep_samples = keep_samples
+    )
   })
   names(studies) <- populations
   studies

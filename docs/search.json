@@ -726,5 +726,61 @@
     "title": "Cauchy Population",
     "section": "6 Reproducibility check",
     "text": "6 Reproducibility check\n\n\nCode\nreproducibility_check(\"cauchy\", n = plot_n, seed_a = student_id,\n                      seed_b = 2026L, B = B)\n\n\n  seed simulated_mean simulated_sd skewness excess_kurtosis\n1 6599      4.1905855    334.26111 87.46118        8213.515\n2 2026      0.7312819     77.49533 63.95637        5618.054"
+  },
+  {
+    "objectID": "full-grid.html",
+    "href": "full-grid.html",
+    "title": "Explore Every Sample Size",
+    "section": "",
+    "text": "This interactive explorer is the detailed companion to the report’s increment-based summary graphs. The slider evaluates every integer n from 2 through 500 using the same four normality criteria and the same 10,000-repetition simulation design."
+  },
+  {
+    "objectID": "full-grid.html#the-question-your-professor-raised",
+    "href": "full-grid.html#the-question-your-professor-raised",
+    "title": "Every Sample Size",
+    "section": "1 The question your professor raised",
+    "text": "1 The question your professor raised\nIf a candidate grid reports a pass at (n=30), that does not by itself establish what happens at (n=28). The exhaustive scan answers that narrower question by checking each integer separately.\n\n\nCode\nlocal_window &lt;- subset(diagnostics, n %in% 25:35)\nlocal_window$normal_enough &lt;- ifelse(\n  local_window$normal_enough, \"Pass\", \"Fail\"\n)\nlocal_window &lt;- local_window[, c(\"population\", \"n\", \"normal_enough\")]\nlocal_window &lt;- reshape(\n  local_window,\n  idvar = \"population\",\n  timevar = \"n\",\n  direction = \"wide\"\n)\nnames(local_window) &lt;- sub(\n  \"^normal_enough\\\\.\",\n  \"n = \",\n  names(local_window)\n)\nlocal_window &lt;- local_window[order(local_window$population), ]\nrownames(local_window) &lt;- NULL\nknitr::kable(\n  local_window,\n  caption = \"Every integer in the local neighborhood of n = 30.\",\n  align = c(\"l\", rep(\"c\", 11))\n)\n\n\n\nPass/fail results for every integer n from 25 through 35.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npopulation\nn = 25\nn = 26\nn = 27\nn = 28\nn = 29\nn = 30\nn = 31\nn = 32\nn = 33\nn = 34\nn = 35\n\n\n\n\nBinomial(size = 20, p = .50)\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\n\n\nBinomial(size = 5, p = .10)\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\n\n\nCauchy(location = 0, scale = 1)\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\n\n\nContinuous Uniform\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\n\n\nDependent machine-failure process\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\n\n\nExponential(rate = 1)\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\n\n\nNon-identical Bernoulli process\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\n\n\nPoisson(lambda = 1)\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\n\n\nSix-Sided Die\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\n\n\nStandard Normal\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\nPass\n\n\nTwo-component mixture\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\nFail\n\n\n\n\n\nA single passing integer is not the project’s final decision rule. The selected threshold is the first integer (n) followed by two more consecutive passing integers. That stability requirement reduces the chance that a borderline diagnostic fluctuation is mistaken for a durable transition."
+  },
+  {
+    "objectID": "full-grid.html#evidence-across-the-complete-integer-grid",
+    "href": "full-grid.html#evidence-across-the-complete-integer-grid",
+    "title": "Every Sample Size",
+    "section": "2 Evidence across the complete integer grid",
+    "text": "2 Evidence across the complete integer grid\nThe heatmap below records the same four-criterion screen at all 499 candidate sample sizes. Green means that the diagnostics pass at that exact integer; gray means that at least one diagnostic fails. The vertical markers make the professor’s example visible while preserving the full range of the scan.\n\n\nCode\nn_grid &lt;- sort(unique(diagnostics$n))\nstatus &lt;- matrix(\n  as.integer(diagnostics$normal_enough),\n  nrow = length(population_order),\n  ncol = length(n_grid),\n  byrow = TRUE,\n  dimnames = list(population_order, n_grid)\n)\n\nplot_order &lt;- rev(population_order)\nstatus_plot &lt;- status[plot_order, , drop = FALSE]\n\npar(\n  mar = c(7.2, 2.2, 1.8, 1.2),\n  oma = c(0, 19, 0, 0),\n  mgp = c(2.2, 0.65, 0),\n  tcl = -0.25\n)\nimage(\n  x = c(\n    n_grid[1] - 0.5,\n    (n_grid[-1] + n_grid[-length(n_grid)]) / 2,\n    n_grid[length(n_grid)] + 0.5\n  ),\n  y = seq(0.5, length(plot_order) + 0.5, by = 1),\n  z = t(status_plot),\n  col = c(\"#e8edf2\", \"#c9f0eb\"),\n  zlim = c(0, 1),\n  axes = FALSE,\n  xlab = \"Sample size n\",\n  ylab = \"\"\n)\naxis(\n  1,\n  at = c(2, 50, 100, 200, 300, 400, 500),\n  labels = c(2, 50, 100, 200, 300, 400, 500)\n)\naxis(\n  2,\n  at = seq_along(plot_order),\n  labels = plot_order,\n  las = 2,\n  tick = FALSE\n)\nabline(v = 28, col = \"#d97706\", lty = 2, lwd = 1.4)\nabline(v = 30, col = \"#b45309\", lty = 3, lwd = 1.4)\nlegend(\n  \"bottom\",\n  inset = c(0, -0.28),\n  xpd = NA,\n  horiz = TRUE,\n  bty = \"n\",\n  cex = 0.8,\n  legend = c(\"Fails at least one criterion\", \"Passes all four criteria\",\n             \"n = 28\", \"n = 30\"),\n  fill = c(\"#e8edf2\", \"#c9f0eb\", NA, NA),\n  border = NA,\n  lty = c(NA, NA, 2, 3),\n  col = c(NA, NA, \"#d97706\", \"#b45309\"),\n  lwd = c(NA, NA, 1.4, 1.4),\n  pch = c(NA, NA, NA, NA),\n  pt.cex = 0\n)\n\n\n\n\n\nDiagnostic pass/fail status for every integer sample size."
+  },
+  {
+    "objectID": "full-grid.html#exhaustive-grid-thresholds",
+    "href": "full-grid.html#exhaustive-grid-thresholds",
+    "title": "Every Sample Size",
+    "section": "3 Exhaustive-grid thresholds",
+    "text": "3 Exhaustive-grid thresholds\nThe table below applies the same three-consecutive-pass rule to the complete integer grid. A missing threshold means that no stable pass occurred by (n=500).\n\n\nCode\nsummary_display &lt;- summary\nnames(summary_display) &lt;- c(\n  \"Population\", \"First stable n\", \"Skewness\", \"Excess kurtosis\",\n  \"Q-Q correlation\", \"Q-Q RMSE\", \"Conclusion\"\n)\nknitr::kable(\n  summary_display,\n  caption = \"Population-specific thresholds from every integer n = 2,...,500.\",\n  digits = 4,\n  align = c(\"l\", \"c\", \"r\", \"r\", \"r\", \"r\", \"l\")\n)\n\n\n\nFirst stable threshold from the exhaustive integer scan.\n\n\n\n\n\n\n\n\n\n\n\nPopulation\nFirst stable n\nSkewness\nExcess kurtosis\nQ-Q correlation\nQ-Q RMSE\nConclusion\n\n\n\n\nStandard Normal\n2\n0.0098\n-0.0658\n0.9999\n0.0130\nFirst stable pass at n = 2\n\n\nContinuous Uniform\n5\n0.0333\n-0.1974\n0.9997\n0.0247\nFirst stable pass at n = 5\n\n\nSix-Sided Die\n6\n0.0089\n-0.2620\n0.9972\n0.0748\nFirst stable pass at n = 6\n\n\nExponential(rate = 1)\n100\n0.1995\n0.0768\n0.9988\n0.0484\nFirst stable pass at n = 100\n\n\nPoisson(lambda = 1)\n25\n0.1803\n0.0864\n0.9974\n0.0725\nFirst stable pass at n = 25\n\n\nBinomial(size = 5, p = .10)\n41\n0.1621\n0.0664\n0.9969\n0.0792\nFirst stable pass at n = 41\n\n\nBinomial(size = 20, p = .50)\n3\n0.0210\n0.0022\n0.9972\n0.0753\nFirst stable pass at n = 3\n\n\nCauchy(location = 0, scale = 1)\nNA\n87.3804\n8205.4837\n0.0937\n1.3463\nNo stable n met all criteria in the investigated range.\n\n\nDependent machine-failure process\nNA\n0.2273\n0.1360\n0.9985\n0.0550\nNo stable n met all criteria in the investigated range.\n\n\nNon-identical Bernoulli process\n54\n0.0257\n-0.0309\n0.9968\n0.0798\nFirst stable pass at n = 54\n\n\nTwo-component mixture\n54\n0.1908\n0.0445\n0.9989\n0.0461\nFirst stable pass at n = 54\n\n\n\n\n\nThese thresholds are still operational conclusions, not universal constants. They depend on the population or process, the number of simulated repetitions, the diagnostic tolerances, the consecutive-pass requirement, and the investigated range. The exhaustive page makes the sensitivity to the integer grid explicit; it does not remove the judgment involved in defining “reasonably defensible.”"
+  },
+  {
+    "objectID": "full-grid.html#reproduce-the-scan",
+    "href": "full-grid.html#reproduce-the-scan",
+    "title": "Every Sample Size",
+    "section": "4 Reproduce the scan",
+    "text": "4 Reproduce the scan\nFrom the repository root:\nRscript R/run_full_grid.R\nquarto render full-grid.qmd --no-clean --cache-refresh\nThe row-level evidence is written to results/tables/full_grid_diagnostics.csv, and the population-level summary is written to results/tables/full_grid_summary.csv. The simulation seed is the student ID value recorded in R/run_full_grid.R."
+  },
+  {
+    "objectID": "full-grid.html#interactive-explorer",
+    "href": "full-grid.html#interactive-explorer",
+    "title": "Explore Every Sample Size",
+    "section": "1 Interactive explorer",
+    "text": "1 Interactive explorer\nMove the slider to inspect a specific sample size, or choose a graph type to change the evidence shown below.\n\n  \n    \n      Population\n      \n    \n\n    \n      Graph type\n      \n        Sampling distribution\n        Normal Q-Q plot\n        Diagnostic thresholds\n        All populations at this n\n      \n    \n\n    \n      Sample size 30\n      \n      n = 2n = 500\n    \n  \n\n  \n    Loading precomputed simulation evidence…\n  \n  \n\n  \n    Loading…"
+  },
+  {
+    "objectID": "full-grid.html#how-to-interpret-the-explorer",
+    "href": "full-grid.html#how-to-interpret-the-explorer",
+    "title": "Explore Every Sample Size",
+    "section": "2 How to interpret the explorer",
+    "text": "2 How to interpret the explorer\n\nSampling distribution shows the simulated distribution of the 10,000 sample means at the selected n.\nNormal Q-Q plot compares standardized simulated quantiles with theoretical normal quantiles. Points closer to the dashed diagonal indicate closer agreement.\nDiagnostic thresholds shows the four numerical criteria as criterion-load bars. A bar ending at or before the orange boundary passes that criterion.\nAll populations at this n compares the pass/fail screen across every population at the selected integer.\n\nThe status badge refers to the exact selected integer. The “first stable pass” line refers to the first n followed by two additional consecutive passing integers.\n\n\n\n\n\n\nNote\n\n\n\nThe interactive page uses one reproducible simulation path per population and cumulative sums to make every integer n available efficiently. Because the primary candidate-grid experiments reset the seed separately for each candidate, small Monte Carlo differences between the two views are expected. The diagnostic criteria and stable-pass rule are unchanged."
+  },
+  {
+    "objectID": "full-grid.html#reproduce-the-interactive-data",
+    "href": "full-grid.html#reproduce-the-interactive-data",
+    "title": "Explore Every Sample Size",
+    "section": "3 Reproduce the interactive data",
+    "text": "3 Reproduce the interactive data\nFrom the repository root:\nRscript R/run_full_grid.R\nRscript R/run_interactive_data.R\nquarto render full-grid.qmd --no-clean --cache-refresh\nThe compact visual data are saved to results/tables/full_grid_visuals.json and copied to docs/assets/full-grid-visuals.json for the published site. The interactive JavaScript is maintained in assets/full-grid-explorer.js."
   }
 ]

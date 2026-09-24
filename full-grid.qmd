@@ -1,0 +1,103 @@
+---
+title: "Explore Every Sample Size"
+subtitle: "Choose an integer n, choose the graph, and inspect the evidence immediately"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+execute:
+  echo: false
+---
+
+This interactive explorer is the detailed companion to the report's increment-based
+summary graphs. The slider evaluates every integer n from 2 through 500 using the
+same four normality criteria and the same 10,000-repetition simulation design.
+
+## Interactive explorer
+
+Move the slider to inspect a specific sample size, or choose a graph type to change
+the evidence shown below.
+
+```{=html}
+<div id="clt-explorer" class="clt-explorer"
+     data-url="assets/full-grid-visuals.json">
+  <div class="explorer-controls">
+    <label class="explorer-control">
+      <span>Population</span>
+      <select id="clt-population" aria-label="Choose a population"></select>
+    </label>
+
+    <label class="explorer-control">
+      <span>Graph type</span>
+      <select id="clt-graph" aria-label="Choose a graph type">
+        <option value="histogram">Sampling distribution</option>
+        <option value="qq">Normal Q-Q plot</option>
+        <option value="diagnostics">Diagnostic thresholds</option>
+        <option value="comparison">All populations at this n</option>
+      </select>
+    </label>
+
+    <label class="explorer-control explorer-slider">
+      <span>Sample size <output id="clt-n-output">30</output></span>
+      <input id="clt-n" type="range" min="2" max="500" step="1" value="30"
+             aria-label="Choose sample size">
+      <span class="explorer-range"><span>n = 2</span><span>n = 500</span></span>
+    </label>
+  </div>
+
+  <div id="clt-loading" class="explorer-loading" role="status">
+    Loading precomputed simulation evidence…
+  </div>
+  <div id="clt-error" class="explorer-error" role="alert" hidden></div>
+
+  <div class="explorer-summary">
+    <div id="clt-status" class="explorer-status">Loading…</div>
+    <p id="clt-stable" class="explorer-stable"></p>
+    <p id="clt-description" class="explorer-description"></p>
+  </div>
+
+  <div id="clt-metrics" class="explorer-metrics" aria-live="polite"></div>
+  <svg id="clt-plot" class="explorer-plot"
+       role="img" aria-label="Interactive simulation graph"></svg>
+</div>
+
+<script src="assets/full-grid-explorer.js"></script>
+```
+
+## How to interpret the explorer
+
+- **Sampling distribution** shows the simulated distribution of the 10,000 sample
+  means at the selected n.
+- **Normal Q-Q plot** compares standardized simulated quantiles with theoretical
+  normal quantiles. Points closer to the dashed diagonal indicate closer agreement.
+- **Diagnostic thresholds** shows the four numerical criteria as criterion-load
+  bars. A bar ending at or before the orange boundary passes that criterion.
+- **All populations at this n** compares the pass/fail screen across every
+  population at the selected integer.
+
+The status badge refers to the exact selected integer. The “first stable pass”
+line refers to the first n followed by two additional consecutive passing
+integers.
+
+::: {.callout-note}
+The interactive page uses one reproducible simulation path per population and
+cumulative sums to make every integer n available efficiently. Because the
+primary candidate-grid experiments reset the seed separately for each candidate,
+small Monte Carlo differences between the two views are expected. The diagnostic
+criteria and stable-pass rule are unchanged.
+:::
+
+## Reproduce the interactive data
+
+From the repository root:
+
+```bash
+Rscript R/run_full_grid.R
+Rscript R/run_interactive_data.R
+quarto render full-grid.qmd --no-clean --cache-refresh
+```
+
+The compact visual data are saved to
+`results/tables/full_grid_visuals.json` and copied to
+`docs/assets/full-grid-visuals.json` for the published site. The interactive
+JavaScript is maintained in `assets/full-grid-explorer.js`.
