@@ -505,6 +505,28 @@ must be independently inspectable in the repository.
   correctly positioned if the heatmap width changes.
 - Decision: Use calculated geometry instead of another fixed x-coordinate.
 
+### 2026-09-17 — Restoring generated analysis-page figures
+
+- User prompt: “Standard normal population page is broken, some visuals are
+  not popping up. Can you check every page to make sure there are no visual
+  problems?”
+- Goal: Audit all analysis pages and ensure their rendered figures are
+  available to GitHub Pages.
+- AI response summary: Checked all 11 HTML pages, their image references, local
+  figure files, and Git ignore rules.
+- Validation: Confirmed every analysis HTML page references one local PNG under
+  its matching `docs/analyses/*_files/figure-html/` directory. `git check-ignore`
+  showed those files were excluded by the broad `*_files/` rule.
+- Problem found: The generated PNGs existed locally but were ignored, so the
+  deployment artifact did not contain them and the live pages displayed broken
+  image links.
+- Revision: Added targeted `.gitignore` exceptions for published Quarto figure
+  assets under `docs/analyses/`.
+- Result: All 11 analysis-page figure directories are now eligible to be
+  committed and deployed, including the standard-normal page.
+- Decision: Keep source/render cache directories ignored while explicitly
+  tracking the generated figures required by the published `docs/` site.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

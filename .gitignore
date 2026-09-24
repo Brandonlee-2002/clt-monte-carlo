@@ -3,6 +3,11 @@
 /.Rproj.user/
 *_files/
 *_cache/
+# Quarto-generated figure assets are part of the published site.
+!docs/analyses/
+!docs/analyses/*_files/
+!docs/analyses/*_files/figure-html/
+!docs/analyses/*_files/figure-html/*.png
 /site_libs/
 /index.html
 /final-summary.html
