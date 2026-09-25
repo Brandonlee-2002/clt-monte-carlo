@@ -250,6 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#replacing-the-provisional-mixture-with-the-supplied-age-at-death-distribution" id="toc-replacing-the-provisional-mixture-with-the-supplied-age-at-death-distribution" class="nav-link" data-scroll-target="#replacing-the-provisional-mixture-with-the-supplied-age-at-death-distribution"><span class="header-section-number">1.2.27</span> 2026-09-25 — Replacing the provisional mixture with the supplied age-at-death distribution</a></li>
   <li><a href="#adding-a-large-population-simulation-summary" id="toc-adding-a-large-population-simulation-summary" class="nav-link" data-scroll-target="#adding-a-large-population-simulation-summary"><span class="header-section-number">1.2.28</span> 2026-09-25 — Adding a large-population simulation summary</a></li>
   <li><a href="#using-the-recorded-student-seed-for-the-simulation-summary" id="toc-using-the-recorded-student-seed-for-the-simulation-summary" class="nav-link" data-scroll-target="#using-the-recorded-student-seed-for-the-simulation-summary"><span class="header-section-number">1.2.29</span> 2026-09-25 — Using the recorded student seed for the simulation summary</a></li>
+  <li><a href="#auditing-and-updating-html-seed-references" id="toc-auditing-and-updating-html-seed-references" class="nav-link" data-scroll-target="#auditing-and-updating-html-seed-references"><span class="header-section-number">1.2.30</span> 2026-09-25 — Auditing and updating HTML seed references</a></li>
+  <li><a href="#restoring-the-reference-html-and-keeping-seed-6599-in-analysis-11" id="toc-restoring-the-reference-html-and-keeping-seed-6599-in-analysis-11" class="nav-link" data-scroll-target="#restoring-the-reference-html-and-keeping-seed-6599-in-analysis-11"><span class="header-section-number">1.2.31</span> 2026-09-25 — Restoring the reference HTML and keeping seed 6599 in analysis 11</a></li>
   </ul></li>
   <li><a href="#template-for-future-interactions" id="toc-template-for-future-interactions" class="nav-link" data-scroll-target="#template-for-future-interactions"><span class="header-section-number">1.3</span> Template for future interactions</a>
   <ul class="collapse">
@@ -702,6 +704,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Revision: Kept the reference HTML unchanged for provenance and used <code>set.seed(student_id)</code> only in the project analysis.</li>
 <li>Result: The simulation summary now uses the same student seed as the CLT experiments and other reproducibility checks.</li>
 <li>Decision: Treat <code>student_id &lt;- 6599L</code> as the project-wide seed until it is replaced with the intended last four digits of the student ID.</li>
+</ul>
+</section>
+<section id="auditing-and-updating-html-seed-references" class="level3" data-number="1.2.30">
+<h3 data-number="1.2.30" class="anchored" data-anchor-id="auditing-and-updating-html-seed-references"><span class="header-section-number">1.2.30</span> 2026-09-25 — Auditing and updating HTML seed references</h3>
+<ul>
+<li>User prompt: “The HTML should reflect using my seed. Double check all HTML files to make sure seed 6599 is being used. If seed 6599 is not being used, update the seed and rerun the processes.”</li>
+<li>Goal: Ensure the project-facing HTML and the custom age-at-death reference page consistently document the student seed and display outputs generated from that seed.</li>
+<li>AI response summary: Audited all generated project HTML pages and found their primary analysis seed was already <code>6599</code>; the separate <code>2026</code> rows are intentional sensitivity checks. The custom age-at-death HTML in <code>Inference/</code> still contained the lesson’s demonstration seed <code>123</code>, so its embedded code and displayed random outputs were updated to <code>6599</code> and regenerated with the same distribution code.</li>
+<li>Validation: Recomputed the reference page’s 10-value sample, 100,000-person summary, and 10,000 sample-mean simulation with R and seed <code>6599</code>. Confirmed the custom HTML contains only <code>set.seed(6599)</code> calls and confirmed every project analysis HTML contains the primary student seed marker.</li>
+<li>Problem found: The other HTML files in <code>Inference/</code> are unrelated class lessons; changing their instructional demonstration seeds would alter professor-provided teaching material rather than project evidence.</li>
+<li>Revision: Updated only the project-related custom age-at-death reference HTML and left unrelated class-lesson HTML unchanged. Corrected the earlier log entry’s statement that the reference HTML would remain unchanged.</li>
+<li>Result: The project analysis pages and the custom age-at-death HTML now use seed <code>6599</code> for their primary examples and displayed results.</li>
+<li>Decision: Keep <code>2026</code> as the explicitly labeled alternate seed for sensitivity checks, and keep unrelated instructional lesson seeds unchanged.</li>
+</ul>
+</section>
+<section id="restoring-the-reference-html-and-keeping-seed-6599-in-analysis-11" class="level3" data-number="1.2.31">
+<h3 data-number="1.2.31" class="anchored" data-anchor-id="restoring-the-reference-html-and-keeping-seed-6599-in-analysis-11"><span class="header-section-number">1.2.31</span> 2026-09-25 — Restoring the reference HTML and keeping seed 6599 in analysis 11</h3>
+<ul>
+<li>User prompt: “You don’t need to change <code>custom_age</code>, but change the analyses page for 11 mixture.”</li>
+<li>Goal: Preserve the supplied reference HTML exactly as lesson material while ensuring the project’s <code>11-mixture</code> analysis uses the student seed.</li>
+<li>AI response summary: Restored the reference HTML’s original demonstration seed <code>123</code> and its original displayed outputs. Confirmed that <code>analyses/11-mixture.qmd</code> uses <code>student_id &lt;- 6599L</code> for the population study, the 100,000-person simulation summary, and the primary reproducibility row.</li>
+<li>Validation: Checked the generated <code>docs/analyses/11-mixture.html</code> for the <code>6599</code> student seed and rerendered the analysis page previously using that seed. The unrelated reference document remains unchanged in purpose.</li>
+<li>Problem found: The prior audit changed a professor-provided reference HTML that was not part of the requested project output.</li>
+<li>Revision: Reversed those reference-file edits and retained the project seed only in the analysis source and generated project page.</li>
+<li>Result: The reference HTML is preserved, while the submitted custom age-at-death analysis remains reproducible with seed <code>6599</code>.</li>
+<li>Decision: Treat <code>Inference/custom_age_at_death_distribution_monte_carlo.html</code> as reference material and <code>analyses/11-mixture.qmd</code> plus its generated HTML as the authoritative project analysis.</li>
 </ul>
 </section>
 </section>
@@ -1880,44 +1908,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Treat <span class="in">`student_id &lt;- 6599L`</span> as the project-wide seed until it is</span>
 <span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a>  replaced with the intended last four digits of the student ID.</span>
 <span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a><span class="fu">## Template for future interactions</span></span>
+<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-25 — Auditing and updating HTML seed references</span></span>
 <span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a>Copy this template and append it below the historical record for each</span>
-<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a>meaningful future request.</span>
-<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a><span class="fu">### [YYYY-MM-DD] — [Short change title]</span></span>
-<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “<span class="co">[</span><span class="ot">Exact request or a faithful short quotation.</span><span class="co">]</span>”</span>
-<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: <span class="co">[</span><span class="ot">What problem were we trying to solve?</span><span class="co">]</span></span>
-<span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: <span class="co">[</span><span class="ot">What was suggested or changed?</span><span class="co">]</span></span>
-<span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: [What did I run, inspect, compare with the handout, or review</span>
-<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a>  visually?]</span>
-<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: <span class="co">[</span><span class="ot">What failed, remained uncertain, or needed clarification?</span><span class="co">]</span></span>
-<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: <span class="co">[</span><span class="ot">What changed after validation?</span><span class="co">]</span></span>
-<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: <span class="co">[</span><span class="ot">What files, outputs, or conclusions changed?</span><span class="co">]</span></span>
-<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: <span class="co">[</span><span class="ot">What did I accept, reject, or leave provisional, and why?</span><span class="co">]</span></span>
-<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a><span class="fu">## Future logging workflow</span></span>
-<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Before making a change, record the date, prompt, and goal.</span>
-<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>After implementation, record the files changed and the AI response summary.</span>
-<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run an appropriate validation check: simulation, render, link check,</span>
-<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a>   'git diff --check', or visual review.</span>
-<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Record any failure or limitation rather than silently removing it.</span>
-<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Finish with the decision and the reason for accepting the result.</span>
-<span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrity notes</span></span>
-<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI helped draft code, documentation, interpretations, and presentation</span>
-<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a>  structure; AI suggestions were treated as hypotheses to inspect.</span>
-<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The simulation evidence is generated from the repository’s R code and</span>
-<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a>  recorded seed, not copied from an AI response.</span>
-<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provisional population models are explicitly labeled and should be replaced</span>
-<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a>  if the instructor supplies official specifications.</span>
-<span id="cb1-715"><a href="#cb1-715" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generated HTML belongs in 'docs/'; the '.qmd' and '.R' files are the</span>
-<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a>  authoritative sources.</span>
-<span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I should be able to explain the submitted code, diagnostics, limitations,</span>
-<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a>  and conclusions.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “The HTML should reflect using my seed. Double check all HTML</span>
+<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a>  files to make sure seed 6599 is being used. If seed 6599 is not being used,</span>
+<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a>  update the seed and rerun the processes.”</span>
+<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Ensure the project-facing HTML and the custom age-at-death reference</span>
+<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a>  page consistently document the student seed and display outputs generated</span>
+<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a>  from that seed.</span>
+<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Audited all generated project HTML pages and found their</span>
+<span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a>  primary analysis seed was already <span class="in">`6599`</span>; the separate <span class="in">`2026`</span> rows are</span>
+<span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a>  intentional sensitivity checks. The custom age-at-death HTML in <span class="in">`Inference/`</span></span>
+<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a>  still contained the lesson’s demonstration seed <span class="in">`123`</span>, so its embedded code</span>
+<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a>  and displayed random outputs were updated to <span class="in">`6599`</span> and regenerated with the</span>
+<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a>  same distribution code.</span>
+<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Recomputed the reference page’s 10-value sample, 100,000-person</span>
+<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a>  summary, and 10,000 sample-mean simulation with R and seed <span class="in">`6599`</span>. Confirmed</span>
+<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a>  the custom HTML contains only <span class="in">`set.seed(6599)`</span> calls and confirmed every</span>
+<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a>  project analysis HTML contains the primary student seed marker.</span>
+<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: The other HTML files in <span class="in">`Inference/`</span> are unrelated class</span>
+<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a>  lessons; changing their instructional demonstration seeds would alter</span>
+<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a>  professor-provided teaching material rather than project evidence.</span>
+<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Updated only the project-related custom age-at-death reference HTML</span>
+<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a>  and left unrelated class-lesson HTML unchanged. Corrected the earlier log</span>
+<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a>  entry’s statement that the reference HTML would remain unchanged.</span>
+<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The project analysis pages and the custom age-at-death HTML now use</span>
+<span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a>  seed <span class="in">`6599`</span> for their primary examples and displayed results.</span>
+<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Keep <span class="in">`2026`</span> as the explicitly labeled alternate seed for sensitivity</span>
+<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a>  checks, and keep unrelated instructional lesson seeds unchanged.</span>
+<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-25 — Restoring the reference HTML and keeping seed 6599 in analysis 11</span></span>
+<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “You don’t need to change <span class="in">`custom_age`</span>, but change the analyses</span>
+<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a>  page for 11 mixture.”</span>
+<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Preserve the supplied reference HTML exactly as lesson material while</span>
+<span id="cb1-715"><a href="#cb1-715" aria-hidden="true" tabindex="-1"></a>  ensuring the project’s <span class="in">`11-mixture`</span> analysis uses the student seed.</span>
+<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Restored the reference HTML’s original demonstration</span>
+<span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a>  seed <span class="in">`123`</span> and its original displayed outputs. Confirmed that</span>
+<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a>  <span class="in">`analyses/11-mixture.qmd`</span> uses <span class="in">`student_id &lt;- 6599L`</span> for the population study,</span>
+<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a>  the 100,000-person simulation summary, and the primary reproducibility row.</span>
+<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Checked the generated <span class="in">`docs/analyses/11-mixture.html`</span> for the</span>
+<span id="cb1-721"><a href="#cb1-721" aria-hidden="true" tabindex="-1"></a>  <span class="in">`6599`</span> student seed and rerendered the analysis page previously using that</span>
+<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a>  seed. The unrelated reference document remains unchanged in purpose.</span>
+<span id="cb1-723"><a href="#cb1-723" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: The prior audit changed a professor-provided reference HTML</span>
+<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a>  that was not part of the requested project output.</span>
+<span id="cb1-725"><a href="#cb1-725" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Reversed those reference-file edits and retained the project seed</span>
+<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a>  only in the analysis source and generated project page.</span>
+<span id="cb1-727"><a href="#cb1-727" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The reference HTML is preserved, while the submitted custom</span>
+<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a>  age-at-death analysis remains reproducible with seed <span class="in">`6599`</span>.</span>
+<span id="cb1-729"><a href="#cb1-729" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Treat <span class="in">`Inference/custom_age_at_death_distribution_monte_carlo.html`</span></span>
+<span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a>  as reference material and <span class="in">`analyses/11-mixture.qmd`</span> plus its generated HTML</span>
+<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a>  as the authoritative project analysis.</span>
+<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a><span class="fu">## Template for future interactions</span></span>
+<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a>Copy this template and append it below the historical record for each</span>
+<span id="cb1-736"><a href="#cb1-736" aria-hidden="true" tabindex="-1"></a>meaningful future request.</span>
+<span id="cb1-737"><a href="#cb1-737" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-738"><a href="#cb1-738" aria-hidden="true" tabindex="-1"></a><span class="fu">### [YYYY-MM-DD] — [Short change title]</span></span>
+<span id="cb1-739"><a href="#cb1-739" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-740"><a href="#cb1-740" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “<span class="co">[</span><span class="ot">Exact request or a faithful short quotation.</span><span class="co">]</span>”</span>
+<span id="cb1-741"><a href="#cb1-741" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: <span class="co">[</span><span class="ot">What problem were we trying to solve?</span><span class="co">]</span></span>
+<span id="cb1-742"><a href="#cb1-742" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: <span class="co">[</span><span class="ot">What was suggested or changed?</span><span class="co">]</span></span>
+<span id="cb1-743"><a href="#cb1-743" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: [What did I run, inspect, compare with the handout, or review</span>
+<span id="cb1-744"><a href="#cb1-744" aria-hidden="true" tabindex="-1"></a>  visually?]</span>
+<span id="cb1-745"><a href="#cb1-745" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: <span class="co">[</span><span class="ot">What failed, remained uncertain, or needed clarification?</span><span class="co">]</span></span>
+<span id="cb1-746"><a href="#cb1-746" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: <span class="co">[</span><span class="ot">What changed after validation?</span><span class="co">]</span></span>
+<span id="cb1-747"><a href="#cb1-747" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: <span class="co">[</span><span class="ot">What files, outputs, or conclusions changed?</span><span class="co">]</span></span>
+<span id="cb1-748"><a href="#cb1-748" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: <span class="co">[</span><span class="ot">What did I accept, reject, or leave provisional, and why?</span><span class="co">]</span></span>
+<span id="cb1-749"><a href="#cb1-749" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-750"><a href="#cb1-750" aria-hidden="true" tabindex="-1"></a><span class="fu">## Future logging workflow</span></span>
+<span id="cb1-751"><a href="#cb1-751" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-752"><a href="#cb1-752" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Before making a change, record the date, prompt, and goal.</span>
+<span id="cb1-753"><a href="#cb1-753" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>After implementation, record the files changed and the AI response summary.</span>
+<span id="cb1-754"><a href="#cb1-754" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run an appropriate validation check: simulation, render, link check,</span>
+<span id="cb1-755"><a href="#cb1-755" aria-hidden="true" tabindex="-1"></a>   'git diff --check', or visual review.</span>
+<span id="cb1-756"><a href="#cb1-756" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Record any failure or limitation rather than silently removing it.</span>
+<span id="cb1-757"><a href="#cb1-757" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Finish with the decision and the reason for accepting the result.</span>
+<span id="cb1-758"><a href="#cb1-758" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-759"><a href="#cb1-759" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrity notes</span></span>
+<span id="cb1-760"><a href="#cb1-760" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-761"><a href="#cb1-761" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI helped draft code, documentation, interpretations, and presentation</span>
+<span id="cb1-762"><a href="#cb1-762" aria-hidden="true" tabindex="-1"></a>  structure; AI suggestions were treated as hypotheses to inspect.</span>
+<span id="cb1-763"><a href="#cb1-763" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The simulation evidence is generated from the repository’s R code and</span>
+<span id="cb1-764"><a href="#cb1-764" aria-hidden="true" tabindex="-1"></a>  recorded seed, not copied from an AI response.</span>
+<span id="cb1-765"><a href="#cb1-765" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provisional population models are explicitly labeled and should be replaced</span>
+<span id="cb1-766"><a href="#cb1-766" aria-hidden="true" tabindex="-1"></a>  if the instructor supplies official specifications.</span>
+<span id="cb1-767"><a href="#cb1-767" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generated HTML belongs in 'docs/'; the '.qmd' and '.R' files are the</span>
+<span id="cb1-768"><a href="#cb1-768" aria-hidden="true" tabindex="-1"></a>  authoritative sources.</span>
+<span id="cb1-769"><a href="#cb1-769" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I should be able to explain the submitted code, diagnostics, limitations,</span>
+<span id="cb1-770"><a href="#cb1-770" aria-hidden="true" tabindex="-1"></a>  and conclusions.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

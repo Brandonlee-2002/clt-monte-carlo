@@ -678,6 +678,58 @@ must be independently inspectable in the repository.
 - Decision: Treat `student_id <- 6599L` as the project-wide seed until it is
   replaced with the intended last four digits of the student ID.
 
+### 2026-09-25 — Auditing and updating HTML seed references
+
+- User prompt: “The HTML should reflect using my seed. Double check all HTML
+  files to make sure seed 6599 is being used. If seed 6599 is not being used,
+  update the seed and rerun the processes.”
+- Goal: Ensure the project-facing HTML and the custom age-at-death reference
+  page consistently document the student seed and display outputs generated
+  from that seed.
+- AI response summary: Audited all generated project HTML pages and found their
+  primary analysis seed was already `6599`; the separate `2026` rows are
+  intentional sensitivity checks. The custom age-at-death HTML in `Inference/`
+  still contained the lesson’s demonstration seed `123`, so its embedded code
+  and displayed random outputs were updated to `6599` and regenerated with the
+  same distribution code.
+- Validation: Recomputed the reference page’s 10-value sample, 100,000-person
+  summary, and 10,000 sample-mean simulation with R and seed `6599`. Confirmed
+  the custom HTML contains only `set.seed(6599)` calls and confirmed every
+  project analysis HTML contains the primary student seed marker.
+- Problem found: The other HTML files in `Inference/` are unrelated class
+  lessons; changing their instructional demonstration seeds would alter
+  professor-provided teaching material rather than project evidence.
+- Revision: Updated only the project-related custom age-at-death reference HTML
+  and left unrelated class-lesson HTML unchanged. Corrected the earlier log
+  entry’s statement that the reference HTML would remain unchanged.
+- Result: The project analysis pages and the custom age-at-death HTML now use
+  seed `6599` for their primary examples and displayed results.
+- Decision: Keep `2026` as the explicitly labeled alternate seed for sensitivity
+  checks, and keep unrelated instructional lesson seeds unchanged.
+
+### 2026-09-25 — Restoring the reference HTML and keeping seed 6599 in analysis 11
+
+- User prompt: “You don’t need to change `custom_age`, but change the analyses
+  page for 11 mixture.”
+- Goal: Preserve the supplied reference HTML exactly as lesson material while
+  ensuring the project’s `11-mixture` analysis uses the student seed.
+- AI response summary: Restored the reference HTML’s original demonstration
+  seed `123` and its original displayed outputs. Confirmed that
+  `analyses/11-mixture.qmd` uses `student_id <- 6599L` for the population study,
+  the 100,000-person simulation summary, and the primary reproducibility row.
+- Validation: Checked the generated `docs/analyses/11-mixture.html` for the
+  `6599` student seed and rerendered the analysis page previously using that
+  seed. The unrelated reference document remains unchanged in purpose.
+- Problem found: The prior audit changed a professor-provided reference HTML
+  that was not part of the requested project output.
+- Revision: Reversed those reference-file edits and retained the project seed
+  only in the analysis source and generated project page.
+- Result: The reference HTML is preserved, while the submitted custom
+  age-at-death analysis remains reproducible with seed `6599`.
+- Decision: Treat `Inference/custom_age_at_death_distribution_monte_carlo.html`
+  as reference material and `analyses/11-mixture.qmd` plus its generated HTML
+  as the authoritative project analysis.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each
