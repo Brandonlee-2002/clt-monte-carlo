@@ -52,6 +52,9 @@ probability_60_or_older <- with(
   death_distribution,
   sum(probability[age >= 60])
 )
+theoretical_median <- death_distribution$age[
+  which(cumsum(death_distribution$probability) >= 0.5)[1]
+]
 
 plot(
   death_distribution$age,
@@ -74,6 +77,52 @@ approximately **`r sprintf("%.2f", 100 * probability_under_20)`%** of its
 probability to ages below 20 and **`r sprintf("%.2f", 100 * probability_60_or_older)`%**
 to ages 60 and older. These values are calculated from the normalized discrete
 probabilities, not estimated from the Monte Carlo sample means.
+
+## Large-population simulation check
+
+The reference HTML also simulates a population of 100,000 people before
+studying repeated sample means. I reproduce that check here with the same
+`rdeath()` generator, using the project’s recorded student seed (`r student_id`)
+instead of the reference lesson’s demonstration seed, so the simulated
+summaries remain consistent with the rest of this project.
+
+```{r}
+set.seed(student_id)
+number_of_people <- 100000L
+simulated_ages <- rdeath(number_of_people, death_distribution)
+
+simulation_summary <- data.frame(
+  statistic = c(
+    "Mean age at death",
+    "Median age at death",
+    "Standard deviation",
+    "Percent below age 20",
+    "Percent age 60 or older"
+  ),
+  theoretical = c(
+    death_mean,
+    theoretical_median,
+    death_sd,
+    100 * probability_under_20,
+    100 * probability_60_or_older
+  ),
+  simulated = c(
+    mean(simulated_ages),
+    median(simulated_ages),
+    sd(simulated_ages),
+    100 * mean(simulated_ages < 20),
+    100 * mean(simulated_ages >= 60)
+  )
+)
+simulation_summary$difference <-
+  simulation_summary$simulated - simulation_summary$theoretical
+knitr::kable(simulation_summary, digits = 3)
+```
+
+The simulated mean, spread, and age-group percentages should be close to their
+theoretical counterparts, while the median is reported as a descriptive check
+of the population’s two-component shape. Small differences are expected from
+finite simulation error.
 
 ## Experimental design and decision rule
 

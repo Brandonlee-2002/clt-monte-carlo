@@ -629,6 +629,55 @@ must be independently inspectable in the repository.
   simulation and interactive-page plumbing remains compatible, but present it
   to readers as “Custom age-at-death mixture.”
 
+### 2026-09-25 — Adding a large-population simulation summary
+
+- User prompt: “Can you add a simulation summary as well?”
+- Goal: Show that samples generated from the implemented age-at-death
+  distribution reproduce its theoretical characteristics before interpreting
+  the sampling distribution of means.
+- AI response summary: Added a 100,000-person simulation check to
+  `analyses/11-mixture.qmd`, using the reference HTML’s `rdeath()` workflow and
+  `set.seed(123)`. The page now compares theoretical and simulated mean,
+  median, standard deviation, percent below age 20, and percent age 60 or older,
+  including the simulation differences.
+- Validation: The summary is generated directly from the normalized helper
+  distribution and the fixed-seed simulated ages. The analysis page was
+  rerendered and the output table was checked for finite, close simulated
+  values.
+- Problem found: The median is not a moment and was not included in the
+  theoretical code from the reference HTML, so it is presented as a descriptive
+  comparison rather than a CLT diagnostic.
+- Revision: Kept the theoretical mean and standard deviation as probability-
+  weighted calculations, while adding the median and simulation differences as
+  supplementary validation evidence.
+- Result: The death-distribution analysis now documents both the population’s
+  theoretical shape and whether a large simulated population reproduces it.
+- Decision: Use the large-population check as supporting evidence; retain the
+  repeated sample-mean diagnostics as the basis for the approximate-normality
+  conclusion.
+
+### 2026-09-25 — Using the recorded student seed for the simulation summary
+
+- User prompt: “Can we use my seed instead?”
+- Goal: Make the large-population age-at-death validation consistent with the
+  project’s reproducibility convention and recorded student ID seed.
+- AI response summary: Replaced the reference lesson’s demonstration seed
+  `123` with the project’s existing `student_id` value, `6599`, in the
+  100,000-person simulation summary. Updated the explanation to distinguish the
+  reference example from the submitted project run.
+- Validation: Reran the simulation and rerendered the age-at-death analysis.
+  The summary remains finite and reproducible, while its exact simulated
+  values appropriately change with the project seed.
+- Problem found: The source HTML intentionally uses `set.seed(123)` as a
+  teaching example, but using that value in the project would make this page
+  inconsistent with the rest of the recorded student-seed workflow.
+- Revision: Kept the reference HTML unchanged for provenance and used
+  `set.seed(student_id)` only in the project analysis.
+- Result: The simulation summary now uses the same student seed as the CLT
+  experiments and other reproducibility checks.
+- Decision: Treat `student_id <- 6599L` as the project-wide seed until it is
+  replaced with the intended last four digits of the student ID.
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

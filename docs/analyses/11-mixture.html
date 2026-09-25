@@ -218,11 +218,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#population-and-prediction" id="toc-population-and-prediction" class="nav-link active" data-scroll-target="#population-and-prediction"><span class="header-section-number">1</span> Population and prediction</a></li>
   <li><a href="#reference-population-shape" id="toc-reference-population-shape" class="nav-link" data-scroll-target="#reference-population-shape"><span class="header-section-number">2</span> Reference population shape</a></li>
-  <li><a href="#experimental-design-and-decision-rule" id="toc-experimental-design-and-decision-rule" class="nav-link" data-scroll-target="#experimental-design-and-decision-rule"><span class="header-section-number">3</span> Experimental design and decision rule</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">4</span> Results</a></li>
-  <li><a href="#visual-evidence" id="toc-visual-evidence" class="nav-link" data-scroll-target="#visual-evidence"><span class="header-section-number">5</span> Visual evidence</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
-  <li><a href="#reproducibility-check" id="toc-reproducibility-check" class="nav-link" data-scroll-target="#reproducibility-check"><span class="header-section-number">7</span> Reproducibility check</a></li>
+  <li><a href="#large-population-simulation-check" id="toc-large-population-simulation-check" class="nav-link" data-scroll-target="#large-population-simulation-check"><span class="header-section-number">3</span> Large-population simulation check</a></li>
+  <li><a href="#experimental-design-and-decision-rule" id="toc-experimental-design-and-decision-rule" class="nav-link" data-scroll-target="#experimental-design-and-decision-rule"><span class="header-section-number">4</span> Experimental design and decision rule</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">5</span> Results</a></li>
+  <li><a href="#visual-evidence" id="toc-visual-evidence" class="nav-link" data-scroll-target="#visual-evidence"><span class="header-section-number">6</span> Visual evidence</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7</span> Conclusion</a></li>
+  <li><a href="#reproducibility-check" id="toc-reproducibility-check" class="nav-link" data-scroll-target="#reproducibility-check"><span class="header-section-number">8</span> Reproducibility check</a></li>
   </ul>
 </nav>
     </div>
@@ -291,20 +292,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  death_distribution,</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(probability[age <span class="sc">&gt;=</span> <span class="dv">60</span>])</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  death_distribution<span class="sc">$</span>age,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  death_distribution<span class="sc">$</span>percent,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"l"</span>,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">3</span>,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age at death"</span>,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Percent of deaths"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Supplied custom age-at-death distribution"</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">"gray90"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(death_distribution<span class="sc">$</span>age, death_distribution<span class="sc">$</span>percent,</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"darkorange"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>theoretical_median <span class="ot">&lt;-</span> death_distribution<span class="sc">$</span>age[</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">which</span>(<span class="fu">cumsum</span>(death_distribution<span class="sc">$</span>probability) <span class="sc">&gt;=</span> <span class="fl">0.5</span>)[<span class="dv">1</span>]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  death_distribution<span class="sc">$</span>age,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  death_distribution<span class="sc">$</span>percent,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"l"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">3</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age at death"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Percent of deaths"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Supplied custom age-at-death distribution"</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">"gray90"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(death_distribution<span class="sc">$</span>age, death_distribution<span class="sc">$</span>percent,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"darkorange"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -316,21 +320,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The distribution has theoretical mean <strong>49.98 years</strong> and standard deviation <strong>27.63 years</strong>. It assigns approximately <strong>24.37%</strong> of its probability to ages below 20 and <strong>53.29%</strong> to ages 60 and older. These values are calculated from the normalized discrete probabilities, not estimated from the Monte Carlo sample means.</p>
 </section>
-<section id="experimental-design-and-decision-rule" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="experimental-design-and-decision-rule"><span class="header-section-number">3</span> Experimental design and decision rule</h2>
-<p>I generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The common criteria are absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. Three consecutive passing values are required.</p>
-</section>
-<section id="results" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="results"><span class="header-section-number">4</span> Results</h2>
+<section id="large-population-simulation-check" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="large-population-simulation-check"><span class="header-section-number">3</span> Large-population simulation check</h2>
+<p>The reference HTML also simulates a population of 100,000 people before studying repeated sample means. I reproduce that check here with the same <code>rdeath()</code> generator, using the project’s recorded student seed (6599) instead of the reference lesson’s demonstration seed, so the simulated summaries remain consistent with the rest of this project.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>display <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"simulated_mean"</span>, <span class="st">"simulated_sd"</span>, <span class="st">"theoretical_sd"</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_correlation"</span>, <span class="st">"qq_rmse"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"normal_enough"</span>, <span class="st">"stable_pass"</span>)]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>normal_enough <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(display<span class="sc">$</span>normal_enough, <span class="st">"yes"</span>, <span class="st">"no"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>stable_pass <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(display<span class="sc">$</span>stable_pass, <span class="st">"yes"</span>, <span class="st">"no"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(display, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(student_id)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>number_of_people <span class="ot">&lt;-</span> <span class="dv">100000</span>L</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>simulated_ages <span class="ot">&lt;-</span> <span class="fu">rdeath</span>(number_of_people, death_distribution)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>simulation_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">c</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean age at death"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Median age at death"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Standard deviation"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent below age 20"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent age 60 or older"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">theoretical =</span> <span class="fu">c</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    death_mean,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    theoretical_median,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    death_sd,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> probability_under_20,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> probability_60_or_older</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulated =</span> <span class="fu">c</span>(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulated_ages),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">median</span>(simulated_ages),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulated_ages),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(simulated_ages <span class="sc">&lt;</span> <span class="dv">20</span>),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(simulated_ages <span class="sc">&gt;=</span> <span class="dv">60</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>simulation_summary<span class="sc">$</span>difference <span class="ot">&lt;-</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  simulation_summary<span class="sc">$</span>simulated <span class="sc">-</span> simulation_summary<span class="sc">$</span>theoretical</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(simulation_summary, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">statistic</th>
+<th style="text-align: right;">theoretical</th>
+<th style="text-align: right;">simulated</th>
+<th style="text-align: right;">difference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean age at death</td>
+<td style="text-align: right;">49.981</td>
+<td style="text-align: right;">49.889</td>
+<td style="text-align: right;">-0.092</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Median age at death</td>
+<td style="text-align: right;">61.000</td>
+<td style="text-align: right;">61.000</td>
+<td style="text-align: right;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Standard deviation</td>
+<td style="text-align: right;">27.635</td>
+<td style="text-align: right;">27.645</td>
+<td style="text-align: right;">0.011</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percent below age 20</td>
+<td style="text-align: right;">24.368</td>
+<td style="text-align: right;">24.477</td>
+<td style="text-align: right;">0.109</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percent age 60 or older</td>
+<td style="text-align: right;">53.291</td>
+<td style="text-align: right;">53.128</td>
+<td style="text-align: right;">-0.163</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The simulated mean, spread, and age-group percentages should be close to their theoretical counterparts, while the median is reported as a descriptive check of the population’s two-component shape. Small differences are expected from finite simulation error.</p>
+</section>
+<section id="experimental-design-and-decision-rule" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="experimental-design-and-decision-rule"><span class="header-section-number">4</span> Experimental design and decision rule</h2>
+<p>I generated B = 10000 sample means at candidate sizes 2, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 300, 500. The common criteria are absolute skewness ≤ 0.20, absolute excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤ 0.08. Three consecutive passing values are required.</p>
+</section>
+<section id="results" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="results"><span class="header-section-number">5</span> Results</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"simulated_mean"</span>, <span class="st">"simulated_sd"</span>, <span class="st">"theoretical_sd"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_correlation"</span>, <span class="st">"qq_rmse"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"normal_enough"</span>, <span class="st">"stable_pass"</span>)]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>normal_enough <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(display<span class="sc">$</span>normal_enough, <span class="st">"yes"</span>, <span class="st">"no"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>stable_pass <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(display<span class="sc">$</span>stable_pass, <span class="st">"yes"</span>, <span class="st">"no"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(display, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -534,46 +622,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="visual-evidence" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="visual-evidence"><span class="header-section-number">5</span> Visual evidence</h2>
+<section id="visual-evidence" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="visual-evidence"><span class="header-section-number">6</span> Visual evidence</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_n <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.na</span>(study<span class="sc">$</span>selected_n)) <span class="fu">max</span>(N_VALUES) <span class="cf">else</span> study<span class="sc">$</span>selected_n</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> study<span class="sc">$</span>samples[[<span class="fu">as.character</span>(plot_n)]]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>old_par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"darkseagreen"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Age-at-death means: n ="</span>, plot_n), <span class="at">xlab =</span> <span class="st">"Sample mean"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> study<span class="sc">$</span>spec<span class="sc">$</span>mean, <span class="at">sd =</span> study<span class="sc">$</span>spec<span class="sc">$</span><span class="fu">sd_mean</span>(plot_n)),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x, <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Normal Q-Q plot: n ="</span>, plot_n), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.3</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plot_n <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.na</span>(study<span class="sc">$</span>selected_n)) <span class="fu">max</span>(N_VALUES) <span class="cf">else</span> study<span class="sc">$</span>selected_n</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> study<span class="sc">$</span>samples[[<span class="fu">as.character</span>(plot_n)]]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>old_par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"darkseagreen"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Age-at-death means: n ="</span>, plot_n), <span class="at">xlab =</span> <span class="st">"Sample mean"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> study<span class="sc">$</span>spec<span class="sc">$</span>mean, <span class="at">sd =</span> study<span class="sc">$</span>spec<span class="sc">$</span><span class="fu">sd_mean</span>(plot_n)),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x, <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Normal Q-Q plot: n ="</span>, plot_n), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.3</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="11-mixture_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="11-mixture_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(old_par)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(old_par)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="conclusion" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7</span> Conclusion</h2>
 <p>The first stable pass is <strong>n = 30</strong> on the project’s candidate grid. The separate exhaustive scan of every integer from 2 through 500 reports <strong>n = 17</strong>. These values answer slightly different questions: the candidate-grid result is the first stable pass among the published summary sizes, while the exhaustive result refines the boundary to consecutive integers.</p>
 <p>The early-life decline and adult peak create a non-normal population shape that averaging must smooth. The result is evidence for this synthetic death distribution under the stated criteria—not a universal threshold for real mortality data.</p>
 </section>
-<section id="reproducibility-check" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="reproducibility-check"><span class="header-section-number">7</span> Reproducibility check</h2>
+<section id="reproducibility-check" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="reproducibility-check"><span class="header-section-number">8</span> Reproducibility check</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reproducibility_check</span>(<span class="st">"mixture"</span>, <span class="at">n =</span> plot_n, <span class="at">seed_a =</span> student_id,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">seed_b =</span> <span class="dv">2026</span>L, <span class="at">B =</span> B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reproducibility_check</span>(<span class="st">"mixture"</span>, <span class="at">n =</span> plot_n, <span class="at">seed_a =</span> student_id,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">seed_b =</span> <span class="dv">2026</span>L, <span class="at">B =</span> B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  seed simulated_mean simulated_sd   skewness excess_kurtosis
@@ -1039,127 +1127,176 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Custom Age-at-Death Distribution"</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "A discrete two-component population built from the supplied reference code"</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../R/helpers.R"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>student_id <span class="ot">&lt;-</span> <span class="dv">6599</span>L  <span class="co"># Replace with the last four digits of your student ID.</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> B_DEFAULT</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>study <span class="ot">&lt;-</span> <span class="fu">study_population</span>(<span class="st">"mixture"</span>, <span class="at">seed =</span> student_id, <span class="at">B =</span> B)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> study<span class="sc">$</span>diagnostics</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>full_grid_path <span class="ot">&lt;-</span> <span class="st">"../results/tables/full_grid_summary.csv"</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>full_grid_n <span class="ot">&lt;-</span> <span class="cn">NA_integer_</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(full_grid_path)) {</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  full_grid_summary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(full_grid_path, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  full_grid_n <span class="ot">&lt;-</span> full_grid_summary<span class="sc">$</span>smallest_n_judged_normal[</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    full_grid_summary<span class="sc">$</span>population <span class="sc">==</span> study<span class="sc">$</span>spec<span class="sc">$</span>label</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  ][<span class="dv">1</span>]</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Population and prediction</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>This analysis uses the custom age-at-death distribution in</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="in">`Inference/custom_age_at_death_distribution_monte_carlo.html`</span>. The reference</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>code defines integer ages from 0 through 100, adds an early-life exponential</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>weight and an adult bell-shaped weight centered at age 65, and normalizes the</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>combined weights so they sum to one. The project implements that same generator</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>through <span class="in">`custom_age_at_death_distribution()`</span> and <span class="in">`rdeath()`</span> in <span class="in">`R/helpers.R`</span>.</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>This is a synthetic teaching distribution designed to reproduce the supplied</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>shape; it is not a fitted historical mortality table. Because it has finite</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>mean and variance, the CLT predicts eventual convergence of sample means, but</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>the two-component shape should make small-sample normality less immediate than</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>for symmetric populations.</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reference population shape</span></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>death_distribution <span class="ot">&lt;-</span> <span class="fu">custom_age_at_death_distribution</span>()</span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>death_mean <span class="ot">&lt;-</span> <span class="fu">with</span>(death_distribution, <span class="fu">sum</span>(age <span class="sc">*</span> probability))</span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>death_sd <span class="ot">&lt;-</span> <span class="fu">with</span>(</span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>  death_distribution,</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">sum</span>((age <span class="sc">-</span> death_mean)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> probability))</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>probability_under_20 <span class="ot">&lt;-</span> <span class="fu">with</span>(</span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>  death_distribution,</span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(probability[age <span class="sc">&lt;</span> <span class="dv">20</span>])</span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>probability_60_or_older <span class="ot">&lt;-</span> <span class="fu">with</span>(</span>
-<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>  death_distribution,</span>
-<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(probability[age <span class="sc">&gt;=</span> <span class="dv">60</span>])</span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>  death_distribution<span class="sc">$</span>age,</span>
-<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>  death_distribution<span class="sc">$</span>percent,</span>
-<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"l"</span>,</span>
-<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">3</span>,</span>
-<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
-<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age at death"</span>,</span>
-<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Percent of deaths"</span>,</span>
-<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Supplied custom age-at-death distribution"</span></span>
-<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">"gray90"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(death_distribution<span class="sc">$</span>age, death_distribution<span class="sc">$</span>percent,</span>
-<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"darkorange"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>The distribution has theoretical mean **`r sprintf("%.2f", death_mean)` years**</span>
-<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>and standard deviation **`r sprintf("%.2f", death_sd)` years**. It assigns</span>
-<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>approximately **`r sprintf("%.2f", 100 * probability_under_20)`%** of its</span>
-<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>probability to ages below 20 and **`r sprintf("%.2f", 100 * probability_60_or_older)`%**</span>
-<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>to ages 60 and older. These values are calculated from the normalized discrete</span>
-<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>probabilities, not estimated from the Monte Carlo sample means.</span>
-<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Experimental design and decision rule</span></span>
-<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>I generated <span class="in">`r paste0("B = ", B)`</span> sample means at candidate sizes <span class="in">`r paste(N_VALUES, collapse = ", ")`</span>. The common criteria are absolute skewness ≤ 0.20, absolute</span>
-<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤</span>
-<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>0.08. Three consecutive passing values are required.</span>
-<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results</span></span>
-<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>display <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"simulated_mean"</span>, <span class="st">"simulated_sd"</span>, <span class="st">"theoretical_sd"</span>,</span>
-<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_correlation"</span>, <span class="st">"qq_rmse"</span>,</span>
-<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"normal_enough"</span>, <span class="st">"stable_pass"</span>)]</span>
-<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>normal_enough <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(display<span class="sc">$</span>normal_enough, <span class="st">"yes"</span>, <span class="st">"no"</span>)</span>
-<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>stable_pass <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(display<span class="sc">$</span>stable_pass, <span class="st">"yes"</span>, <span class="st">"no"</span>)</span>
-<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(display, <span class="at">digits =</span> <span class="dv">3</span>)</span>
-<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visual evidence</span></span>
-<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a>plot_n <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.na</span>(study<span class="sc">$</span>selected_n)) <span class="fu">max</span>(N_VALUES) <span class="cf">else</span> study<span class="sc">$</span>selected_n</span>
-<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> study<span class="sc">$</span>samples[[<span class="fu">as.character</span>(plot_n)]]</span>
-<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>old_par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"darkseagreen"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
-<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Age-at-death means: n ="</span>, plot_n), <span class="at">xlab =</span> <span class="st">"Sample mean"</span>)</span>
-<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> study<span class="sc">$</span>spec<span class="sc">$</span>mean, <span class="at">sd =</span> study<span class="sc">$</span>spec<span class="sc">$</span><span class="fu">sd_mean</span>(plot_n)),</span>
-<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x, <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Normal Q-Q plot: n ="</span>, plot_n), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.3</span>)</span>
-<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(old_par)</span>
-<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
-<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>The first stable pass is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`** on the project’s candidate grid. The separate exhaustive scan of every integer from 2 through 500 reports **`r ifelse(is.na(full_grid_n), "no stable value in the investigated range", paste0("n = ", full_grid_n))`**. These values answer slightly different questions: the candidate-grid result is the first stable pass among the published summary sizes, while the exhaustive result refines the boundary to consecutive integers.</span>
-<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>The early-life decline and adult peak create a non-normal population shape that averaging must smooth. The result is evidence for this synthetic death distribution under the stated criteria—not a universal threshold for real mortality data.</span>
-<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility check</span></span>
-<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a><span class="fu">reproducibility_check</span>(<span class="st">"mixture"</span>, <span class="at">n =</span> plot_n, <span class="at">seed_a =</span> student_id,</span>
-<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>                      <span class="at">seed_b =</span> <span class="dv">2026</span>L, <span class="at">B =</span> B)</span>
-<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Custom Age-at-Death Distribution"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "A discrete two-component population built from the supplied reference code"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../R/helpers.R"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>student_id <span class="ot">&lt;-</span> <span class="dv">6599</span>L  <span class="co"># Replace with the last four digits of your student ID.</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> B_DEFAULT</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>study <span class="ot">&lt;-</span> <span class="fu">study_population</span>(<span class="st">"mixture"</span>, <span class="at">seed =</span> student_id, <span class="at">B =</span> B)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> study<span class="sc">$</span>diagnostics</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>full_grid_path <span class="ot">&lt;-</span> <span class="st">"../results/tables/full_grid_summary.csv"</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>full_grid_n <span class="ot">&lt;-</span> <span class="cn">NA_integer_</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(full_grid_path)) {</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  full_grid_summary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(full_grid_path, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  full_grid_n <span class="ot">&lt;-</span> full_grid_summary<span class="sc">$</span>smallest_n_judged_normal[</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    full_grid_summary<span class="sc">$</span>population <span class="sc">==</span> study<span class="sc">$</span>spec<span class="sc">$</span>label</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  ][<span class="dv">1</span>]</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Population and prediction</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>This analysis uses the custom age-at-death distribution in</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="in">`Inference/custom_age_at_death_distribution_monte_carlo.html`</span>. The reference</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>code defines integer ages from 0 through 100, adds an early-life exponential</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>weight and an adult bell-shaped weight centered at age 65, and normalizes the</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>combined weights so they sum to one. The project implements that same generator</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>through <span class="in">`custom_age_at_death_distribution()`</span> and <span class="in">`rdeath()`</span> in <span class="in">`R/helpers.R`</span>.</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>This is a synthetic teaching distribution designed to reproduce the supplied</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>shape; it is not a fitted historical mortality table. Because it has finite</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>mean and variance, the CLT predicts eventual convergence of sample means, but</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>the two-component shape should make small-sample normality less immediate than</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>for symmetric populations.</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reference population shape</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>death_distribution <span class="ot">&lt;-</span> <span class="fu">custom_age_at_death_distribution</span>()</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>death_mean <span class="ot">&lt;-</span> <span class="fu">with</span>(death_distribution, <span class="fu">sum</span>(age <span class="sc">*</span> probability))</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>death_sd <span class="ot">&lt;-</span> <span class="fu">with</span>(</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  death_distribution,</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">sum</span>((age <span class="sc">-</span> death_mean)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> probability))</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>probability_under_20 <span class="ot">&lt;-</span> <span class="fu">with</span>(</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  death_distribution,</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(probability[age <span class="sc">&lt;</span> <span class="dv">20</span>])</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>probability_60_or_older <span class="ot">&lt;-</span> <span class="fu">with</span>(</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>  death_distribution,</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(probability[age <span class="sc">&gt;=</span> <span class="dv">60</span>])</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>theoretical_median <span class="ot">&lt;-</span> death_distribution<span class="sc">$</span>age[</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">which</span>(<span class="fu">cumsum</span>(death_distribution<span class="sc">$</span>probability) <span class="sc">&gt;=</span> <span class="fl">0.5</span>)[<span class="dv">1</span>]</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>  death_distribution<span class="sc">$</span>age,</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>  death_distribution<span class="sc">$</span>percent,</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"l"</span>,</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">3</span>,</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"darkorange"</span>,</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Age at death"</span>,</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Percent of deaths"</span>,</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Supplied custom age-at-death distribution"</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">"gray90"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(death_distribution<span class="sc">$</span>age, death_distribution<span class="sc">$</span>percent,</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"darkorange"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>The distribution has theoretical mean **`r sprintf("%.2f", death_mean)` years**</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>and standard deviation **`r sprintf("%.2f", death_sd)` years**. It assigns</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>approximately **`r sprintf("%.2f", 100 * probability_under_20)`%** of its</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>probability to ages below 20 and **`r sprintf("%.2f", 100 * probability_60_or_older)`%**</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>to ages 60 and older. These values are calculated from the normalized discrete</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>probabilities, not estimated from the Monte Carlo sample means.</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Large-population simulation check</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>The reference HTML also simulates a population of 100,000 people before</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>studying repeated sample means. I reproduce that check here with the same</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="in">`rdeath()`</span> generator, using the project’s recorded student seed (<span class="in">`r student_id`</span>)</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>instead of the reference lesson’s demonstration seed, so the simulated</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>summaries remain consistent with the rest of this project.</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(student_id)</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>number_of_people <span class="ot">&lt;-</span> <span class="dv">100000</span>L</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>simulated_ages <span class="ot">&lt;-</span> <span class="fu">rdeath</span>(number_of_people, death_distribution)</span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>simulation_summary <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">c</span>(</span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mean age at death"</span>,</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Median age at death"</span>,</span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Standard deviation"</span>,</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent below age 20"</span>,</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Percent age 60 or older"</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>  <span class="at">theoretical =</span> <span class="fu">c</span>(</span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>    death_mean,</span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>    theoretical_median,</span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>    death_sd,</span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> probability_under_20,</span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> probability_60_or_older</span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulated =</span> <span class="fu">c</span>(</span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(simulated_ages),</span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>    <span class="fu">median</span>(simulated_ages),</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(simulated_ages),</span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(simulated_ages <span class="sc">&lt;</span> <span class="dv">20</span>),</span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>    <span class="dv">100</span> <span class="sc">*</span> <span class="fu">mean</span>(simulated_ages <span class="sc">&gt;=</span> <span class="dv">60</span>)</span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>simulation_summary<span class="sc">$</span>difference <span class="ot">&lt;-</span></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>  simulation_summary<span class="sc">$</span>simulated <span class="sc">-</span> simulation_summary<span class="sc">$</span>theoretical</span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(simulation_summary, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>The simulated mean, spread, and age-group percentages should be close to their</span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>theoretical counterparts, while the median is reported as a descriptive check</span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>of the population’s two-component shape. Small differences are expected from</span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>finite simulation error.</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Experimental design and decision rule</span></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>I generated <span class="in">`r paste0("B = ", B)`</span> sample means at candidate sizes <span class="in">`r paste(N_VALUES, collapse = ", ")`</span>. The common criteria are absolute skewness ≤ 0.20, absolute</span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>excess kurtosis ≤ 0.30, Q-Q correlation ≥ 0.995, and standardized Q-Q RMSE ≤</span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>0.08. Three consecutive passing values are required.</span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results</span></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>display <span class="ot">&lt;-</span> d[, <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"simulated_mean"</span>, <span class="st">"simulated_sd"</span>, <span class="st">"theoretical_sd"</span>,</span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"skewness"</span>, <span class="st">"excess_kurtosis"</span>, <span class="st">"qq_correlation"</span>, <span class="st">"qq_rmse"</span>,</span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"normal_enough"</span>, <span class="st">"stable_pass"</span>)]</span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>normal_enough <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(display<span class="sc">$</span>normal_enough, <span class="st">"yes"</span>, <span class="st">"no"</span>)</span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a>display<span class="sc">$</span>stable_pass <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(display<span class="sc">$</span>stable_pass, <span class="st">"yes"</span>, <span class="st">"no"</span>)</span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(display, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visual evidence</span></span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>plot_n <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.na</span>(study<span class="sc">$</span>selected_n)) <span class="fu">max</span>(N_VALUES) <span class="cf">else</span> study<span class="sc">$</span>selected_n</span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> study<span class="sc">$</span>samples[[<span class="fu">as.character</span>(plot_n)]]</span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>old_par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="dv">40</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"darkseagreen"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Age-at-death means: n ="</span>, plot_n), <span class="at">xlab =</span> <span class="st">"Sample mean"</span>)</span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> study<span class="sc">$</span>spec<span class="sc">$</span>mean, <span class="at">sd =</span> study<span class="sc">$</span>spec<span class="sc">$</span><span class="fu">sd_mean</span>(plot_n)),</span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x, <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Normal Q-Q plot: n ="</span>, plot_n), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.3</span>)</span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(x, <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(old_par)</span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>The first stable pass is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`** on the project’s candidate grid. The separate exhaustive scan of every integer from 2 through 500 reports **`r ifelse(is.na(full_grid_n), "no stable value in the investigated range", paste0("n = ", full_grid_n))`**. These values answer slightly different questions: the candidate-grid result is the first stable pass among the published summary sizes, while the exhaustive result refines the boundary to consecutive integers.</span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a>The early-life decline and adult peak create a non-normal population shape that averaging must smooth. The result is evidence for this synthetic death distribution under the stated criteria—not a universal threshold for real mortality data.</span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility check</span></span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a><span class="fu">reproducibility_check</span>(<span class="st">"mixture"</span>, <span class="at">n =</span> plot_n, <span class="at">seed_a =</span> student_id,</span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>                      <span class="at">seed_b =</span> <span class="dv">2026</span>L, <span class="at">B =</span> B)</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
