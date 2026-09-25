@@ -137,7 +137,7 @@ short_labels <- c(
   "Cauchy(location = 0, scale = 1)" = "Cauchy",
   "Dependent machine-failure process" = "Dependent process",
   "Non-identical Bernoulli process" = "Non-identical Bernoulli",
-  "Two-component mixture" = "Two-component mixture"
+  "Custom age-at-death mixture" = "Age-at-death mixture"
 )
 
 first_stable_n <- function(rows) {

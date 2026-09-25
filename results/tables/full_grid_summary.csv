@@ -9,4 +9,4 @@
 "Cauchy(location = 0, scale = 1)",NA,87.3804109414002,8205.48366719372,0.0936565498322764,1.34628255241768,"No stable n met all criteria in the investigated range."
 "Dependent machine-failure process",NA,0.227327406825009,0.136022304702872,0.998485510017276,0.0550329809789606,"No stable n met all criteria in the investigated range."
 "Non-identical Bernoulli process",54,0.0257110876227522,-0.0308694131300333,0.99681347441622,0.079826765164721,"First stable pass at n = 54"
-"Two-component mixture",54,0.190766179495954,0.0444935508126569,0.998935322007394,0.0461422727103245,"First stable pass at n = 54"
+"Custom age-at-death mixture",17,-0.196831785486125,-0.0634090091182271,0.998742715316753,0.05014257716553,"First stable pass at n = 17"

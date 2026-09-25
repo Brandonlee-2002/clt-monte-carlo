@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./analyses/11-mixture.html">
- <span class="dropdown-text">Two-component mixture</span></a>
+ <span class="dropdown-text">Age-at-death mixture</span></a>
   </li>  
     </ul>
   </li>
@@ -247,6 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#restoring-generated-analysis-page-figures" id="toc-restoring-generated-analysis-page-figures" class="nav-link" data-scroll-target="#restoring-generated-analysis-page-figures"><span class="header-section-number">1.2.24</span> 2026-09-17 — Restoring generated analysis-page figures</a></li>
   <li><a href="#adding-an-exhaustive-every-integer-sample-size-sensitivity-page" id="toc-adding-an-exhaustive-every-integer-sample-size-sensitivity-page" class="nav-link" data-scroll-target="#adding-an-exhaustive-every-integer-sample-size-sensitivity-page"><span class="header-section-number">1.2.25</span> 2026-09-24 — Adding an exhaustive every-integer sample-size sensitivity page</a></li>
   <li><a href="#replacing-the-static-every-n-page-with-an-interactive-explorer" id="toc-replacing-the-static-every-n-page-with-an-interactive-explorer" class="nav-link" data-scroll-target="#replacing-the-static-every-n-page-with-an-interactive-explorer"><span class="header-section-number">1.2.26</span> 2026-09-24 — Replacing the static every-n page with an interactive explorer</a></li>
+  <li><a href="#replacing-the-provisional-mixture-with-the-supplied-age-at-death-distribution" id="toc-replacing-the-provisional-mixture-with-the-supplied-age-at-death-distribution" class="nav-link" data-scroll-target="#replacing-the-provisional-mixture-with-the-supplied-age-at-death-distribution"><span class="header-section-number">1.2.27</span> 2026-09-25 — Replacing the provisional mixture with the supplied age-at-death distribution</a></li>
   </ul></li>
   <li><a href="#template-for-future-interactions" id="toc-template-for-future-interactions" class="nav-link" data-scroll-target="#template-for-future-interactions"><span class="header-section-number">1.3</span> Template for future interactions</a>
   <ul class="collapse">
@@ -660,6 +661,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Revision: Verified the page over HTTP, wrapped the explorer in a Quarto <code>{=html}</code> block, and replaced awkward inline LaTeX ellipses with plain text in the explanatory copy.</li>
 <li>Result: The published page now supports immediate, interactive inspection of any integer sample size and graph type while retaining the static summary report for high-level communication.</li>
 <li>Decision: Use precomputed, reproducible JSON visual summaries rather than running R in the browser. This keeps GitHub Pages static, fast to interact with, and independent of a server process.</li>
+</ul>
+</section>
+<section id="replacing-the-provisional-mixture-with-the-supplied-age-at-death-distribution" class="level3" data-number="1.2.27">
+<h3 data-number="1.2.27" class="anchored" data-anchor-id="replacing-the-provisional-mixture-with-the-supplied-age-at-death-distribution"><span class="header-section-number">1.2.27</span> 2026-09-25 — Replacing the provisional mixture with the supplied age-at-death distribution</h3>
+<ul>
+<li>User prompt: “Review <code>custom_age_at_death_distribution_monte_carlo.html</code>, update the two-component mixture population, and use the code provided in the HTML to provide analysis for the death distribution. The HTML file should be in the inference folder.”</li>
+<li>Goal: Replace the provisional 90/10 normal mixture with the supplied discrete age-at-death model while preserving the shared simulation design and adding an evidence-based analysis of the resulting population.</li>
+<li>AI response summary: Reviewed <code>Inference/custom_age_at_death_distribution_monte_carlo.html</code>. Implemented ages 0–100, the early-life weight <code>0.045 * exp(-age / 5)</code>, the adult weight <code>0.030 * exp(-0.5 * ((age - 65) / 10)^2)</code>, normalization, and the reference <code>rdeath()</code> sampling function in <code>R/helpers.R</code>. Updated the mixture analysis page, navigation label, homepage visual mapping, final summary, and generated results to describe the synthetic age-at-death distribution.</li>
+<li>Validation: Recomputed the reference distribution’s theoretical mean, standard deviation, probability below age 20, and probability at least age 60 from the normalized probabilities. Re-ran the candidate-grid and all-integer simulations with the recorded seed, regenerated the homepage visuals and interactive data, and rendered the Quarto site.</li>
+<li>Problem found: The reference HTML is a synthetic shape and not a historical mortality table. Its code also defines a discrete probability distribution, so the previous continuous normal-mixture description and theoretical moments were no longer valid.</li>
+<li>Revision: Kept the source HTML at <code>Inference/custom_age_at_death_distribution_monte_carlo.html</code>, added a reusable discrete generator and moment calculation, and explicitly labeled the analysis as synthetic rather than historical.</li>
+<li>Result: The mixture slot now analyzes the supplied death distribution with the same four normality diagnostics, three-consecutive-pass rule, visual evidence, reproducibility check, and cross-distribution comparison used by the rest of the project.</li>
+<li>Decision: Retain the stable internal population key <code>mixture</code> so existing simulation and interactive-page plumbing remains compatible, but present it to readers as “Custom age-at-death mixture.”</li>
 </ul>
 </section>
 </section>
@@ -1752,44 +1766,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a>  running R in the browser. This keeps GitHub Pages static, fast to interact</span>
 <span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>  with, and independent of a server process.</span>
 <span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a><span class="fu">## Template for future interactions</span></span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2026-09-25 — Replacing the provisional mixture with the supplied age-at-death distribution</span></span>
 <span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>Copy this template and append it below the historical record for each</span>
-<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>meaningful future request.</span>
-<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a><span class="fu">### [YYYY-MM-DD] — [Short change title]</span></span>
-<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “<span class="co">[</span><span class="ot">Exact request or a faithful short quotation.</span><span class="co">]</span>”</span>
-<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: <span class="co">[</span><span class="ot">What problem were we trying to solve?</span><span class="co">]</span></span>
-<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: <span class="co">[</span><span class="ot">What was suggested or changed?</span><span class="co">]</span></span>
-<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: [What did I run, inspect, compare with the handout, or review</span>
-<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>  visually?]</span>
-<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: <span class="co">[</span><span class="ot">What failed, remained uncertain, or needed clarification?</span><span class="co">]</span></span>
-<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: <span class="co">[</span><span class="ot">What changed after validation?</span><span class="co">]</span></span>
-<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: <span class="co">[</span><span class="ot">What files, outputs, or conclusions changed?</span><span class="co">]</span></span>
-<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: <span class="co">[</span><span class="ot">What did I accept, reject, or leave provisional, and why?</span><span class="co">]</span></span>
-<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a><span class="fu">## Future logging workflow</span></span>
-<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Before making a change, record the date, prompt, and goal.</span>
-<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>After implementation, record the files changed and the AI response summary.</span>
-<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run an appropriate validation check: simulation, render, link check,</span>
-<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>   'git diff --check', or visual review.</span>
-<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Record any failure or limitation rather than silently removing it.</span>
-<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Finish with the decision and the reason for accepting the result.</span>
-<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrity notes</span></span>
-<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI helped draft code, documentation, interpretations, and presentation</span>
-<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a>  structure; AI suggestions were treated as hypotheses to inspect.</span>
-<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The simulation evidence is generated from the repository’s R code and</span>
-<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>  recorded seed, not copied from an AI response.</span>
-<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provisional population models are explicitly labeled and should be replaced</span>
-<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a>  if the instructor supplies official specifications.</span>
-<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generated HTML belongs in 'docs/'; the '.qmd' and '.R' files are the</span>
-<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>  authoritative sources.</span>
-<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I should be able to explain the submitted code, diagnostics, limitations,</span>
-<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a>  and conclusions.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “Review <span class="in">`custom_age_at_death_distribution_monte_carlo.html`</span>,</span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>  update the two-component mixture population, and use the code provided in the</span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>  HTML to provide analysis for the death distribution. The HTML file should be</span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>  in the inference folder.”</span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: Replace the provisional 90/10 normal mixture with the supplied discrete</span>
+<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a>  age-at-death model while preserving the shared simulation design and adding an</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a>  evidence-based analysis of the resulting population.</span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: Reviewed</span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a>  <span class="in">`Inference/custom_age_at_death_distribution_monte_carlo.html`</span>. Implemented</span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>  ages 0–100, the early-life weight <span class="in">`0.045 * exp(-age / 5)`</span>, the adult weight</span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a>  <span class="in">`0.030 * exp(-0.5 * ((age - 65) / 10)^2)`</span>, normalization, and the reference</span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a>  <span class="in">`rdeath()`</span> sampling function in <span class="in">`R/helpers.R`</span>. Updated the mixture analysis</span>
+<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a>  page, navigation label, homepage visual mapping, final summary, and generated</span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a>  results to describe the synthetic age-at-death distribution.</span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: Recomputed the reference distribution’s theoretical mean,</span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a>  standard deviation, probability below age 20, and probability at least age</span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a>  60 from the normalized probabilities. Re-ran the candidate-grid and</span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a>  all-integer simulations with the recorded seed, regenerated the homepage</span>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a>  visuals and interactive data, and rendered the Quarto site.</span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: The reference HTML is a synthetic shape and not a historical</span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>  mortality table. Its code also defines a discrete probability distribution,</span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a>  so the previous continuous normal-mixture description and theoretical</span>
+<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a>  moments were no longer valid.</span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: Kept the source HTML at</span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a>  <span class="in">`Inference/custom_age_at_death_distribution_monte_carlo.html`</span>, added a</span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a>  reusable discrete generator and moment calculation, and explicitly labeled</span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a>  the analysis as synthetic rather than historical.</span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: The mixture slot now analyzes the supplied death distribution with</span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>  the same four normality diagnostics, three-consecutive-pass rule, visual</span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>  evidence, reproducibility check, and cross-distribution comparison used by</span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>  the rest of the project.</span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: Retain the stable internal population key <span class="in">`mixture`</span> so existing</span>
+<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a>  simulation and interactive-page plumbing remains compatible, but present it</span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a>  to readers as “Custom age-at-death mixture.”</span>
+<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a><span class="fu">## Template for future interactions</span></span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a>Copy this template and append it below the historical record for each</span>
+<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a>meaningful future request.</span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a><span class="fu">### [YYYY-MM-DD] — [Short change title]</span></span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>User prompt: “<span class="co">[</span><span class="ot">Exact request or a faithful short quotation.</span><span class="co">]</span>”</span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Goal: <span class="co">[</span><span class="ot">What problem were we trying to solve?</span><span class="co">]</span></span>
+<span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI response summary: <span class="co">[</span><span class="ot">What was suggested or changed?</span><span class="co">]</span></span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Validation: [What did I run, inspect, compare with the handout, or review</span>
+<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a>  visually?]</span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Problem found: <span class="co">[</span><span class="ot">What failed, remained uncertain, or needed clarification?</span><span class="co">]</span></span>
+<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revision: <span class="co">[</span><span class="ot">What changed after validation?</span><span class="co">]</span></span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Result: <span class="co">[</span><span class="ot">What files, outputs, or conclusions changed?</span><span class="co">]</span></span>
+<span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Decision: <span class="co">[</span><span class="ot">What did I accept, reject, or leave provisional, and why?</span><span class="co">]</span></span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a><span class="fu">## Future logging workflow</span></span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Before making a change, record the date, prompt, and goal.</span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>After implementation, record the files changed and the AI response summary.</span>
+<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run an appropriate validation check: simulation, render, link check,</span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a>   'git diff --check', or visual review.</span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Record any failure or limitation rather than silently removing it.</span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Finish with the decision and the reason for accepting the result.</span>
+<span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a><span class="fu">## Integrity notes</span></span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI helped draft code, documentation, interpretations, and presentation</span>
+<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a>  structure; AI suggestions were treated as hypotheses to inspect.</span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The simulation evidence is generated from the repository’s R code and</span>
+<span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a>  recorded seed, not copied from an AI response.</span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provisional population models are explicitly labeled and should be replaced</span>
+<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a>  if the instructor supplies official specifications.</span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generated HTML belongs in 'docs/'; the '.qmd' and '.R' files are the</span>
+<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a>  authoritative sources.</span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I should be able to explain the submitted code, diagnostics, limitations,</span>
+<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a>  and conclusions.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

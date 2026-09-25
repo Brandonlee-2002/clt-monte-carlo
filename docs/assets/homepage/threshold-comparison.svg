@@ -47,9 +47,9 @@
 <text x="242" y="444" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Non-identical Bernoulli</text>
 <circle cx="706.358648750181" cy="444" r="7" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
 <text x="720.358648750181" y="444" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start" dominant-baseline="middle" opacity="1">n = 75</text>
-<text x="242" y="480" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Two-component mixture</text>
-<circle cx="656.423264326542" cy="480" r="7" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
-<text x="670.423264326542" y="480" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start" dominant-baseline="middle" opacity="1">n = 50</text>
+<text x="242" y="480" fill="#102a43" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="end" dominant-baseline="middle" opacity="1">Age-at-death mixture</text>
+<circle cx="593.512120097097" cy="480" r="7" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
+<text x="607.512120097097" y="480" fill="#0f766e" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start" dominant-baseline="middle" opacity="1">n = 30</text>
 <line x1="260" y1="501" x2="940" y2="501" stroke="#7b8794" stroke-width="1.2"/>
 <circle cx="70" cy="575" r="7" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
 <text x="86" y="575" fill="#52606d" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="13" font-weight="400" text-anchor="start" dominant-baseline="middle" opacity="1">first stable pass</text>

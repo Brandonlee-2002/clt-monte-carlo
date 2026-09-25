@@ -592,6 +592,43 @@ must be independently inspectable in the repository.
   running R in the browser. This keeps GitHub Pages static, fast to interact
   with, and independent of a server process.
 
+### 2026-09-25 — Replacing the provisional mixture with the supplied age-at-death distribution
+
+- User prompt: “Review `custom_age_at_death_distribution_monte_carlo.html`,
+  update the two-component mixture population, and use the code provided in the
+  HTML to provide analysis for the death distribution. The HTML file should be
+  in the inference folder.”
+- Goal: Replace the provisional 90/10 normal mixture with the supplied discrete
+  age-at-death model while preserving the shared simulation design and adding an
+  evidence-based analysis of the resulting population.
+- AI response summary: Reviewed
+  `Inference/custom_age_at_death_distribution_monte_carlo.html`. Implemented
+  ages 0–100, the early-life weight `0.045 * exp(-age / 5)`, the adult weight
+  `0.030 * exp(-0.5 * ((age - 65) / 10)^2)`, normalization, and the reference
+  `rdeath()` sampling function in `R/helpers.R`. Updated the mixture analysis
+  page, navigation label, homepage visual mapping, final summary, and generated
+  results to describe the synthetic age-at-death distribution.
+- Validation: Recomputed the reference distribution’s theoretical mean,
+  standard deviation, probability below age 20, and probability at least age
+  60 from the normalized probabilities. Re-ran the candidate-grid and
+  all-integer simulations with the recorded seed, regenerated the homepage
+  visuals and interactive data, and rendered the Quarto site.
+- Problem found: The reference HTML is a synthetic shape and not a historical
+  mortality table. Its code also defines a discrete probability distribution,
+  so the previous continuous normal-mixture description and theoretical
+  moments were no longer valid.
+- Revision: Kept the source HTML at
+  `Inference/custom_age_at_death_distribution_monte_carlo.html`, added a
+  reusable discrete generator and moment calculation, and explicitly labeled
+  the analysis as synthetic rather than historical.
+- Result: The mixture slot now analyzes the supplied death distribution with
+  the same four normality diagnostics, three-consecutive-pass rule, visual
+  evidence, reproducibility check, and cross-distribution comparison used by
+  the rest of the project.
+- Decision: Retain the stable internal population key `mixture` so existing
+  simulation and interactive-page plumbing remains compatible, but present it
+  to readers as “Custom age-at-death mixture.”
+
 ## Template for future interactions
 
 Copy this template and append it below the historical record for each

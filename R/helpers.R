@@ -41,6 +41,33 @@ qq_diagnostics <- function(x) {
   )
 }
 
+# Construct the synthetic age-at-death distribution supplied in
+# Inference/custom_age_at_death_distribution_monte_carlo.html.
+custom_age_at_death_distribution <- function() {
+  age <- 0:100
+  early_component <- 0.045 * exp(-age / 5)
+  adult_component <- 0.030 * exp(-0.5 * ((age - 65) / 10)^2)
+  weight <- early_component + adult_component
+  probability <- weight / sum(weight)
+
+  data.frame(
+    age = age,
+    probability = probability,
+    percent = 100 * probability
+  )
+}
+
+# Sampling function corresponding to the rdeath() function in the reference
+# HTML. Sampling is with replacement from the normalized discrete distribution.
+rdeath <- function(n, distribution = custom_age_at_death_distribution()) {
+  sample(
+    x = distribution$age,
+    size = n,
+    replace = TRUE,
+    prob = distribution$probability
+  )
+}
+
 population_specs <- function() {
   list(
     normal = list(
@@ -137,20 +164,32 @@ population_specs <- function() {
         sqrt(sum(probabilities * (1 - probabilities))) / n
       }
     ),
-    mixture = list(
-      label = "Two-component mixture",
-      description = "90% N(0, 1) and 10% N(5, 1), an asymmetric population with a separated minority component.",
-      expectation = "The minority high-value component should create right skew and slow convergence relative to symmetric populations.",
-      generator = function(n) {
-        component_two <- runif(n) < 0.10
-        x <- numeric(n)
-        x[!component_two] <- rnorm(sum(!component_two), mean = 0, sd = 1)
-        x[component_two] <- rnorm(sum(component_two), mean = 5, sd = 1)
-        x
-      },
-      mean = 0.5, sd = sqrt(3.25),
-      sd_mean = function(n) sqrt(3.25) / sqrt(n)
-    )
+    mixture = {
+      death_distribution <- custom_age_at_death_distribution()
+      death_mean <- with(death_distribution, sum(age * probability))
+      death_sd <- with(
+        death_distribution,
+        sqrt(sum((age - death_mean)^2 * probability))
+      )
+
+      list(
+        label = "Custom age-at-death mixture",
+        description = paste(
+          "A discrete distribution on ages 0 through 100 formed by normalizing",
+          "an early-life exponential component and an adult bell-shaped component",
+          "centered at age 65."
+        ),
+        expectation = paste(
+          "The two-component shape combines an early-life decline with an adult",
+          "peak, so sample means should converge more slowly than symmetric populations",
+          "but eventually approach normality because the distribution has finite mean and variance."
+        ),
+        generator = function(n) rdeath(n, death_distribution),
+        mean = death_mean,
+        sd = death_sd,
+        sd_mean = function(n) death_sd / sqrt(n)
+      )
+    }
   )
 }
 

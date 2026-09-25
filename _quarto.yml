@@ -36,7 +36,7 @@ website:
           - href: analyses/10-nonidentical-bernoulli.qmd
             text: Non-identical Bernoulli
           - href: analyses/11-mixture.qmd
-            text: Two-component mixture
+            text: Age-at-death mixture
     right:
       - href: final-summary.qmd
         text: Results

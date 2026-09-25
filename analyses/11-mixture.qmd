@@ -1,6 +1,6 @@
 ---
-title: "Two-Component Mixture Population"
-subtitle: "An asymmetric population with a minority high-value group"
+title: "Custom Age-at-Death Distribution"
+subtitle: "A discrete two-component population built from the supplied reference code"
 format: html
 ---
 
@@ -10,16 +10,70 @@ student_id <- 6599L  # Replace with the last four digits of your student ID.
 B <- B_DEFAULT
 study <- study_population("mixture", seed = student_id, B = B)
 d <- study$diagnostics
+full_grid_path <- "../results/tables/full_grid_summary.csv"
+full_grid_n <- NA_integer_
+if (file.exists(full_grid_path)) {
+  full_grid_summary <- read.csv(full_grid_path, stringsAsFactors = FALSE)
+  full_grid_n <- full_grid_summary$smallest_n_judged_normal[
+    full_grid_summary$population == study$spec$label
+  ][1]
+}
 ```
 
 ## Population and prediction
 
-This analysis uses a two-component mixture: 90% N(0, 1) and 10% N(5, 1). It is
-an explicit irregular, life/death-style substitute because the handout marks
-the official life/death population as “coming soon.” The population is
-asymmetric, with a separated minority component. I expect slower convergence
-than for symmetric populations, but eventual convergence because the mixture
-has finite mean and variance.
+This analysis uses the custom age-at-death distribution in
+`Inference/custom_age_at_death_distribution_monte_carlo.html`. The reference
+code defines integer ages from 0 through 100, adds an early-life exponential
+weight and an adult bell-shaped weight centered at age 65, and normalizes the
+combined weights so they sum to one. The project implements that same generator
+through `custom_age_at_death_distribution()` and `rdeath()` in `R/helpers.R`.
+
+This is a synthetic teaching distribution designed to reproduce the supplied
+shape; it is not a fitted historical mortality table. Because it has finite
+mean and variance, the CLT predicts eventual convergence of sample means, but
+the two-component shape should make small-sample normality less immediate than
+for symmetric populations.
+
+## Reference population shape
+
+```{r}
+death_distribution <- custom_age_at_death_distribution()
+death_mean <- with(death_distribution, sum(age * probability))
+death_sd <- with(
+  death_distribution,
+  sqrt(sum((age - death_mean)^2 * probability))
+)
+probability_under_20 <- with(
+  death_distribution,
+  sum(probability[age < 20])
+)
+probability_60_or_older <- with(
+  death_distribution,
+  sum(probability[age >= 60])
+)
+
+plot(
+  death_distribution$age,
+  death_distribution$percent,
+  type = "l",
+  lwd = 3,
+  col = "darkorange",
+  xlab = "Age at death",
+  ylab = "Percent of deaths",
+  main = "Supplied custom age-at-death distribution"
+)
+grid(col = "gray90", lty = 2)
+lines(death_distribution$age, death_distribution$percent,
+      col = "darkorange", lwd = 3)
+```
+
+The distribution has theoretical mean **`r sprintf("%.2f", death_mean)` years**
+and standard deviation **`r sprintf("%.2f", death_sd)` years**. It assigns
+approximately **`r sprintf("%.2f", 100 * probability_under_20)`%** of its
+probability to ages below 20 and **`r sprintf("%.2f", 100 * probability_60_or_older)`%**
+to ages 60 and older. These values are calculated from the normalized discrete
+probabilities, not estimated from the Monte Carlo sample means.
 
 ## Experimental design and decision rule
 
@@ -45,7 +99,7 @@ plot_n <- if (is.na(study$selected_n)) max(N_VALUES) else study$selected_n
 x <- study$samples[[as.character(plot_n)]]
 old_par <- par(mfrow = c(1, 2))
 hist(x, breaks = 40, probability = TRUE, col = "darkseagreen", border = "white",
-     main = paste("Mixture means: n =", plot_n), xlab = "Sample mean")
+     main = paste("Age-at-death means: n =", plot_n), xlab = "Sample mean")
 curve(dnorm(x, mean = study$spec$mean, sd = study$spec$sd_mean(plot_n)),
       add = TRUE, col = "firebrick", lwd = 2)
 qqnorm(x, main = paste("Normal Q-Q plot: n =", plot_n), pch = 16, cex = 0.3)
@@ -55,7 +109,9 @@ par(old_par)
 
 ## Conclusion
 
-The first stable pass is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`**. The minority high-value component creates skewness and tail behavior that averaging must dilute. This is a useful reminder that finite variance is enough for eventual CLT behavior in theory, but not necessarily enough for a small-\(n\) normal approximation.
+The first stable pass is **`r ifelse(is.na(study$selected_n), "no stable value in the investigated range", paste0("n = ", study$selected_n))`** on the project’s candidate grid. The separate exhaustive scan of every integer from 2 through 500 reports **`r ifelse(is.na(full_grid_n), "no stable value in the investigated range", paste0("n = ", full_grid_n))`**. These values answer slightly different questions: the candidate-grid result is the first stable pass among the published summary sizes, while the exhaustive result refines the boundary to consecutive integers.
+
+The early-life decline and adult peak create a non-normal population shape that averaging must smooth. The result is evidence for this synthetic death distribution under the stated criteria—not a universal threshold for real mortality data.
 
 ## Reproducibility check
 

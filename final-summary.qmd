@@ -10,6 +10,14 @@ student_id <- 6599L  # Replace with the last four digits of your student ID.
 B <- B_DEFAULT
 studies <- run_all_studies(seed = student_id, B = B, keep_samples = FALSE)
 summary <- summary_table(studies)
+mixture_n <- summary$smallest_n_judged_normal[
+  summary$population == "Custom age-at-death mixture"
+]
+mixture_n_text <- ifelse(
+  is.na(mixture_n),
+  "none through n = 500",
+  paste0("n = ", mixture_n)
+)
 ```
 
 ::: {.callout-important}
@@ -96,7 +104,7 @@ first stable passes were:
 | Six-sided die | \(n=10\) |
 | Poisson(1) | \(n=30\) |
 | Binomial(5, .10) | \(n=50\) |
-| Two-component mixture | \(n=50\) |
+| Custom age-at-death mixture | `r mixture_n_text` |
 | Non-identical Bernoulli | \(n=75\) |
 | Exponential(1) | \(n=100\) |
 | Dependent process | No stable pass through \(n=500\) |
@@ -150,7 +158,7 @@ within the investigated range.
 ## Population shape
 
 Symmetry is associated with faster convergence in these experiments. The
-exponential, rare-success binomial, and two-component mixture cases retain
+exponential, rare-success binomial, and custom age-at-death mixture cases retain
 right-skew or tail behavior longer. The Poisson case is also skewed, but its
 skewness is less extreme than the rare-success binomial case. These differences
 show why the population distribution matters when choosing a practical sample
@@ -165,10 +173,13 @@ sample size can overstate the amount of independent information. The
 non-identical Bernoulli process shows that changing probabilities affect the
 variance calculation even when a bell-shaped average still develops.
 
-The dependent machine-failure and mixture analyses use explicit models because
-the handout labels those population specifications as “coming soon.” If the
-instructor supplies official generators, those generator functions should be
-replaced while keeping the documented design and diagnostic rule unchanged.
+The dependent machine-failure analysis uses an explicit model because the
+handout labels that population specification as “coming soon.” The mixture slot
+now implements the supplied synthetic age-at-death code in
+`Inference/custom_age_at_death_distribution_monte_carlo.html`; it should still
+not be interpreted as historical mortality data. If the instructor supplies an
+official generator for either population, replace only that generator while
+keeping the documented design and diagnostic rule unchanged.
 
 ## Reproducibility and seed sensitivity
 
