@@ -167,6 +167,99 @@ body {
   margin-bottom: 0;
 }
 
+.source-access {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(140, 228, 217, 0.24), transparent 34%),
+    #e8f3f8;
+  border: 1px solid #b8d8df;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(16, 42, 67, 0.07);
+  margin: 1.25rem 0 2rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.source-access-heading {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+}
+
+.source-access-icon {
+  align-items: center;
+  background: #102a43;
+  border-radius: 10px;
+  color: #8ce4d9;
+  display: flex;
+  flex: 0 0 3rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.35rem;
+  font-weight: 800;
+  height: 3rem;
+  justify-content: center;
+}
+
+.source-access h3 {
+  margin: 0.1rem 0 0.3rem;
+}
+
+.source-access h4 {
+  font-size: 0.98rem;
+  margin: 0 0 0.35rem;
+}
+
+.source-access p {
+  color: #52606d;
+  margin: 0.35rem 0;
+}
+
+.source-button {
+  background: #0f766e;
+  border-radius: 7px;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: 750;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+}
+
+.source-button:hover {
+  background: #0b4f4a;
+  color: #ffffff;
+}
+
+.source-access-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1.4rem 0;
+}
+
+.source-access-grid > div,
+.source-runbook {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(184, 216, 223, 0.9);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+}
+
+.source-access-grid p,
+.source-runbook p,
+.source-runbook li {
+  font-size: 0.9rem;
+}
+
+.source-runbook ol {
+  margin: 0.4rem 0 0.6rem;
+  padding-left: 1.25rem;
+}
+
+.source-runbook code,
+.source-access code {
+  background: rgba(16, 42, 67, 0.08);
+  border-radius: 4px;
+  padding: 0.08rem 0.25rem;
+}
+
 .homepage-visual {
   background: #ffffff;
   border: 1px solid #d9e2ec;
@@ -492,6 +585,10 @@ code {
   .metric-grid,
   .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .source-access-grid {
+    grid-template-columns: 1fr;
   }
 }
 

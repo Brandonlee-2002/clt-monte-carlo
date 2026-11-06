@@ -42,6 +42,9 @@ website:
         text: Results
       - href: ai-log.md
         text: AI log
+      - href: https://github.com/Brandonlee-2002/clt-monte-carlo
+        text: Source code
+        target: _blank
   page-footer:
     left: "CLT Monte Carlo · Reproducible statistical computing"
     right: "Built with R and Quarto"

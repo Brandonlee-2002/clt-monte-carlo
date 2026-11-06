@@ -103,6 +103,46 @@ The professional answer is therefore population-specific: choose the smallest sa
 - Review [`R/helpers.R`](R/helpers.R) for the shared simulation and decision-rule implementation.
 - Read the [AI log](ai-log.md) for the prompt record, validation steps, revisions, and remaining modeling assumptions.
 
+## Source code and how to access it
+
+::: {.source-access}
+<div class="source-access-heading">
+<div class="source-access-icon">{ }</div>
+<div>
+<div class="section-kicker">Open the implementation</div>
+<h3>Everything behind this report is in the GitHub repository</h3>
+<p>Use the <strong>Source code</strong> link in the top navigation, or open the repository directly:</p>
+<p><a class="source-button" href="https://github.com/Brandonlee-2002/clt-monte-carlo" target="_blank" rel="noopener">Browse the source code on GitHub ↗</a></p>
+</div>
+</div>
+
+<div class="source-access-grid">
+<div>
+<h4>Start here</h4>
+<p><a href="https://github.com/Brandonlee-2002/clt-monte-carlo/blob/main/README.md" target="_blank" rel="noopener"><code>README.md</code></a> explains the project map, setup, rendering command, and reproducibility details.</p>
+</div>
+<div>
+<h4>Shared implementation</h4>
+<p><a href="https://github.com/Brandonlee-2002/clt-monte-carlo/blob/main/R/helpers.R" target="_blank" rel="noopener"><code>R/helpers.R</code></a> contains the simulation, diagnostics, and decision rule used across the analyses.</p>
+</div>
+<div>
+<h4>Individual studies</h4>
+<p>The <a href="https://github.com/Brandonlee-2002/clt-monte-carlo/tree/main/analyses" target="_blank" rel="noopener"><code>analyses/</code> folder</a> contains the repeatable Quarto source for each population or process.</p>
+</div>
+</div>
+
+<div class="source-runbook">
+<h4>To run the project locally</h4>
+<ol>
+<li>On GitHub, choose <strong>Code → Download ZIP</strong>, or clone the repository.</li>
+<li>Open the downloaded project folder—the one containing <code>_quarto.yml</code>.</li>
+<li>Replace <code>student_id &lt;- 6599L</code> with the last four digits of the intended student ID.</li>
+<li>From that project folder, run <code>quarto render --no-clean --cache-refresh</code>.</li>
+</ol>
+<p>The rendered website is written to <code>docs/</code>. The source files remain in <code>index.qmd</code>, <code>final-summary.qmd</code>, <code>analyses/</code>, and <code>R/</code>.</p>
+</div>
+:::
+
 ## Reproducibility
 
 The project uses base R and a recorded student seed. Replace `student_id <- 6599L` in the analysis files and `R/run_all.R` with the last four digits of the intended student ID, then render from the repository root:

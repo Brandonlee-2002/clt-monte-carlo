@@ -200,6 +200,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./ai-log.html"> 
 <span class="menu-text">AI log</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/Brandonlee-2002/clt-monte-carlo" target="_blank"> 
+<span class="menu-text">Source code</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -221,7 +225,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-this-project-demonstrates" id="toc-what-this-project-demonstrates" class="nav-link" data-scroll-target="#what-this-project-demonstrates"><span class="header-section-number">3</span> What this project demonstrates</a></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question"><span class="header-section-number">4</span> Research question</a></li>
   <li><a href="#explore-the-work" id="toc-explore-the-work" class="nav-link" data-scroll-target="#explore-the-work"><span class="header-section-number">5</span> Explore the work</a></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">6</span> Reproducibility</a></li>
+  <li><a href="#source-code-and-how-to-access-it" id="toc-source-code-and-how-to-access-it" class="nav-link" data-scroll-target="#source-code-and-how-to-access-it"><span class="header-section-number">6</span> Source code and how to access it</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">7</span> Reproducibility</a></li>
   </ul>
 </nav>
     </div>
@@ -409,8 +414,80 @@ Executive readout
 <li>Read the <a href="./ai-log.html">AI log</a> for the prompt record, validation steps, revisions, and remaining modeling assumptions.</li>
 </ul>
 </section>
-<section id="reproducibility" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="reproducibility"><span class="header-section-number">6</span> Reproducibility</h2>
+<section id="source-code-and-how-to-access-it" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="source-code-and-how-to-access-it"><span class="header-section-number">6</span> Source code and how to access it</h2>
+<div class="source-access">
+<div class="source-access-heading">
+<div class="source-access-icon">
+{ }
+</div>
+<div>
+<div class="section-kicker">
+Open the implementation
+</div>
+<h3 class="anchored">
+Everything behind this report is in the GitHub repository
+</h3>
+<p>
+Use the <strong>Source code</strong> link in the top navigation, or open the repository directly:
+</p>
+<p>
+<a class="source-button" href="https://github.com/Brandonlee-2002/clt-monte-carlo" target="_blank" rel="noopener">Browse the source code on GitHub ↗</a>
+</p>
+</div>
+</div>
+<div class="source-access-grid">
+<div>
+<h4 class="anchored">
+Start here
+</h4>
+<p>
+<a href="https://github.com/Brandonlee-2002/clt-monte-carlo/blob/main/README.md" target="_blank" rel="noopener"><code>README.md</code></a> explains the project map, setup, rendering command, and reproducibility details.
+</p>
+</div>
+<div>
+<h4 class="anchored">
+Shared implementation
+</h4>
+<p>
+<a href="https://github.com/Brandonlee-2002/clt-monte-carlo/blob/main/R/helpers.R" target="_blank" rel="noopener"><code>R/helpers.R</code></a> contains the simulation, diagnostics, and decision rule used across the analyses.
+</p>
+</div>
+<div>
+<h4 class="anchored">
+Individual studies
+</h4>
+<p>
+The <a href="https://github.com/Brandonlee-2002/clt-monte-carlo/tree/main/analyses" target="_blank" rel="noopener"><code>analyses/</code> folder</a> contains the repeatable Quarto source for each population or process.
+</p>
+</div>
+</div>
+<div class="source-runbook">
+<h4 class="anchored">
+To run the project locally
+</h4>
+<ol>
+<li>
+On GitHub, choose <strong>Code → Download ZIP</strong>, or clone the repository.
+</li>
+<li>
+Open the downloaded project folder—the one containing <code>_quarto.yml</code>.
+</li>
+<li>
+Replace <code>student_id &lt;- 6599L</code> with the last four digits of the intended student ID.
+</li>
+<li>
+From that project folder, run <code>quarto render –no-clean –cache-refresh</code>.
+</li>
+</ol>
+<p>
+The rendered website is written to <code>docs/</code>. The source files remain in <code>index.qmd</code>, <code>final-summary.qmd</code>, <code>analyses/</code>, and <code>R/</code>.
+</p>
+</div>
+</div>
+</section>
+<section id="reproducibility" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="reproducibility"><span class="header-section-number">7</span> Reproducibility</h2>
 <p>The project uses base R and a recorded student seed. Replace <code>student_id &lt;- 6599L</code> in the analysis files and <code>R/run_all.R</code> with the last four digits of the intended student ID, then render from the repository root:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--no-clean</span> <span class="at">--cache-refresh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The generated website is in <code>docs/</code>. The extra Quarto flags avoid the output-directory cleanup/move issue documented in the project README.</p>
@@ -977,15 +1054,55 @@ Executive readout
 <span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Review <span class="co">[</span><span class="ot">`R/helpers.R`</span><span class="co">](R/helpers.R)</span> for the shared simulation and decision-rule implementation.</span>
 <span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read the <span class="co">[</span><span class="ot">AI log</span><span class="co">](ai-log.md)</span> for the prompt record, validation steps, revisions, and remaining modeling assumptions.</span>
 <span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## Source code and how to access it</span></span>
 <span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>The project uses base R and a recorded student seed. Replace <span class="in">`student_id &lt;- 6599L`</span> in the analysis files and <span class="in">`R/run_all.R`</span> with the last four digits of the intended student ID, then render from the repository root:</span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--no-clean</span> <span class="at">--cache-refresh</span></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>The generated website is in <span class="in">`docs/`</span>. The extra Quarto flags avoid the output-directory cleanup/move issue documented in the project README.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>::: {.source-access}</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"source-access-heading"</span><span class="dt">&gt;</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"source-access-icon"</span><span class="dt">&gt;</span>{ }<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"section-kicker"</span><span class="dt">&gt;</span>Open the implementation<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h3</span><span class="dt">&gt;</span>Everything behind this report is in the GitHub repository<span class="dt">&lt;/</span><span class="kw">h3</span><span class="dt">&gt;</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Use the <span class="dt">&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Source code<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;</span> link in the top navigation, or open the repository directly:<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">"source-button"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://github.com/Brandonlee-2002/clt-monte-carlo"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="dt">&gt;</span>Browse the source code on GitHub ↗<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"source-access-grid"</span><span class="dt">&gt;</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h4</span><span class="dt">&gt;</span>Start here<span class="dt">&lt;/</span><span class="kw">h4</span><span class="dt">&gt;</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://github.com/Brandonlee-2002/clt-monte-carlo/blob/main/README.md"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="dt">&gt;&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>README.md<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span> explains the project map, setup, rendering command, and reproducibility details.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h4</span><span class="dt">&gt;</span>Shared implementation<span class="dt">&lt;/</span><span class="kw">h4</span><span class="dt">&gt;</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://github.com/Brandonlee-2002/clt-monte-carlo/blob/main/R/helpers.R"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="dt">&gt;&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>R/helpers.R<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span> contains the simulation, diagnostics, and decision rule used across the analyses.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h4</span><span class="dt">&gt;</span>Individual studies<span class="dt">&lt;/</span><span class="kw">h4</span><span class="dt">&gt;</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>The <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://github.com/Brandonlee-2002/clt-monte-carlo/tree/main/analyses"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="dt">&gt;&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>analyses/<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span> folder<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span> contains the repeatable Quarto source for each population or process.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"source-runbook"</span><span class="dt">&gt;</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h4</span><span class="dt">&gt;</span>To run the project locally<span class="dt">&lt;/</span><span class="kw">h4</span><span class="dt">&gt;</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">ol</span><span class="dt">&gt;</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>On GitHub, choose <span class="dt">&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Code → Download ZIP<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;</span>, or clone the repository.<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Open the downloaded project folder—the one containing <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>_quarto.yml<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span>.<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Replace <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>student_id <span class="dv">&amp;lt;</span>- 6599L<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span> with the last four digits of the intended student ID.<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>From that project folder, run <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>quarto render --no-clean --cache-refresh<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span>.<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">ol</span><span class="dt">&gt;</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>The rendered website is written to <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>docs/<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span>. The source files remain in <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>index.qmd<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span>, <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>final-summary.qmd<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span>, <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>analyses/<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span>, and <span class="dt">&lt;</span><span class="kw">code</span><span class="dt">&gt;</span>R/<span class="dt">&lt;/</span><span class="kw">code</span><span class="dt">&gt;</span>.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reproducibility</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>The project uses base R and a recorded student seed. Replace <span class="in">`student_id &lt;- 6599L`</span> in the analysis files and <span class="in">`R/run_all.R`</span> with the last four digits of the intended student ID, then render from the repository root:</span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--no-clean</span> <span class="at">--cache-refresh</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>The generated website is in <span class="in">`docs/`</span>. The extra Quarto flags avoid the output-directory cleanup/move issue documented in the project README.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
