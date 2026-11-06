@@ -193,18 +193,19 @@ population_specs <- function() {
   )
 }
 
-diagnose_sample_means <- function(sample_means, n, spec) {
+diagnose_sample_means <- function(sample_means, n, spec,
+                                  criteria = NORMAL_CRITERIA) {
   qq <- qq_diagnostics(sample_means)
   skew <- moment_skewness(sample_means)
   kurt <- moment_excess_kurtosis(sample_means)
   passes <- is.finite(skew) &&
-    abs(skew) <= NORMAL_CRITERIA$abs_skewness_max &&
+    abs(skew) <= criteria$abs_skewness_max &&
     is.finite(kurt) &&
-    abs(kurt) <= NORMAL_CRITERIA$abs_excess_kurtosis_max &&
+    abs(kurt) <= criteria$abs_excess_kurtosis_max &&
     is.finite(qq$qq_correlation) &&
-    qq$qq_correlation >= NORMAL_CRITERIA$qq_correlation_min &&
+    qq$qq_correlation >= criteria$qq_correlation_min &&
     is.finite(qq$qq_rmse) &&
-    qq$qq_rmse <= NORMAL_CRITERIA$qq_rmse_max
+    qq$qq_rmse <= criteria$qq_rmse_max
 
   expected_sd <- spec$sd_mean(n)
   data.frame(
@@ -224,8 +225,17 @@ diagnose_sample_means <- function(sample_means, n, spec) {
   )
 }
 
+stable_pass_flags <- function(normal_enough,
+                              consecutive_passes = NORMAL_CRITERIA$consecutive_passes) {
+  vapply(seq_along(normal_enough), function(i) {
+    j <- i:min(i + consecutive_passes - 1L, length(normal_enough))
+    length(j) == consecutive_passes && all(normal_enough[j])
+  }, logical(1))
+}
+
 study_population <- function(population, seed = 6599L, B = B_DEFAULT,
-                             n_values = N_VALUES, keep_samples = TRUE) {
+                             n_values = N_VALUES, keep_samples = TRUE,
+                             criteria = NORMAL_CRITERIA) {
   specs <- population_specs()
   spec <- specs[[population]]
   if (is.null(spec)) stop("Unknown population: ", population)
@@ -240,14 +250,16 @@ study_population <- function(population, seed = 6599L, B = B_DEFAULT,
     set.seed(seed)
     sample_means <- replicate(B, mean(spec$generator(n)))
     if (keep_samples) samples[[i]] <- sample_means
-    diagnostics[[i]] <- diagnose_sample_means(sample_means, n, spec)
+    diagnostics[[i]] <- diagnose_sample_means(
+      sample_means, n, spec, criteria = criteria
+    )
   }
 
   diagnostics <- do.call(rbind, diagnostics)
-  diagnostics$stable_pass <- vapply(seq_len(nrow(diagnostics)), function(i) {
-    j <- i:min(i + NORMAL_CRITERIA$consecutive_passes - 1L, nrow(diagnostics))
-    length(j) == NORMAL_CRITERIA$consecutive_passes && all(diagnostics$normal_enough[j])
-  }, logical(1))
+  diagnostics$stable_pass <- stable_pass_flags(
+    diagnostics$normal_enough,
+    consecutive_passes = criteria$consecutive_passes
+  )
 
   selected <- which(diagnostics$stable_pass)[1]
   selected_n <- if (is.na(selected)) NA_integer_ else diagnostics$n[selected]
@@ -262,7 +274,7 @@ study_population <- function(population, seed = 6599L, B = B_DEFAULT,
     diagnostics = diagnostics,
     samples = samples,
     selected_n = selected_n,
-    criteria = NORMAL_CRITERIA
+    criteria = criteria
   )
 }
 
@@ -284,11 +296,13 @@ reproducibility_check <- function(population, n, seed_a = 6599L,
 }
 
 run_all_studies <- function(seed = 6599L, B = B_DEFAULT,
-                            n_values = N_VALUES, keep_samples = FALSE) {
+                            n_values = N_VALUES, keep_samples = FALSE,
+                            criteria = NORMAL_CRITERIA) {
   populations <- names(population_specs())
   studies <- lapply(populations, function(population) {
     study_population(population, seed = seed, B = B,
-                     n_values = n_values, keep_samples = keep_samples)
+                     n_values = n_values, keep_samples = keep_samples,
+                     criteria = criteria)
   })
   names(studies) <- populations
   studies
@@ -340,7 +354,8 @@ full_grid_observations <- function(population, spec, B, max_n) {
 # the stable-pass rule are otherwise identical to study_population().
 study_population_full_grid <- function(population, seed = 6599L,
                                        B = B_DEFAULT, n_values = 2:500,
-                                       keep_samples = FALSE) {
+                                       keep_samples = FALSE,
+                                       criteria = NORMAL_CRITERIA) {
   specs <- population_specs()
   spec <- specs[[population]]
   if (is.null(spec)) stop("Unknown population: ", population)
@@ -363,16 +378,16 @@ study_population_full_grid <- function(population, seed = 6599L,
     n <- n_values[i]
     sample_means <- cumulative[, n] / n
     if (keep_samples) samples[[i]] <- sample_means
-    diagnostics[[i]] <- diagnose_sample_means(sample_means, n, spec)
+    diagnostics[[i]] <- diagnose_sample_means(
+      sample_means, n, spec, criteria = criteria
+    )
   }
 
   diagnostics <- do.call(rbind, diagnostics)
-  diagnostics$stable_pass <- vapply(seq_len(nrow(diagnostics)), function(i) {
-    j <- i:min(i + NORMAL_CRITERIA$consecutive_passes - 1L,
-               nrow(diagnostics))
-    length(j) == NORMAL_CRITERIA$consecutive_passes &&
-      all(diagnostics$normal_enough[j])
-  }, logical(1))
+  diagnostics$stable_pass <- stable_pass_flags(
+    diagnostics$normal_enough,
+    consecutive_passes = criteria$consecutive_passes
+  )
 
   selected <- which(diagnostics$stable_pass)[1]
   selected_n <- if (is.na(selected)) NA_integer_ else diagnostics$n[selected]
@@ -387,19 +402,20 @@ study_population_full_grid <- function(population, seed = 6599L,
     diagnostics = diagnostics,
     samples = samples,
     selected_n = selected_n,
-    criteria = NORMAL_CRITERIA,
+    criteria = criteria,
     design = "Reusable simulation path with cumulative means for every integer n."
   )
 }
 
 run_all_studies_full_grid <- function(seed = 6599L, B = B_DEFAULT,
                                       n_values = 2:500,
-                                      keep_samples = FALSE) {
+                                      keep_samples = FALSE,
+                                      criteria = NORMAL_CRITERIA) {
   populations <- names(population_specs())
   studies <- lapply(populations, function(population) {
     study_population_full_grid(
       population, seed = seed, B = B, n_values = n_values,
-      keep_samples = keep_samples
+      keep_samples = keep_samples, criteria = criteria
     )
   })
   names(studies) <- populations
